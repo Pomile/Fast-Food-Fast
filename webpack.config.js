@@ -96,6 +96,12 @@ module.exports = {
       filename: 'signup.html',
       template: 'signup.html',
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'Signin',
+      filename: 'signin.html',
+      template: 'signin.html',
+    }),
     new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',

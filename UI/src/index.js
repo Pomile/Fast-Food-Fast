@@ -4,6 +4,7 @@ import {
     backdrop,
     sidenavWrapper,
     createAccountBtn,
+    loginBtn
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
 
@@ -18,4 +19,8 @@ import {
 
   if (createAccountBtn) {
     createAccountBtn.onclick = () => window.location.href = "./user.html";
+  }
+
+  if (loginBtn) {
+    loginBtn.onclick = () => window.location.href = "./user.html";
   }

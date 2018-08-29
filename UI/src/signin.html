@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
-        <title>Sign up</title>   
+        <title>Sign in</title>   
     </head>
     <body>
         <div id="wrapper" >
@@ -40,46 +40,35 @@
                 
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
                     <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="index.html">Home</a></li>
-                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="signin.html">Sign in</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="signup.html">Sign up</a></li>
                 </ul>
             </div>
             <div id ="main" class="-whiteBgColor">
                 <div class="headerSeperator"></div>
-                <div class="signupBox">
-                        <div class="signupBox__section-1 hide-on-medium-and-down -col-l-5">
-                                <img src="./assets/images/delivery-img.png"/>
-                                <h1 class="-orangeredTxtColor">Sign up for free account</h1>
-                                <ul>
-                                    <li>Feel free to order for any food of your choice</li>
-                                    <li>Make payment with ease</li>
-                                    <li>get your Orders faster</li>
-                                </ul>
-                        </div>
-                        <div class="signupBox__section-2 -offset-m-1 -col-sm-12 -col-m-10 -col-l-6">
-                                <form class="signupBox__form">
-                                        <h2 class="-orangeredTxtColor">Create account</h2>
-                                        <div>
-                                            <input type="text" name="firstname" id="firstname" placeholder ="Firstname" required/>
+                <div class="signinBox">
+                        <div class="signinBox__section -col-sm-12 -col-m-4 -col-l-3 -offset-m-4 -offset-l-4">
+                                
+                                <form class="signinBox__form">
+                                        <div class="signinBox__img">
+                                            <img src="./assets/images/fasta-fosto.png" alt="fasta-fosto.png">
                                         </div>
-                                        <div>
-                                            <input type="text"  name="lastname" id="lastname" placeholder ="Lastname" required/>
-                                        </div>
+                                        <h2 class="signinBox__header -fs-cs-medium -orangeredTxtColor">Sign in</h2>
                                         <div>
                                             <input type="email"  name="email" id="email" placeholder ="example@live.com" required/>
                                         </div>
                                         <div>
-                                                <input type="tel"  name="phone" id="phone" placeholder ="09078282126" required/>
-                                        </div>
-                                        <div>
                                             <input type="password"  name="password" id="password" placeholder ="Password" required/>
                                         </div>
+                                        
                                         <div>
-                                            <input type="password"  name="cofirmpassword" id="confirmpassword" placeholder ="confirmpassword" required/>
+                                            <center>
+                                                    <button class="signinBox__button button -small -orangeredBgColor -whiteTxtColor"id="loginBtn">Submit</button>
+                                                    <div class="signinBox__button-with-border -redTxtColor -fs-medium"id="loginBtn">Forgot password ?</div>
+                                                    
+                                            </center>
+                                            
                                         </div>
-                                        <div>
-                                            <button class="signupBox__button button -small -orangeredBgColor -whiteTxtColor -flip-right"id="createAccountBtn">Submit</button>
-                                        </div>
-                                    </form>
+                                </form>
                         </div>
 
 
