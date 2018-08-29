@@ -3,6 +3,7 @@ import {
     sidedrawer,
     backdrop,
     sidenavWrapper,
+    createAccountBtn,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
 
@@ -13,4 +14,8 @@ import {
   
   if (backdrop) {
     backdrop.onclick = () => closenav();
+  }
+
+  if (createAccountBtn) {
+    createAccountBtn.onclick = () => window.location.href = "./user.html";
   }

@@ -67,3 +67,8 @@
 .-fs-res-10{ font-size: 10vw;}
 .-fs-res-11{ font-size: 10vw;}
 .-fs-res-12{ font-size: 12vw;}
+
+
+.-fic-alignMiddle{
+    vertical-align: middle;
+}
