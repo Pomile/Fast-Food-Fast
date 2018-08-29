@@ -1,0 +1,40 @@
+
+.button{
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.-small{
+    width: 120px;
+    height: 35px;
+    font-size: 16px;
+    
+}
+
+.-medium{
+    width: 160px;
+    height: 45px;
+    font-size: 18px;
+}
+
+.-large{
+    width: 180px;
+    height: 50px;
+    font-size: 22px;
+}
+
+.-full{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}

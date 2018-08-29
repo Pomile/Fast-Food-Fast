@@ -1,0 +1,51 @@
+.sidenav-wrapper {
+    position: fixed;
+    width: 180px;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 210;
+    background-color: white;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+}
+
+.sidenav-wrapper__header{
+    background-color: orangered;
+    height: 60px;
+    padding-top: 20px;
+
+}
+
+.sidenav-wrapper__picture-holder{
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10%;
+}
+
+.sidenav{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sidenav__item-link{
+    padding: 20px 0px 20px 20px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.sidenav__item-link:hover{
+    background-color: rgb(197, 62, 13);
+    color: white;
+}
+
+.sidenav__icon{
+    vertical-align: middle;  
+    margin-right: 5px;
+}

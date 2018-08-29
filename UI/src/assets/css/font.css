@@ -1,0 +1,69 @@
+.-fs-xxsmall{ font-size: xx-small;}
+.-fs-xsmall{ font-size: x-small;}
+.-fs-small{ font-size: small;}
+.-fs-smaller{ font-size: smaller;}
+.-fs-medium{ font-size: medium; }
+.-fs-large{ font-size: large;}
+.-fs-larger{ font-size: larger; }
+.-fs-xlarge{ font-size: x-large; }
+.-fs-xxlarge{ font-size: xx-large; }
+
+.-fs-cs-xxsmall{ font-size: 16px;}
+.-fs-cs-xsmall{ font-size: 18px;}
+.-fs-cs-small{ font-size: 22px;}
+.-fs-cs-smaller{ font-size: 20px;}
+.-fs-cs-medium{ font-size: 35px; }
+.-fs-cs-large{ font-size: 48px;}
+.-fs-cs-larger{ font-size: 60px; }
+.-fs-cs-xlarge{ font-size: 72px; }
+.-fs-cs-xxlarge{ font-size: 100px; }
+
+
+
+/*...............Font Families................*/
+
+.-ff-roboto{ font-family: 'Roboto', sans-serif;}
+.-ff-poppin{ font-family: 'Poppins', sans-serif;}
+.-ff-crimson{ font-family: 'Crimson Text', serif; }
+.-ff-oswald{ font-family: 'Oswald', sans-serif;}
+.-ff-quicksand{ font-family: 'Quicksand', sans-serif;}
+.-ff-worksans{ font-family: 'Work Sans', sans-serif;}
+.-ff-archivoBlack{ font-family: 'Archivo Black', sans-serif;}
+.-ff-montserrat{ font-family: 'Montserrat', sans-serif;}
+.-ff-abril{ font-family: 'Abril Fatface', serif; }
+.-ff-lora{font-family: 'Lora', serif;}
+.-ff-playfairDisplay{font-family: 'Playfair Display', serif;}
+.-ff-chvio{font-family: 'Chivo', sans-serif;}
+.-ff-archivoNarrow{font-family: 'Archivo Narrow', sans-serif;}
+.-ff-archivo{font-family: 'Archivo', sans-serif;}
+.-ff-comforta{font-family: 'Comfortaa', cursive;}
+.-ff-balotammudu{font-family: 'Baloo Tammudu', cursive;}
+.-ff-fugazone{font-family: 'Fugaz One', cursive;}
+.-ff-prosto{font-family: 'Prosto One', cursive;}
+.-ff-lilita{font-family: 'Lilita One', cursive;}
+.-ff-faster{font-family: 'Faster One', cursive;}
+.-ff-lemon{font-family: 'Lemon', cursive;}
+.-ff-baloobhaina{font-family: 'Baloo Bhaina', cursive;}
+.-ff-norsifer{font-family: 'Nosifer', cursive;}
+
+/*...........Font Weight..................................*/
+
+.-fw-normal{ font-weight: normal;}
+.-fw-bold{ font-weight: bold;}
+.-fw-bolder{ font-weight: bolder;}
+.-fw-lighter{ font-weight: lighter;}
+
+
+/*...................Responsive Font size...........................*/
+
+.-fs-res-2{ font-size: 2vw;}
+.-fs-res-3{ font-size: 3vw;}
+.-fs-res-4{ font-size: 4vw;}
+.-fs-res-5{ font-size: 5vw;}
+.-fs-res-6{ font-size: 6vw;}
+.-fs-res-7{ font-size: 7vw;}
+.-fs-res-8{ font-size: 8vw;}
+.-fs-res-9{ font-size: 9vw;}
+.-fs-res-10{ font-size: 10vw;}
+.-fs-res-11{ font-size: 10vw;}
+.-fs-res-12{ font-size: 12vw;}

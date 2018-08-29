@@ -1,0 +1,7 @@
+.sidenav-wrapper--is-close{
+    transform: translateX(-100%);
+}
+
+.sidenav-wrapper--is-open{
+    transform: translateX(0%);
+}

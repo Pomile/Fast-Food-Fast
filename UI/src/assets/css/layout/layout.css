@@ -1,12 +1,28 @@
-#header{
+#header, #main, #footer {
+    width: 100%;
+}
 
+#header{
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 105;
 }
 
 #main{
-
+    height: 700px;
+    display: flex;
 }
 
 
 #footer{
-    
+    height: 40px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
 }
