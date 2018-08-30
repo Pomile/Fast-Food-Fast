@@ -8,6 +8,7 @@
 @import './assets/css/modules/landingBlock.css';
 @import './assets/css/modules/sidedrawer.css';
 @import './assets/css/modules/sidenav.css';
+@import './assets/css/state/state.css';
 @import './assets/css/state/sidenav.css';
 @import './assets/css/modules/backdrop.css';
 @import './assets/css/modules/headerSeparator.css';
@@ -15,3 +16,9 @@
 @import './assets/css/modules/signinBox.css';
 @import './assets/css/modules/input.css';
 @import './assets/css/modules/buton.css';
+@import './assets/css/modules/caption.css';
+@import './assets/css/modules/foodNav.css';
+@import './assets/css/modules/foodCart.css';
+@import './assets/css/modules/foodItems.css';
+@import './assets/css/state/food.css';
+

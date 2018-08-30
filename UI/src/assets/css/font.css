@@ -72,3 +72,24 @@
 .-fic-alignMiddle{
     vertical-align: middle;
 }
+
+.-ftxt-align-center{
+    text-align: center;
+}
+
+.-ftxt-align-end{
+    text-align: end;
+}
+
+.-ftxt-align-start{
+    text-align: start;
+}
+
+.-ftxt-blackshadow{
+    text-shadow: 1px 1px 2px black;
+}
+
+.-ftxt-whiteshadow{
+    text-shadow: 1px 1px 2px white;
+}
+

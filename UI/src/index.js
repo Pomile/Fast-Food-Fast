@@ -4,11 +4,12 @@ import {
     backdrop,
     sidenavWrapper,
     createAccountBtn,
-    loginBtn
+    loginBtn,
+    food,
+    foodCart,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
-
-/* ............sidenav............*/
+  
   if (sidedrawer) {
     sidedrawer.onclick = () => opennav();
   }
@@ -23,4 +24,30 @@ import {
 
   if (loginBtn) {
     loginBtn.onclick = () => window.location.href = "./user.html";
+  }
+
+  if(food || foodCart){
+    
+    window.addEventListener('scroll', () =>{
+      let foodClientRectY = food.getClientRects()[0].y
+      console.log('wins scroll', window.screenY >= 405 , window.scrollY);
+      if ( window.scrollY >= 450){
+        food.classList.add('food--onWindowScroll');
+      
+      
+      }else{
+        food.classList.remove('food--onWindowScroll');
+      }
+
+      if ( window.scrollY >= 240){
+  
+        foodCart.classList.add('foodCart-onWindowScroll');
+      
+      }else{
+      
+        foodCart.classList.remove('foodCart-onWindowScroll');
+      }
+      
+    })
+    
   }

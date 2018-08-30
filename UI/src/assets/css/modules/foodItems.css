@@ -1,0 +1,54 @@
+.foodItems{
+    display: flex;
+    flex-flow: wrap;
+    height: auto;
+    position: absolute;
+    top: 505px;
+    left: 260px;
+}
+.foodItems__cardWrapper{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 15px
+}
+.foodItems__card{
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 240px;
+    text-align: center;
+    font-family: arial;
+    overflow: hidden;
+    border: 1px solid rgb(206, 205, 205);
+}
+
+.foodItems__title{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.foodItems__price {
+    color: grey;
+    font-size: 22px;
+  }
+
+  .foodItems__price, .foodItems__description{
+    height: 25px;
+  }
+  
+  .foodItems__button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    bottom: 0;
+  }
+  
+  .foodItems__button:hover {
+    opacity: 0.7;
+  }

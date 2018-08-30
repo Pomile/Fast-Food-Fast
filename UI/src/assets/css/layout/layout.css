@@ -16,12 +16,19 @@
     height: 700px;
 }
 
+#mainDimension{
+    height: 5000px;
+    overflow-y: auto;
+}
+
 
 #footer{
     height: 40px;
+    position: relative;
     bottom: 0;
     left: 0;
     text-align: center;
     color: white;
     padding-top: 10px;
+    z-index: 121;
 }

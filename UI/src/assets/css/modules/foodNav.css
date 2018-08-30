@@ -1,0 +1,31 @@
+.food-navWrapper{
+    padding-top: 50px;
+    padding-left: 2%;
+    height: 700px;
+    display: flex;
+}
+
+.food-navigation{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: rgb(204, 96, 7);
+    height: 75%;
+}
+
+.food-navigation__link{
+    display: block;
+    padding: 10px 12px;
+    cursor: pointer;
+    text-align: justify;
+    text-decoration: none;
+    color: white;
+}
+
+.food-navigation__link:hover,
+.food-navigation__link:active,
+.food-navigation__link.active{
+    background-color: orangered;
+}
+
+

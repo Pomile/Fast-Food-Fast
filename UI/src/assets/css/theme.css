@@ -53,8 +53,19 @@
     color: orange;
 }
 
+.-orange-1-TxtColor{
+    color: rgb(243, 200, 122);
+}
 .-redTxtColor{
     color: red;
+}
+
+.-grayTxtColor{
+    color: gray;
+}
+
+.-offWhiteTxtColor{
+    color: whitesmoke;
 }
 
 
