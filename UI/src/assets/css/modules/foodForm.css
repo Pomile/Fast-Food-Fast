@@ -1,0 +1,29 @@
+.foodForm{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+
+.foodForm__item{
+    grid-gap: 4px;
+}
+.foodForm__inputs{
+    height: 400px;
+    grid-column: 2/ span 3;
+}
+
+.foodForm__picture-section{
+    height: 300px;
+}
+
+.-noOfPacks{
+    width: 40%!important;
+}
+
+.-price{
+    width: 50%!important;
+}
+
+.foodForm__uploadBtn{
+    width: 100%!important;
+}

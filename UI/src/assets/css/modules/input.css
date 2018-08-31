@@ -1,18 +1,4 @@
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=phone],
-input[type=number],
-input[type=tel],
-input[list=state],
-input[type=date]
-{
-    width: 96%;
-    height: 20px;
-    padding: 8px;
-    font-size: 18px;
-    margin-top: 10px;
-}
+
 
 .inputfile {
 	width: 0.1px;

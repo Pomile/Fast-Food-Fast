@@ -18,3 +18,29 @@ table {
 th, td {
     padding: 15px;
 }
+
+i {
+    margin-right: 10px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=phone],
+input[type=number],
+input[type=tel],
+input[list=state],
+input[type=date],
+input[list=browse]
+{
+    width: 96%;
+    height: 20px;
+    padding: 8px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+textarea{
+    margin-top: 10px;
+    font-size: 16px;
+}

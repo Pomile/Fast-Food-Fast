@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>Admin</title>   
+    </head>
+    <body>
+        <div id="wrapper" >
+                <div class="backdrop hide-on-medium-and-up" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="./assets/images/user.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link" href="./user.html">Home</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link" href="./order.html">Orders</a>
+                            </li>
+                        </ul>
+                    </nav>
+            <div id="header" class="-orangeredBgColor">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="./assets/images/food_delivery_logo.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="admin.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="orders.html">Customer orders</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="orders.html">Foods and drinks</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div id ="main" class="-whiteBgColor">
+                <div class="headerSeperator"></div>
+                <div class="panel">
+                        <div class="tools  hide-on-small-only -col-m-3 -col-l-2">
+                                <div class="tools__header -col-m-3 -col-l-2">
+                                    <img src="./assets/images/icons8-food-96.png" />
+                                </div>
+                                <ul class="tools__sidenav">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>add food items</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>manage food</a></liv>
+                                </ul>
+                        </div>
+                        <div class="display  -col-sm-12 -col-m-9 -col-l-10">
+                                <h2 class="display__header -ff-roboto -grayTxtColor">Add Food Item</h2>
+                                <div class="display__content">
+                                        <form class="foodForm">
+                                                <div class=" foodForm__item foodForm__picture-section">
+                                                    <img src="./assets/images/pictureImg.png" id="output" width=170px height=150px/>
+                                                    <input type="file" accept="image/*" name="image" id="file" style="display: none;">
+                                                    <label for="file" class="button -full -grayBgColor -whiteTxtColor">Upload image</label>
+                                                </div>
+                                                <div class=" foodForm__item foodForm__inputs">
+                                                
+                                                            <input  list="browse" placeholder="Food category"  name="foodCategory">
+                                                                <datalist id="browse">
+                                                                  <option value="burger">
+                                                                  <option value="Fries">
+                                                                  <option value="Sweets and drinks">
+                                                                  <option value="Chicken">
+                                                                  <option value="Tacos">
+                                                                  <option value="Sides">
+                                                                </datalist> 
+                                                        
+                                                        <input type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks"/>
+                                                        <input type="number" placeholder="Price" class="-price"  id="noOfPacks"/>
+                                                        <textarea name="description" rows="6" cols="60" id="description">
+                                                                Fried rice with 2 chiken
+                                                        </textarea>
+                                                        <div class="foodForm__btn">
+                                                            <button class="-small">Submit</button>
+                                                            <button class="-small">Cancel</button>
+                                                        </div>
+                                                </div>
+                                                      
+                                                        
+                                        
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+                
+            </div>
+            <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+        </div>
+                
+            
+    </body>
+</html>

@@ -19,8 +19,16 @@
 @import './assets/css/modules/caption.css';
 @import './assets/css/modules/foodNav.css';
 @import './assets/css/modules/foodCart.css';
-@import './assets/css/modules/foodItems.css';
+@import './assets/css/modules/food.css';
 @import './assets/css/modules/pageTitle.css';
 @import './assets/css/state/food.css';
 @import './assets/css/modules/tabular.css';
+@import './assets/css/modules/panel.css';
+@import './assets/css/modules/tools.css';
+@import './assets/css/modules/foodForm.css';
+@import './assets/css/modules/display.css';
+@import './assets/css/modules/responsiveTable.css';
+@import './assets/css/modules/modal.css';
+@import './assets/css/modules/search.css';
+
 

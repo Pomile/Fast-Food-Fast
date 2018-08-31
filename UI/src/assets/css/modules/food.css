@@ -52,3 +52,29 @@
   .foodItems__button:hover {
     opacity: 0.7;
   }
+
+
+  .foodTiles{
+      display: grid;
+      grid-template-columns: 1fr;
+
+  }
+
+  .foodTiles_item{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .foodTiles__image{
+      height: 100px;
+      width: 100px;
+  }
+
+  .foodTitles__description{
+      padding-top: 10px;
+  }
+
+  .foodTiles__actions{
+      padding: 10px;
+  }
+

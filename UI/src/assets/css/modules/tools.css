@@ -1,0 +1,34 @@
+.tools{
+    height: 600px;
+}
+
+.tools__header{
+    padding-left: 15px;
+}
+.tools__sidenav{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: rgb(250, 249, 248);
+    height: 75%;
+}
+
+.tools__sidenav-link{
+    display: block;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: justify;
+    text-decoration: none;
+    color: rgb(95, 95, 95);
+}
+.tools__sidenav-icons{
+    margin-right: 5px;
+}
+
+
+.tools__sidenav-link:hover,
+.tools__sidenav-link:active,
+.tools__sidenav-link.active{
+    background-color: rgb(177, 167, 164);
+    color: white;
+}

@@ -7,8 +7,20 @@ import {
     loginBtn,
     food,
     foodCart,
+    imageFile,
+    imageOutput,
+    edit1,
+    edit2,
+    rm1,
+    rm2,
+    closeUpdateFoodItem,
+    closeDeleteFoodItem,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
+  import {
+    showModal,
+    closeModal,
+  } from './assets/js/modal';
   
   if (sidedrawer) {
     sidedrawer.onclick = () => opennav();
@@ -30,7 +42,6 @@ import {
     
     window.addEventListener('scroll', () =>{
       let foodClientRectY = food.getClientRects()[0].y
-      console.log('wins scroll', window.screenY >= 405 , window.scrollY);
       if ( window.scrollY >= 450){
         food.classList.add('food--onWindowScroll');
       
@@ -48,6 +59,36 @@ import {
         foodCart.classList.remove('foodCart-onWindowScroll');
       }
       
-    })
-    
+    })  
   }
+
+  if(imageFile){
+    imageFile.onchange = (event) =>{
+      imageOutput.src = URL.createObjectURL(event.target.files[0]);
+    }
+  }
+
+if(edit1){
+  edit1.onclick = () => showModal('modal', 'updateFoodItemContent')
+}
+
+if(edit2){
+  edit2.onclick = () => showModal('modal', 'updateFoodItemContent')
+}
+
+if(closeUpdateFoodItem){
+  closeUpdateFoodItem.onclick = () => closeModal('modal');
+}
+
+if(rm1){
+  rm1.onclick = () =>  showModal('modal', 'deleteFoodItemContent')
+}
+
+if(rm2){
+  rm2.onclick = () =>  showModal('modal', 'deleteFoodItemContent')
+}
+
+
+if(closeDeleteFoodItem){
+  closeDeleteFoodItem.onclick = () => closeModal('modal');
+}

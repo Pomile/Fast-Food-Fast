@@ -114,6 +114,18 @@ module.exports = {
       filename: 'order.html',
       template: 'order.html',
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin',
+      filename: 'admin.html',
+      template: 'admin.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-manage-foodItems',
+      filename: 'admin-manage-foodItems.html',
+      template: 'admin-manage-foodItems.html',
+    }),
     new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
