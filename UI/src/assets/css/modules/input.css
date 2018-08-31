@@ -4,7 +4,8 @@ input[type=email],
 input[type=phone],
 input[type=number],
 input[type=tel],
-input[list=state]
+input[list=state],
+input[type=date]
 {
     width: 96%;
     height: 20px;

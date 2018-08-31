@@ -108,6 +108,12 @@ module.exports = {
       filename: 'user.html',
       template: 'user.html',
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'order',
+      filename: 'order.html',
+      template: 'order.html',
+    }),
     new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
