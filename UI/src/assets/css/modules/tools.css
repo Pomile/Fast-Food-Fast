@@ -32,3 +32,6 @@
     background-color: rgb(177, 167, 164);
     color: white;
 }
+.-tools-fixed-position{
+    position: fixed;
+}

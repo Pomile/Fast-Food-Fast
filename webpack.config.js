@@ -126,6 +126,12 @@ module.exports = {
       filename: 'admin-manage-foodItems.html',
       template: 'admin-manage-foodItems.html',
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-items-view',
+      filename: 'admin-items-view.html',
+      template: 'admin-items-view.html',
+    }),
     new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
