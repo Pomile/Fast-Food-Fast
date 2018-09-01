@@ -1,0 +1,11 @@
+.-fixed-pos{
+    position: fixed;
+}
+
+.-relative-pos{
+    position: relative;
+}
+
+.-absolute-pos{
+    position: absolute;
+}

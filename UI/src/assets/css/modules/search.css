@@ -1,10 +1,10 @@
 .search-form{
-    height: 30px;
+    height: 38px;
     display: flex;
 }
 
 .search-form__input{
-    height: 30px!important;
+    height: 38px!important;
     margin-top: 0px!important;
     font-size: 13px!important;
 }
@@ -12,4 +12,5 @@
 .search-form__btn{
     width: 20%;
     border: 1px solid gray;
+    padding: 8px 0px;
 }

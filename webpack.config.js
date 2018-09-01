@@ -132,6 +132,12 @@ module.exports = {
       filename: 'admin-items-view.html',
       template: 'admin-items-view.html',
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-users-order-view',
+      filename: 'admin-users-order-view.html',
+      template: 'admin-users-order-view.html',
+    }),
     new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',

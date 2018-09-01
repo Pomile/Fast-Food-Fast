@@ -4,7 +4,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
-        <title>User Dashboard</title>   
+        <title>User</title>
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script>
     </head>
     <body>
         <div id="wrapper" >
@@ -41,6 +53,7 @@
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
                     <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="user.html">Home</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="order.html">Order History</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin.html">See admin</a></li>
                 </ul>
             </div>
             <div id ="mainDimension" class="-whiteBgColor">

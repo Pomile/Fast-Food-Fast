@@ -2,10 +2,6 @@
     background-color: teal;
 }
 
-.green-bgcolor{
-    background-color: #4CAF50;
-}
-
 .-tomatoBgColor{
     background-color: tomato;
 }
@@ -26,6 +22,14 @@
 }
 .-orangeBgColor{
     background-color: orange;
+}
+
+.-greenBgColor{
+    background-color: #4CAF50;
+}
+
+.-green-2-BgColor{
+    background-color: rgb(45, 192, 49);
 }
 
 .-orangeredBgColor{

@@ -4,7 +4,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
-        <title>Admin food items view</title>   
+        <title>Admin food items view</title>  
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script> 
     </head>
     <body>
         <div id="wrapper" >
@@ -40,7 +52,7 @@
                 
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
                     <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="admin.html">Home</a></li>
-                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="orders.html">Customer orders</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-users-order-view.html">Customer orders</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height active" href="admin-items-view.html">Foods and drinks</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
                 </ul>
