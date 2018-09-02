@@ -14,3 +14,5 @@ export const rm2 = document.getElementById("rm2");
 export const rm1 = document.getElementById("rm1");
 export const closeUpdateFoodItem = document.getElementById("closeUpdateFoodItem");
 export const closeDeleteFoodItem = document.getElementById("closeDeleteFoodItem");
+export const orderBtn = document.getElementById("orderBtn");
+export const closeLocationForm = document.getElementById('closeLocationForm');

@@ -14,3 +14,7 @@
     border: 1px solid gray;
     padding: 8px 0px;
 }
+
+.locationForm{
+    display: flex; flex-flow: wrap; align-content:flex-start; height: 200px
+}

@@ -42,7 +42,7 @@ to {top:0; opacity:1}
 
 /* The Close Button */
 .modal__close {
-color: white;
+color: rgb(194, 193, 193);
 float: right;
 font-size: 28px;
 font-weight: bold;

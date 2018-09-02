@@ -15,6 +15,8 @@ import {
     rm2,
     closeUpdateFoodItem,
     closeDeleteFoodItem,
+    orderBtn,
+    closeLocationForm,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
   import {
@@ -91,4 +93,17 @@ if(rm2){
 
 if(closeDeleteFoodItem){
   closeDeleteFoodItem.onclick = () => closeModal('modal');
+}
+
+if(orderBtn){
+  orderBtn.onclick = () => showModal('modal', 'locationForm');
+}
+
+if (closeLocationForm) {
+
+  closeLocationForm.onclick = function () {
+    closeModal('modal');
+  };
+
+
 }

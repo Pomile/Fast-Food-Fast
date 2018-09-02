@@ -10,6 +10,15 @@ export const showModal = (id, modalBlock) => {
         }
         document.getElementById(id).style.display = 'block';
         break;
+        case 'locationForm':
+        console.log(modalBlock);
+        // document.querySelector('#updateFoodItemContent').style.display = 'none';
+        const locationForm = document.querySelector('#locationForm');
+        if (locationForm.style.display === 'none') {
+            locationForm.style.display = 'block';
+        }
+        document.getElementById(id).style.display = 'block';
+        break;
       default:
         
         document.querySelector('#updateFoodItemContent').style.display = 'block';

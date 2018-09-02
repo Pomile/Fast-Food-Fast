@@ -36,8 +36,20 @@
                                 <a class="sidenav__item-link" href="./user.html">Home</a>
                             </li>
                             <li class="sidenav__item s-12">
-                                <a class="sidenav__item-link" href="./order.html">Orders</a>
+                                <a class="sidenav__item-link" href="./order.html">Order history</a>
                             </li>
+                            <ul class="food-navigation -col-sm-12 hide-on-medium-and-up -orangeBgColor">
+                                <li class="food-navigation__item"><a class="food-navigation__link active">All</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Fries</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Burger</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Chicken</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Meals and Combos</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Sweets and drinks</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Sides</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Tacos</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Deserts</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Misc</a></li>
+                            </ul>
                         </ul>
                     </nav>
             <div id="header" class="-orangeredBgColor">
@@ -52,26 +64,26 @@
                 
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
                     <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="user.html">Home</a></li>
-                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="order.html">Order History</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="order.html">Order history</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin.html">See admin</a></li>
                 </ul>
             </div>
             <div id ="mainDimension" class="-whiteBgColor">
                 <div class="headerSeperator"></div>
-                <div class="caption-message -offset-l-1">
-                    <h1 class="-ff-roboto -fs-cs-large -ftxt-align-center -orange-1-TxtColor -ftxt-blackshadow">Tasty Fast Foods</h1>
-                    <h1 class="-ff-roboto -fs-cs-medium -ftxt-align-center -whiteTxtColor -ftxt-blackshadow">We will Deliver to your Doorstep</h1>
+                <div class="caption-message">
+                    <h2 class="-ff-roboto -fs-cs-large -ftxt-align-center -orange-1-TxtColor -ftxt-blackshadow">Tasty Fast Foods</h1>
+                    <h2 class="-ff-roboto -fs-cs-medium -ftxt-align-center -whiteTxtColor -ftxt-blackshadow">We will Deliver to your Doorstep</h1>
                 </div>
                 
                 <div class="caption-overlay -tranparentBg"></div>
-                <div class="caption-search -col-l-4 -offset-l-4">
-                    <input type="text" class="caption-search__input" id="foodSearch" name="foodSearch"  placeholder="Search Food...."></input>
+                <div class="caption-search -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4">
+                      <input type="text" class="caption-search__input -input-height" id="foodSearch" name="foodSearch"  placeholder="Search Food...." />
                 </div>
                 <div class="caption">
                 </div>
 
-                <div id="food" class="food-navWrapper">
-                    <ul class="food-navigation hide-on-small-only  -col-m-3 -col-l-2 -orangeBgColor">
+                <div id="food" class="food-navWrapper -food-NavWrapper-align">
+                    <ul class="food-navigation  hide-on-small-only  -col-m-3 -col-l-2 -orangeBgColor">
                         <li class="food-navigation__item"><a class="food-navigation__link active">All</a></li>
                         <li class="food-navigation__item"><a class="food-navigation__link">Fries</a></li>
                         <li class="food-navigation__item"><a class="food-navigation__link">Burger</a></li>
@@ -85,7 +97,7 @@
                     </ul>
                     
                 </div>
-                <div class="foodItems -col-sm-12 -col-m-10 -col-l-7 ">
+                <div class="foodItems -foodItems-align -col-sm-12 -col-m-8 -col-l-7">
                         <div class="foodItems__cardWrapper">  
                                 <div class="foodItems__card">
                                     <img class="foodItems__image"  src="./assets/images/whataburger-original.png"/>
@@ -241,14 +253,37 @@
                                 </div>
                         </div>
                         
-                        <a class="foodCart__button  button -orangeredBgColor -whiteTxtColor">Order Now</a>
+                        <a class="foodCart__button  button -orangeredBgColor -whiteTxtColor" id="orderBtn">Order Now</a>
                 </div>
 
-            </div>
-                
-                
-            </div>
+            </div> 
             <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+            <div class="modal" id ="modal">
+                    
+                <div class="modal__content -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4" id="locationForm">
+                        <span class="modal__close" id="closeLocationForm">&times;</span>
+                    <h1 class="-whiteBgColor -ftxt-align-center">Choose your Location</h1>
+                    <form class="locationForm -">
+                        <div class=" -col-sm-10  -offset-sm-1">
+                            <div class="streetAddress -col-sm-12 " style="height: 60px;">
+                            
+                                <input type="text" id="streetAddress" class=" -input-height -col-sm-12" placeholder="Street, Area"/>
+                                
+                            </div>
+                            
+                            <div class="state -col-sm-12" style="height: 60px;">
+                                <select name="State" id="state" class="state">
+                                    <option value="Abuja">Abuja</option>
+                                    <option value="Lagos">Lagos</option>
+                                    <option value="Portharcourt">Portharcourt</option>
+                                    <option value="">Rivers</option>
+                                </select>
+                            </div>
+                            <div class="-col-sm-12" style=""><button class="button -small -orangeredBgColor -whiteTxtColor" id="locationBtn" style="height: 40px">Submit</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

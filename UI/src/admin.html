@@ -67,7 +67,7 @@
                                                 </div>
                                                 <div class=" foodForm__item foodForm__inputs">
                                                 
-                                                            <input  list="browse" placeholder="Food category"  name="foodCategory">
+                                                            <input  class="-input-height -input-marginTop" list="browse" placeholder="Food category"  name="foodCategory">
                                                                 <datalist id="browse">
                                                                   <option value="burger">
                                                                   <option value="Fries">
@@ -77,11 +77,13 @@
                                                                   <option value="Sides">
                                                                 </datalist> 
                                                         
-                                                        <input type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks"/>
-                                                        <input type="number" placeholder="Price" class="-price"  id="noOfPacks"/>
-                                                        <textarea name="description" rows="6" cols="60" id="description">
+                                                        <input class="-input-height -input-marginTop" type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks"/>
+                                                        <input class="-input-height -input-marginTop" type="number" placeholder="Price" class="-price"  id="noOfPacks"/>
+                                                        <div  class="">
+                                                            <textarea class="-textarea-marginTop" name="description" rows="6" col="40" id="description">
                                                                 Fried rice with 2 chiken
-                                                        </textarea>
+                                                            </textarea>
+                                                        </div>
                                                         <div class="foodForm__btn">
                                                             <button class="-small">Submit</button>
                                                             <button class="-small">Cancel</button>
