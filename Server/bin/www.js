@@ -11,7 +11,7 @@ import app from '../server';
  * Create HTTP server.
 */
 
-const server = http.createServer((req, res) => app);
+const server = http.createServer(() => app);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -73,9 +73,7 @@ function onError(error) {
 function onListening() {
   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     console.log(`${process.env.NODE_ENV.toLocaleUpperCase()} SERVER is listening on port ${port}`);
-
   } else {
-    
     console.log(`${process.env.NODE_ENV.toLocaleUpperCase()} SERVER is listening on port ${port}`);
   }
 }
