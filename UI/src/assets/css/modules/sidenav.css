@@ -40,7 +40,9 @@
     color: black;
 }
 
-.sidenav__item-link:hover{
+.sidenav__item-link:hover,
+.sidenav__item-link:active,
+.sidenav__item-link.active{
     background-color: rgb(197, 62, 13);
     color: white;
 }

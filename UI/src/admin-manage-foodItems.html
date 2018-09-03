@@ -20,12 +20,24 @@
                     
                         </div>
                         <ul class="sidenav">
+                                <li class="sidenav__item s-12">
+                                        <a class="sidenav__item-link"  href="index.html">Logout</a>
+                            </li>
                             <li class="sidenav__item">
-                                <a class="sidenav__item-link" href="./user.html">Home</a>
+                                <a class="sidenav__item-link active" href="./user.html">Home</a>
                             </li>
                             <li class="sidenav__item s-12">
-                                <a class="sidenav__item-link" href="./order.html">Orders</a>
+                                <a class="sidenav__item-link"  href="admin-users-order-view.html">Orders</a>
                             </li>
+
+                            <li class="sidenav__item s-12">
+                                    <a class="sidenav__item-link"  href="admin-items-view.html">Foods and Drinks</a>
+                            </li>
+
+                            <ul class="tools__sidenav hide-on-large-only">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>Add food</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>Manage food</a></liv>
+                            </ul>
                         </ul>
                     </nav>
             <div id="header" class="-orangeredBgColor">
@@ -39,8 +51,8 @@
                 </div>
                 
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
-                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="admin.html">Home</a></li>
-                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="orders.html">Customer orders</a></li>
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height active" href="admin.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-users-order-view.html">Customer orders</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-items-view.html">Foods and drinks</a></li>
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
                 </ul>
@@ -53,25 +65,25 @@
                                     <img src="./assets/images/icons8-food-96.png" />
                                 </div>
                                 <ul class="tools__sidenav">
-                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>add food items</a></liv>
-                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>manage food</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>Add food</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>Manage food</a></liv>
                                 </ul>
                         </div>
-                        <div class="display  -col-sm-12  -col-m-11 -col-l-10">
+                        <div class="display  -col-sm-10 -col-m-10 -col-l-9 -offset-sm-1 -offset-m-1 -offset-l-0">
                                 <h2 class="display__header -ff-roboto -grayTxtColor">Manage food items</h2>
                                 
-                                    <div class="search-form  -col-sm-10 -col-m-4 -col-l-4 -orangeredBgColor">
+                                    <div class="search-form  -col-sm-8 -col-m-4 -col-l-4 -orangeredBgColor">
                                         <input type="search" class="search-form__input -col-sm-10" placeholder="Search food items..." name="search" id="search" />
                                         <div class="search-form__btn button -col-sm-2 -grayBgColor" id="searchBtn"><i class="material-icons -whiteTxtColor">search</i></div>
                                     </div>
                                     
                         
                                 <div class="display__content">
-                                    <div class="table-wrapper -col-sm-11 -col-m-9 -col-l-8">
+                                    <div class="table-wrapper -col-sm-12 -col-m-12 -col-l-10">
                                         
                                         <table class="res-table">
-                                                <col style="width:10%">
-                                                <col style="width:70%">
+                                                <col style="width:20%">
+                                                <col style="width:60%">
                                                 <col style="width:5%">
                                                 <col style="width:5%">
                                                 <thead class="res-thead">
@@ -84,7 +96,7 @@
                                                 <tbody class="res-tbody">
                                                     <tr class="res-tr">
                                                         <td class="res-td"><img src="./assets/images/friedrice.jpg" width=60px height=40px;></td>
-                                                        <td class="res-td">Fried rice with chicken hhdghdghjdghjgdjhggfghghgshgshgshghsghgshjgssfghfsghfsghfsghsfgshfghsfsgg</td>
+                                                        <td class="res-td">Fried rice with chicken</td>
                                                         <td class="res-td"><a href="#" class="-orangeredTxtColor" id="edit1"><i class="material-icons -fic-alignMiddle">edit</i></a>
                                                                 
                                                         </td>
@@ -94,7 +106,7 @@
                                                     </tr>
                                                     <tr class="res-tr">
                                                             <td class="res-td"><img src="./assets/images/burger.png" width=60px height=40px;></td>
-                                                            <td class="res-td">Double Burger hhggshfggsfsfsfsghfgshfsghfgshfghsfgfsghfsghggshfghfsghfghfghfsghfshgghfsghfsghsf</td>
+                                                            <td class="res-td">Double Burger</td>
                                                             <td class="res-td"><a href="#" class="-orangeredTxtColor" id="edit2"><i class="material-icons -fic-alignMiddle">edit</i></a>
                                                                 
                                                             </td>
@@ -113,43 +125,57 @@
             </div>
             <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
             <div class = "modal" id="modal" >
-                    <div class="modal__content -col-sm-11 -col-m-7 -col-l-6" id="updateFoodItemContent">
+                    <div class="modal__content -col-sm-11 -col-m-7 -col-l-6" id="updateFoodItemContent" style="overflow-y: scroll">
                             <div class="modal__header">
                                 <span class="modal__close" id="closeUpdateFoodItem">&times;</span>
                                 <img src="./assets/images/icons8-food-24.png" style ="vertical-align: middle"/><span>Update Food Item</span>
                             </div>
                             <div class="modal-body">
                                     <form class="foodForm">
-                                            <div class=" foodForm__item foodForm__picture-section">
-                                                <img src="./assets/images/burger.png" id="output" width=170px height=150px/>
+                                            <div class=" foodForm__item foodForm__picture-section ">
+                                            
+                                            <center>
+                                                <img src="./assets/images/pictureImg.png" id="output" width=170px height=150px/>
                                                 <input type="file" accept="image/*" name="image" id="file" style="display: none;">
-                                                <label for="file" class="button -full -grayBgColor -whiteTxtColor">Upload image</label>
+                                                <label for="file" class="button -full -col-sm-10 -grayBgColor -whiteTxtColor">Upload image</label>
+                                            </center>
+                                                
                                             </div>
                                             <div class=" foodForm__item foodForm__inputs">
-                                            
-                                                        <input  list="browse" class="-input-height -input-marginTop"placeholder="Food category"  name="foodCategory" value="Burger">
-                                                            <datalist id="browse">
-                                                              <option value="burger">
-                                                              <option value="Fries">
-                                                              <option value="Sweets and drinks">
-                                                              <option value="Chicken">
-                                                              <option value="Tacos">
-                                                              <option value="Sides">
-                                                            </datalist> 
+                                                <center>
+
+                                               
+                                                        <div class="-col-sm-12">
+                                                                <input  class="-input-height -input-marginTop" list="browse" placeholder="Food category"  name="foodCategory">
+                                                                <datalist id="browse">
+                                                                  <option value="burger">
+                                                                  <option value="Fries">
+                                                                  <option value="Sweets and drinks">
+                                                                  <option value="Chicken">
+                                                                  <option value="Tacos">
+                                                                  <option value="Sides">
+                                                                </datalist> 
+                                                        </div>
                                                     
-                                                    <input type="number" class="-input-height -input-marginTop" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks" value="50"/>
-                                                    <input type="number" placeholder="Price" class="-price -input-height input-marginTop"  id="noOfPacks" value ="2000"/>
-                                                    <div  class="">
+                                                    <div class="-col-sm-12">
+                                                            <input class="-input-height -input-marginTop" type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks"/>
+                                                            <input class="-input-height -input-marginTop" type="number" placeholder="Price" class="-price"  id="price"/>
+                                                    </div>
+                                                    
+                                                    <div  class="-col-sm-12">
                                                         <textarea class="-textarea-marginTop" name="description" rows="6" col="40" id="description">
                                                             Fried rice with 2 chiken
                                                         </textarea>
                                                     </div>
                                                     <div class="foodForm__btn">
-                                                        <button class="-small">Submit</button>
-                                                        <button class="-small">Cancel</button>
+                                                    
+                                                                <button class="-small">Submit</button>
+                                                                <button class="-small">Cancel</button>
+                                                    
+                                                        
                                                     </div>
-                                            </div>          
-                                    
+                                                </center>
+                                            </div>               
                                     </form>
                             </div>
                             <div class="modal-footer" style ="padding-bottom: 25px; margin-top: 40px;"></div>
