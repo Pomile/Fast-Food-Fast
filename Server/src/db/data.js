@@ -24,14 +24,14 @@ const data = {
       title: string,
 
     */
-    { id: 1, name: 'fries' },
+    { id: 1, name: 'Fries' },
     { id: 2, name: 'sides' },
     { id: 3, name: 'burger' },
     { id: 4, name: 'Tacos' },
     { id: 5, name: 'sweets and drinks' },
     { id: 6, name: 'meals and combos' },
   ],
-  food: [
+  foods: [
     /*
     id: int,
     foodCategoryId: int,

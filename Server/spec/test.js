@@ -8,6 +8,12 @@ const userAuth = {
   id: null,
   isAuth: false,
 };
+
+const userAuth2 = {
+  id: null,
+  isAuth: false,
+};
+
 let userData = {
   firstname: 'user1',
   lastname: 'user1',
@@ -15,17 +21,17 @@ let userData = {
   phone: '+123192000',
   password: 'password1',
   cpassword: 'password1',
-  role: 'user',
+  role: 'admin',
 };
 
-const adminData = {
-  firstname: 'admin',
-  lastname: 'admin',
-  email: 'admin@live.com',
+let userData2 = {
+  firstname: 'user2',
+  lastname: 'user2',
+  email: 'user2@live.com',
   phone: '+123192928',
-  password: 'adminPassword123',
-  cpassword: 'adminPassword123',
-  role: 'admin',
+  password: 'Password123',
+  cpassword: 'Password123',
+  role: 'user',
 };
 
 describe('Fast-Food-Fast Test Suite', () => {
@@ -46,7 +52,7 @@ describe('Fast-Food-Fast Test Suite', () => {
       request(app)
         .post('/api/v1/auth/signup')
         .set('Accept', 'application/json')
-        .send(adminData)
+        .send(userData2)
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body.msg).to.equal('user added successfully');
@@ -58,7 +64,7 @@ describe('Fast-Food-Fast Test Suite', () => {
       request(app)
         .post('/api/v1/auth/signup')
         .set('Accept', 'application/json')
-        .send(userData)
+        .send(userData2)
         .end((err, res) => {
           expect(res.status).to.equal(409);
           expect(res.body.msg).to.equal('user already exists');
@@ -67,7 +73,7 @@ describe('Fast-Food-Fast Test Suite', () => {
     });
 
     it('A user should not be able to create an account without firstname', (done) => {
-      userData = {
+      userData2 = {
         firstname: '',
         lastname: 'Olusegun',
         email: 'olusegun@live.com',
@@ -79,7 +85,7 @@ describe('Fast-Food-Fast Test Suite', () => {
       request(app)
         .post('/api/v1/auth/signup')
         .set('Accept', 'application/json')
-        .send(userData)
+        .send(userData2)
         .end((err, res) => {
           expect(res.status).to.equal(422);
           done();
@@ -130,7 +136,7 @@ describe('Fast-Food-Fast Test Suite', () => {
       userData = {
         firstname: 'Olusegun',
         lastname: 'Obasanjo',
-        email: 'olusegun@gmail.com',
+        email: 'Olusegun@gmail.com',
         phone: '',
         password: 'warlord1',
         cpassword: 'warlord1',
@@ -220,6 +226,23 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
+    it('A user should be able to sign in', (done) => {
+      const userCredentials = {
+        email: 'user2@live.com',
+        password: 'Password123',
+      };
+      request(app)
+        .post('/api/v1/auth/signin')
+        .set('Accept', 'application/json')
+        .send(userCredentials)
+        .end((err, res) => {
+          userAuth2.id = res.body.user;
+          userAuth2.isAuth = res.body.isAuth;
+          expect(res.body.msg).to.equal('user logged in sucessfully');
+          done();
+        });
+    });
+
     it('A user should not be able to sign in if a password is not authentic ', (done) => {
       const userCredentials = {
         email: 'user1@live.com',
@@ -235,8 +258,6 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
-
-
     it('A user should not be able to sign in if an email is incorrect', (done) => {
       const userCredentials = {
         email: 'user@live.com',
@@ -254,7 +275,7 @@ describe('Fast-Food-Fast Test Suite', () => {
     });
   });
   describe('FastFood API', () => {
-    it('A user should be able to get a list of fast food items', (done) => {
+    it('A user should not be able to get a list of fast food items', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
@@ -271,7 +292,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('A user should be able to get a fast food item', (done) => {
+    it('A user should not be able to get a fast food item', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
@@ -300,6 +321,68 @@ describe('Fast-Food-Fast Test Suite', () => {
             expect(res.body.msg).to.equal('user is not authenticated');
             done();
           }
+        });
+    });
+    it('A user should not be able to add a food item', (done) => {
+      const { isAuth } = userAuth2;
+      const { id } = userAuth2;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: 'Chicken and chips',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          done();
+        });
+    });
+    it('The admin should be able to add a food item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: 'Chicken and chips',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.success).to.equal(true);
+          done();
+        });
+    });
+    it('The admin should not be able to add a food item that already exists', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: 'Chicken and chips',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          expect(res.body.success).to.equal(false);
+          done();
         });
     });
   });
