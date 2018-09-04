@@ -18,12 +18,39 @@ const data = {
        state: string not null,
     */
   ],
+  foodCaterory: [
+    /*
+      id: int not null,
+      title: string,
+
+    */
+    { id: 1, name: 'fries' },
+    { id: 2, name: 'sides' },
+    { id: 3, name: 'burger' },
+    { id: 4, name: 'Tacos' },
+    { id: 5, name: 'sweets and drinks' },
+    { id: 6, name: 'meals and combos' },
+  ],
   food: [
     /*
     id: int,
+    foodCategoryId: int,
     name: string,
     userId: int,
+    date: date
     */
+    {
+      id: 1,
+      foodCategoryId: 6,
+      userId: 2,
+      name: 'Fried Rice',
+    },
+    {
+      id: 2,
+      foodCategoryId: 4,
+      userId: 2,
+      name: 'Shawama',
+    },
   ],
   foodItems: [
     /*
@@ -35,6 +62,45 @@ const data = {
     quantity: number,
     expectedDeliveryTime: time
     */
+
+    {
+      id: 1,
+      foodId: 2,
+      image: null,
+      description: 'Shawamma with 1 hotdog',
+      price: 1000,
+      quantity: 40,
+      expectedDeliveryTime: '30 min',
+
+    },
+    {
+      id: 2,
+      foodId: 2,
+      image: null,
+      description: 'Shawamma with 2 hot dogs',
+      price: 1500,
+      quantity: 40,
+      expectedDeliveryTime: '30 min',
+    },
+    {
+      id: 3,
+      foodId: 1,
+      image: null,
+      description: 'Fried with dodo and 1 chiken',
+      price: 1200,
+      quantity: 100,
+      expectedDeliveryTime: '45 min',
+
+    },
+    {
+      id: 4,
+      foodId: 1,
+      image: null,
+      description: 'Fried with dodo and 2 chiken',
+      price: 1650,
+      quantity: 50,
+      expectedDeliveryTime: '45 min',
+    },
   ],
   orders: [
     /*

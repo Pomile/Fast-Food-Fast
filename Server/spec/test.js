@@ -253,4 +253,36 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
   });
+  describe('FastFood API', () => {
+    it('A user should be able to get a list of fast food items', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .get('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          const { fastFoods } = res.body;
+          if (!err) {
+            expect(res.status).to.equal(200);
+            expect(fastFoods.length).to.equal(4);
+            done();
+          }
+        });
+    });
+
+    /* it('A user should be able to get a fast food item', (done) => {
+      request(app)
+        .get('/api/v1/fastfoods/1')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          const { fastFood } = res.body;
+          if (!err) {
+            expect(res.status).to.equal(200);
+            expect(foods.length).to.equal(1);
+            done();
+          }
+        });
+    }); */
+  });
 });
