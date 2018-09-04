@@ -271,18 +271,36 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    /* it('A user should be able to get a fast food item', (done) => {
+    it('A user should be able to get a fast food item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
       request(app)
-        .get('/api/v1/fastfoods/1')
+        .get('/api/v1/fastFoods/1')
         .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
         .end((err, res) => {
-          const { fastFood } = res.body;
+          const { foodItem } = res.body;
           if (!err) {
             expect(res.status).to.equal(200);
-            expect(foods.length).to.equal(1);
+            expect(foodItem.description).to.equal('Shawamma with 1 hotdog');
             done();
           }
         });
-    }); */
+    });
+    it('A user should be not able to get fast food item(s) if not authenticated', (done) => {
+      const isAuth = false;
+      const id = 1;
+      request(app)
+        .get('/api/v1/fastFoods/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          if (!err) {
+            expect(res.status).to.equal(403);
+            expect(res.body.msg).to.equal('user is not authenticated');
+            done();
+          }
+        });
+    });
   });
 });

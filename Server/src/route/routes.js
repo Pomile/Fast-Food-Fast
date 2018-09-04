@@ -27,4 +27,10 @@ router.get(
   fastFoods.getFastFoods,
 );
 
+router.get(
+  '/fastFoods/:id',
+  verifyUser,
+  fastFoods.getFastFood,
+);
+
 export default router;
