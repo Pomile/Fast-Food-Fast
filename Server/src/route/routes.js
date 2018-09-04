@@ -1,5 +1,5 @@
 import express from 'express';
-import { userValidator, validationApi } from '../middleware/validation';
+import { userValidator, validationApi, validateUserCrediential } from '../middleware/validation';
 import passwordEncryption from '../middleware/encryption';
 import User from '../controller/user';
 
@@ -11,6 +11,12 @@ router.post(
   validationApi,
   passwordEncryption,
   User.addUser,
+);
+
+router.post(
+  '/auth/signin',
+  validateUserCrediential,
+  User.authenticate,
 );
 
 export default router;

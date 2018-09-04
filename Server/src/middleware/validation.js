@@ -37,6 +37,19 @@ export const userValidator = [
 
 ];
 
+export const validateUserCrediential = [
+  body('email', 'must be an email address')
+    .trim()
+    .isEmail()
+    .normalizeEmail(),
+
+  body('password')
+    .trim()
+    .isLength({ min: 5 }).withMessage('must be at least 5 chars long')
+    .matches(/\d/)
+    .withMessage('must contain a number'),
+];
+
 export const validationApi = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

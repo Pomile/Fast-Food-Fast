@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import data from '../db/data';
 
 
@@ -27,6 +28,28 @@ class User {
     } else {
       res.status(409).json({ msg: 'user already exists' })
         .end();
+    }
+  }
+
+  static authenticate(req, res) {
+    const {
+      email, password,
+    } = req.body;
+
+    const userData = data.users.find(user => user.email === email);
+    if (userData === undefined) {
+      res.status(404).json({ msg: 'user not found' });
+    } else {
+      const hash = userData.password;
+      bcrypt.compare(password, hash, (err, result) => {
+        if (result) {
+          res.status(200).json({
+            sucess: true, msg: 'user logged in sucessfully', isAuth: true, user: userData.id,
+          });
+        } else {
+          res.status(401).json({ sucess: false, msg: 'invalid password' });
+        }
+      });
     }
   }
 }

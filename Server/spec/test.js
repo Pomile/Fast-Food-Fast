@@ -4,6 +4,10 @@ import request from 'supertest';
 import app from '../server';
 
 const expect = chai.expect;
+const userAuth = {
+  id: null,
+  isAuth: false,
+};
 let userData = {
   firstname: 'user1',
   lastname: 'user1',
@@ -196,6 +200,55 @@ describe('Fast-Food-Fast Test Suite', () => {
         .send(userData)
         .end((err, res) => {
           expect(res.status).to.equal(422);
+          done();
+        });
+    });
+    it('A user should be able to sign in', (done) => {
+      const userCredentials = {
+        email: 'user1@live.com',
+        password: 'password1',
+      };
+      request(app)
+        .post('/api/v1/auth/signin')
+        .set('Accept', 'application/json')
+        .send(userCredentials)
+        .end((err, res) => {
+          userAuth.id = res.body.user;
+          userAuth.isAuth = res.body.isAuth;
+          expect(res.body.msg).to.equal('user logged in sucessfully');
+          done();
+        });
+    });
+
+    it('A user should not be able to sign in if a password is not authentic ', (done) => {
+      const userCredentials = {
+        email: 'user1@live.com',
+        password: 'pass',
+      };
+      request(app)
+        .post('/api/v1/auth/signin')
+        .set('Accept', 'application/json')
+        .send(userCredentials)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.msg).to.equal('invalid password');
+          done();
+        });
+    });
+
+
+    it('A user should not be able to sign in if an email is incorrect', (done) => {
+      const userCredentials = {
+        email: 'user@live.com',
+        password: 'password1',
+      };
+      request(app)
+        .post('/api/v1/auth/signin')
+        .set('Accept', 'application/json')
+        .send(userCredentials)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.msg).to.equal('user not found');
           done();
         });
     });
