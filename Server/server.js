@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import fileUpload from 'express-fileupload';
+import routes from './src/route/routes';
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.text({ type: 'text/html' }));
 app.use(bodyParser.text({ type: 'text/plain' }));
 app.use(bodyParser.raw({ type: '*/octet-stream' }));
+
+app.use('/api/v1', routes);
 
 export default app;

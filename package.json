@@ -1,12 +1,12 @@
 {
-  "name": "Fast-Food-Fast",
+  "name": "fast-food-fast",
   "version": "1.0.0",
   "description": "Fast-Food-Fast is a food delivery service app for a restaurant that allows customers to make food orders and helps the food vendor to know what the customer want to eat.",
   "main": "./Server/bin/www.js",
   "scripts": {
     "start:webpack-dev-watch": "webpack -d --watch",
     "start:webpack-devServer": "webpack-dev-server --open",
-    "test":"nodemon --watch . --exec mocha --compilers js:@babel/register ./Server/spec/test.js",
+    "test": "nodemon --watch . --exec cross-env NODE_ENV=test mocha --compilers js:@babel/register ./Server/spec/test.js",
     "start": "babel-node ./Server/bin/www.js",
     "build:ui-template": "webpack"
   },
@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -48,11 +49,13 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
     "dot-env": "0.0.1",
     "express": "^4.16.3",
     "express-fileupload": "^0.4.0",
+    "express-validator": "^5.2.0",
     "http": "0.0.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.4"

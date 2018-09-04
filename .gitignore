@@ -11,7 +11,7 @@ package-lock.json
 
 # Book build output
 _book
-
+.vscode
 # eBook build output
 *.epub
 *.mobi
