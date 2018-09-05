@@ -624,9 +624,11 @@ describe('Fast-Food-Fast Test Suite', () => {
     it('A user should be able to place an order', (done) => {
       const order = [
         {
-          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 3 },
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 3,
+        },
         {
-          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2 },
+          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2,
+        },
       ];
       const { isAuth } = userAuth;
       const { id } = userAuth;
@@ -645,9 +647,11 @@ describe('Fast-Food-Fast Test Suite', () => {
     it('A user should not be able to place an order if without quantity', (done) => {
       const orders = [
         {
-          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0,
+        },
         {
-          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2 },
+          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2,
+        },
       ];
       const { isAuth } = userAuth;
       const { id } = userAuth;
@@ -665,9 +669,11 @@ describe('Fast-Food-Fast Test Suite', () => {
     it('A user should not be able to place an order without destination address', (done) => {
       const orders = [
         {
-          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0,
+        },
         {
-          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2 },
+          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2,
+        },
       ];
       const { isAuth } = userAuth;
       const { id } = userAuth;
@@ -684,10 +690,10 @@ describe('Fast-Food-Fast Test Suite', () => {
 
     it('A user should not be able to place an order without food item id', (done) => {
       const orders = [
+        { userId: 1, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
         {
-          userId: 1, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
-        {
-          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2 },
+          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2,
+        },
       ];
       const { isAuth } = userAuth;
       const { id } = userAuth;
@@ -698,6 +704,22 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set({ authorization: `${isAuth}`, user: `${id}` })
         .end((err, res) => {
           expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin user should be able to get all customer orders', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+
+      request(app)
+        .get('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          // console.log(res.body.length);
+          expect(res.status).to.equal(200);
+          expect(res.body.length).to.equal(2);
           done();
         });
     });

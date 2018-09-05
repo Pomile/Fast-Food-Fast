@@ -83,4 +83,10 @@ router.post(
   validationApi,
   order.placeOrder,
 );
+
+router.get(
+  '/orders',
+  permit('admin'),
+  order.getOrders,
+);
 export default router;
