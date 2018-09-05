@@ -1,6 +1,10 @@
 import express from 'express';
 import {
- userValidator, validationApi, validateUserCrediential, validateFoodItem 
+  userValidator, validationApi,
+  validateUserCrediential,
+  validateFoodItem,
+  validateFoodItemUpdate,
+  validateFoodUpdate,
 } from '../middleware/validation';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
@@ -29,19 +33,33 @@ router.get(
   verifyUser,
   fastFoods.getFastFoods,
 );
-
 router.get(
   '/fastFoods/:id',
   verifyUser,
   fastFoods.getFastFood,
 );
-
 router.post(
   '/fastFoods',
   validateFoodItem,
   validationApi,
   permit('admin'),
   fastFoods.addFoodItem,
+);
+
+router.put(
+  '/fastFoods/:foodItemId',
+  validateFoodItemUpdate,
+  validationApi,
+  permit('admin'),
+  fastFoods.modifyFastFoodItem,
+);
+
+router.put(
+  '/fastFood/:foodId',
+  validateFoodUpdate,
+  validationApi,
+  permit('admin'),
+  fastFoods.modifyFastFood,
 );
 
 export default router;

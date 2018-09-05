@@ -275,7 +275,7 @@ describe('Fast-Food-Fast Test Suite', () => {
     });
   });
   describe('FastFood API', () => {
-    it('A user should not be able to get a list of fast food items', (done) => {
+    it('A user should be able to get a list of fast food items', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
@@ -308,7 +308,7 @@ describe('Fast-Food-Fast Test Suite', () => {
           }
         });
     });
-    it('A user should be not able to get fast food item(s) if not authenticated', (done) => {
+    it('A user should not be able to get fast food item(s) if not authenticated', (done) => {
       const isAuth = false;
       const id = 1;
       request(app)
@@ -386,27 +386,6 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('The admin should not be able to add a food item without food category name', (done) => {
-      const { isAuth } = userAuth;
-      const { id } = userAuth;
-      request(app)
-        .post('/api/v1/fastFoods')
-        .set('Accept', 'application/json')
-        .set({ authorization: `${isAuth}`, user: `${id}` })
-        .send({
-          foodCategoryName: '',
-          name: 'Chicken and chips',
-          price: 2500,
-          description: '2 Chickens and a pack of chips',
-          quantity: 25,
-          expectedDeliveryTime: '45 min',
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(422);
-          done();
-        });
-    });
-
     it('The admin should not be able to add a food item without food name', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
@@ -437,7 +416,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set({ authorization: `${isAuth}`, user: `${id}` })
         .send({
           foodCategoryName: 'Fries',
-          name: '',
+          name: 'Chicken and chips',
           price: '2500',
           description: '2 Chickens and a pack of chips',
           quantity: 25,
@@ -460,6 +439,7 @@ describe('Fast-Food-Fast Test Suite', () => {
           foodCategoryName: 'Fries',
           name: 'Chiken and chips',
           price: 2500,
+          quantity: '',
           description: '2 Chickens and a pack of chips',
           expectedDeliveryTime: '45 min',
         })
@@ -482,6 +462,125 @@ describe('Fast-Food-Fast Test Suite', () => {
           price: 2500,
           description: '',
           expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should be able to update a food item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFoods/5')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          image: null,
+          price: 2500,
+          description: '2 Chickens and a pack of chips with a bottle of coke',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('The admin should not be able to update a food item without a price', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFoods/5')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          image: null,
+          price: 0,
+          description: '2 Chickens and a pack of chips with a bottle of coke',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to update a food item without a description', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFoods/5')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          image: null,
+          price: 1500,
+          description: '',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to update a food item without a deliveryTime', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFoods/5')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          image: null,
+          price: 1500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should be able to update a food name', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFood/3')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          name: 'Sandwich',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('food modified successfully');
+          done();
+        });
+    });
+
+    it('The admin should not be able to update a food without a name', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFood/3')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          name: '',
         })
         .end((err, res) => {
           expect(res.status).to.equal(422);

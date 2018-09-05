@@ -63,5 +63,38 @@ class FastFood {
       res.status(409).json({ success: false, msg: 'Food item already exists' });
     }
   }
+
+  static modifyFastFoodItem(req, res) {
+    const {
+      description, price, quantity, expectedDeliveryTime, foodId, name,
+    } = req.body;
+    const id = req.params.foodItemId;
+    const foodItemIndex = data.foodItems.findIndex(item => item.id === +id);
+    const foodIndex = data.foods.findIndex(item => item.id === +foodId);
+    if (foodItemIndex !== -1) {
+      data.foods[foodIndex].name = name;
+      data.foodItems[foodItemIndex].quantity = quantity;
+      data.foodItems[foodItemIndex].description = description;
+      data.foodItems[foodItemIndex].price = price;
+      data.foodItems[foodItemIndex].expectedDeliveryTime = expectedDeliveryTime;
+      res.status(200).json({ msg: 'food item modified successfully', success: true }).end();
+    } else {
+      res.status(404).json({ msg: 'food item does not exist', success: true }).end();
+    }
+  }
+
+  static modifyFastFood(req, res) {
+    const {
+      name,
+    } = req.body;
+    const id = req.params.foodId;
+    const foodIndex = data.foods.findIndex(item => item.id === +id);
+    if (foodIndex !== -1) {
+      data.foods[foodIndex].name = name;
+      res.status(200).json({ msg: 'food modified successfully', success: true }).end();
+    } else {
+      res.status(404).json({ msg: 'food does not exist', success: true }).end();
+    }
+  }
 }
 export default FastFood;

@@ -1,4 +1,4 @@
-import { body, validationResult } from 'express-validator/check';
+import { body, check, validationResult } from 'express-validator/check';
 
 export const userValidator = [
   body('firstname', 'firstname is required')
@@ -34,7 +34,6 @@ export const userValidator = [
   body('cpassword', 'confirm password must match password')
     .trim()
     .custom((value, { req }) => value === req.body.password),
-
 ];
 
 export const validateFoodItem = [
@@ -55,23 +54,63 @@ export const validateFoodItem = [
     .custom(value => value !== ''),
 
 
-  body({
-    price: {
-      optional: {
-        options: { checkFalsy: true },
-      },
-      isFloat: {
-        errorMessage: 'The product price must be a decimal',
-      },
-    },
-  }),
+  body('price')
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Price is required and must be a number')
+    .custom(value => typeof value === 'number'),
 
   body('quantity')
     .exists()
     .not()
     .isEmpty()
-    .matches(/\d/)
-    .withMessage('quantity must contain a number'),
+    .withMessage('Quantity is required and must be a number')
+    .custom(value => typeof value === 'number'),
+
+  body('description')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Food description is required')
+    .custom(value => value !== ''),
+
+  body('expectedDeliveryTime')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage(' expectedDeliveryTime id required')
+    .custom(value => value !== ''),
+];
+
+export const validateFoodUpdate = [
+
+  body('name')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Food name is required')
+    .custom(value => value !== ''),
+
+];
+export const validateFoodItemUpdate = [
+
+  body('price')
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Price is required and must be a number')
+    .custom(value => typeof value === 'number' && value > 0),
+
+  body('quantity')
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Quantity is required and must be a number')
+    .custom(value => typeof value === 'number' && value > 0),
 
   body('description')
     .trim()
@@ -107,6 +146,7 @@ export const validateUserCrediential = [
 export const validationApi = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    // console.log(errors.array());
     res.status(422).json({ errors: errors.mapped() });
   } else {
     next();
