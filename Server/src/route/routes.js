@@ -1,5 +1,7 @@
 import express from 'express';
-import { userValidator, validationApi, validateUserCrediential } from '../middleware/validation';
+import {
+ userValidator, validationApi, validateUserCrediential, validateFoodItem 
+} from '../middleware/validation';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
@@ -36,6 +38,8 @@ router.get(
 
 router.post(
   '/fastFoods',
+  validateFoodItem,
+  validationApi,
   permit('admin'),
   fastFoods.addFoodItem,
 );

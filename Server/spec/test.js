@@ -385,5 +385,108 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
+
+    it('The admin should not be able to add a food item without food category name', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: '',
+          name: 'Chicken and chips',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to add a food item without food name', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: '',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to add a food item with invalid price', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: '',
+          price: '2500',
+          description: '2 Chickens and a pack of chips',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to add a food item without quantity', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: 'Chiken and chips',
+          price: 2500,
+          description: '2 Chickens and a pack of chips',
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('The admin should not be able to add a food item without a description', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Fries',
+          name: 'Chiken and chips',
+          price: 2500,
+          description: '',
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
   });
 });

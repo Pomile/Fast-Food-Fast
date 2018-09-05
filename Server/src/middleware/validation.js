@@ -37,6 +37,60 @@ export const userValidator = [
 
 ];
 
+export const validateFoodItem = [
+  body('foodCategoryName')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('foodCategoryName is required')
+    .custom(value => value !== ''),
+
+  body('name')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Food name is required')
+    .custom(value => value !== ''),
+
+
+  body({
+    price: {
+      optional: {
+        options: { checkFalsy: true },
+      },
+      isFloat: {
+        errorMessage: 'The product price must be a decimal',
+      },
+    },
+  }),
+
+  body('quantity')
+    .exists()
+    .not()
+    .isEmpty()
+    .matches(/\d/)
+    .withMessage('quantity must contain a number'),
+
+  body('description')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('Food description is required')
+    .custom(value => value !== ''),
+
+  body('expectedDeliveryTime')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage(' expectedDeliveryTime id required')
+    .custom(value => value !== ''),
+];
+
+
 export const validateUserCrediential = [
   body('email', 'must be an email address')
     .trim()
