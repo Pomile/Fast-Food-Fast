@@ -620,4 +620,86 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
   });
+  describe('Order API', () => {
+    it('A user should be able to place an order', (done) => {
+      const order = [
+        {
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 3 },
+        {
+          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2 },
+      ];
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .send(order)
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.msg).to.equal('order placed successfully');
+          done();
+        });
+    });
+
+    it('A user should not be able to place an order if without quantity', (done) => {
+      const orders = [
+        {
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
+        {
+          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2 },
+      ];
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .send({ orders })
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('A user should not be able to place an order without destination address', (done) => {
+      const orders = [
+        {
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
+        {
+          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2 },
+      ];
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .send({ orders })
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('A user should not be able to place an order without food item id', (done) => {
+      const orders = [
+        {
+          userId: 1, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0 },
+        {
+          userId: 1, foodItemId: 3, destinationAddress: '', quantity: 2 },
+      ];
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .send({ orders })
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+  });
 });

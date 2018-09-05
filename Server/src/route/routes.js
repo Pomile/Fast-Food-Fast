@@ -5,12 +5,15 @@ import {
   validateFoodItem,
   validateFoodItemUpdate,
   validateFoodUpdate,
+  validateOrder,
+  validateUserOrder,
 } from '../middleware/validation';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
 import User from '../controller/user';
 import fastFoods from '../controller/fastFoods';
+import order from '../controller/order';
 
 const router = express.Router();
 
@@ -74,4 +77,10 @@ router.delete(
   fastFoods.removeFastFoodItem,
 );
 
+router.post(
+  '/orders',
+  validateUserOrder,
+  validationApi,
+  order.placeOrder,
+);
 export default router;
