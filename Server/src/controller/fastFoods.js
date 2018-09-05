@@ -96,5 +96,36 @@ class FastFood {
       res.status(404).json({ msg: 'food does not exist', success: true }).end();
     }
   }
+
+  static removeFastFood(req, res) {
+    const id = req.params.foodId;
+    const foodIndex = data.foods.findIndex(food => food.id === +id);
+    data.foods.splice(foodIndex, 1);
+
+    // console.log(data.foodItems);
+    data.foodItems.map((item, i) => {
+      if (item.foodId === +id) {
+        data.foodItems.splice(i, 1);
+        return null;
+      }
+
+      return item;
+    });
+    res.status(204).end();
+  }
+
+  static removeFastFoodItem(req, res) {
+    const id = req.params.itemId;
+
+    data.foodItems.map((item, i) => {
+      if (item.foodId === +id) {
+        data.foodItems.splice(i, 1);
+        return null;
+      }
+      return item;
+    });
+
+    res.status(204).end();
+  }
 }
 export default FastFood;

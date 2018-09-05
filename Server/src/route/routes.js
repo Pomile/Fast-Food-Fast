@@ -62,4 +62,16 @@ router.put(
   fastFoods.modifyFastFood,
 );
 
+router.delete(
+  '/fastFood/:foodId',
+  permit('admin'),
+  fastFoods.removeFastFood,
+);
+
+router.delete(
+  '/fastFoods/:itemId',
+  permit('admin'),
+  fastFoods.removeFastFoodItem,
+);
+
 export default router;

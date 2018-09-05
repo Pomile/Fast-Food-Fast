@@ -587,5 +587,37 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
+
+    it('The admin should be able to delete a food and its item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .delete('/api/v1/fastFood/3')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(204);
+          done();
+        });
+    });
+
+    it('The admin should be able to delete a food item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .delete('/api/v1/fastFoods/4')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(204);
+          done();
+        });
+    });
   });
 });
