@@ -813,5 +813,18 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
+    it('A user should be able to get his or her orders', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .get('/api/v1/orders?customerOrders=true')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.success).to.equal(true);
+          done();
+        });
+    });
   });
 });

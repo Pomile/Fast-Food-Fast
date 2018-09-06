@@ -94,6 +94,17 @@ class order {
       }
     });
   }
+
+  static getUserOrders(req, res) {
+    const userId = req.user.id;
+    const customerOrders = [];
+    data.orders.map((item) => {
+      if (item.userId === userId) {
+        customerOrders.push(item);
+      }
+    });
+    res.status(200).json({ customerOrders, success: true });
+  }
 }
 
 export default order;
