@@ -86,8 +86,15 @@ router.post(
 
 router.get(
   '/orders',
-  permit('admin'),
-  order.getOrders,
+  verifyUser,
+  (req, res) => {
+    if (req.query.customerOrders === 'true') {
+      order.getUserOrders(req, res);
+    } else {
+      permit('admin, user');
+      order.getOrders(req, res);
+    }
+  },
 );
 
 router.put(
@@ -95,4 +102,6 @@ router.put(
   permit('admin'),
   order.modifyOrder,
 );
+
+
 export default router;
