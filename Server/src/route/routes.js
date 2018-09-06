@@ -103,5 +103,11 @@ router.put(
   order.modifyOrder,
 );
 
+router.get(
+  '/orders/:orderId',
+  verifyUser,
+  order.getOrder,
+);
+
 
 export default router;

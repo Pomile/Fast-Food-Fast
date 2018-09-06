@@ -105,6 +105,12 @@ class order {
     });
     res.status(200).json({ customerOrders, success: true });
   }
+
+  static getOrder(req, res) {
+    const id = req.params.orderId;
+    const findOrderById = data.orders.find(currentOrder => currentOrder.id === +id);
+    res.status(200).json({ success: true, data: findOrderById });
+  }
 }
 
 export default order;
