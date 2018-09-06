@@ -89,4 +89,10 @@ router.get(
   permit('admin'),
   order.getOrders,
 );
+
+router.put(
+  '/orders/:orderId',
+  permit('admin'),
+  order.modifyOrder,
+);
 export default router;

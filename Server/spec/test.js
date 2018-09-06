@@ -644,7 +644,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('A user should not be able to place an order if without quantity', (done) => {
+    it('A user should not be able to place an order without a quantity', (done) => {
       const orders = [
         {
           userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 0,
@@ -717,9 +717,99 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set('Accept', 'application/json')
         .set({ authorization: `${isAuth}`, user: `${id}` })
         .end((err, res) => {
-          // console.log(res.body.length);
+          // console.log(res.body);
           expect(res.status).to.equal(200);
           expect(res.body.length).to.equal(2);
+          done();
+        });
+    });
+
+    it('The admin user should be able to accept an order', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ accept: true })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('order accepted');
+          done();
+        });
+    });
+
+    it('The admin user should be able to decline an order', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/2')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ decline: true })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('order declined');
+          done();
+        });
+    });
+
+    it('The admin user should be able to mark an order as completed', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ completed: true })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('order completed');
+          done();
+        });
+    });
+
+    it('The admin user should not be able to accept an order that is completed', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ accept: true })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          expect(res.body.msg).to.equal('cannot accept an order that is already completed');
+          done();
+        });
+    });
+
+    it('The admin user should not be able to decline an order that is completed', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ decline: true })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          expect(res.body.msg).to.equal('cannot decline an order that is already completed');
+          done();
+        });
+    });
+
+    it('The admin user should be able to mark an an order as uncompleted', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/orders/1')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({ completed: false })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('order not completed');
           done();
         });
     });
