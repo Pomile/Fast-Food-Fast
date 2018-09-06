@@ -1,0 +1,10 @@
+.food--onWindowScroll{
+    position: fixed!important;
+    width:100%;
+    top: 10px;
+}
+
+.foodCart-onWindowScroll{
+    position: fixed!important;
+    top: 60px;
+}

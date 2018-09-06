@@ -1,0 +1,68 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: rgb(214, 62, 7);
+}
+
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+
+i {
+    margin-right: 10px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=phone],
+input[type=number],
+input[type=tel],
+input[list=state],
+input[type=date],
+input[list=browse]
+{
+    width: 96%;
+    font-size: 16px;
+}
+
+.-input-height{
+    height: 20px;
+    padding: 8px;
+}
+
+.-input-marginTop{
+    margin-top: 10px;
+}
+
+textarea{
+    resize: none;
+    width:100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.-textarea-marginTop{
+    margin-top: 10px;
+}
+
+select{
+    width: 96%;
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+}

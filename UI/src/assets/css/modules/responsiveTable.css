@@ -1,0 +1,140 @@
+.res-table{
+    width: 100%; 
+    border-collapse: collapse;
+    table-layout: fixed;
+    
+}
+
+.res-tr:nth-of-type(odd) { 
+    background: #eee; 
+}
+.res-th { 
+    background: rgb(121, 119, 119); 
+    color: white; 
+    font-weight: bold;
+}
+.res-td, .res-td-2, .res-th { 
+    padding: 6px; 
+    border: 1px solid #ccc;
+    word-wrap: break-word;
+    text-align: left; 
+}
+
+@media 
+(max-width: 600px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	.res-table, .res-thead, .res-tbody, .res-th, .res-td, .res-td-2, .res-tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.res-thead .res-tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.res-tr { border: 1px solid #ccc; }
+	
+	.res-td, .res-td-2 { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		
+	}
+	
+	.res-td:before, .res-td-2:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	.res-td:nth-of-type(1):before { content: "Image"; }
+	.res-td:nth-of-type(2):before { content: "Description"; }
+	.res-td:nth-of-type(3):before { content: "Action"; }
+
+	.res-td-2:nth-of-type(1):before { content: "sn"; }
+	.res-td-2:nth-of-type(2):before { content: "Customer name"; }
+	.res-td-2:nth-of-type(3):before { content: "Item desc"; }
+	.res-td-2:nth-of-type(4):before { content: "TimeOrdered"; }
+	.res-td-2:nth-of-type(5):before { content: "ExpD time"; }
+	.res-td-2:nth-of-type(6):before { content: "Price"; }
+	.res-td-2:nth-of-type(7):before { content: "Action"; }
+
+}
+
+.table-wrapper{
+    overflow-y: scroll;
+    height: 450px;
+    margin-top: 25px;
+}
+
+.table-form{
+	height: 50px;
+	top: 120px;
+	margin-left: 5%;
+	background-color: rgb(236, 236, 236);
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0px 0px;
+
+}
+
+.table-form__input{
+	height: 20px!important;
+	margin-top: 0px!important;
+	font-size: 12px!important;
+	width: 150px!important;
+}
+
+.table-col__sn, .table-col__customerName, .table-td,
+.table-col__itemDescription,
+.table-col__timeOrdered, .table-col__deliveryTime, .table-col__price, .table-col__actions {
+	height: 20px;
+	padding: 6px;
+	border: 1px solid rgb(201, 197, 197);
+	color: black;
+}
+
+
+.table-con{
+	top: 189px;
+	margin-left: 5%;
+}
+
+.table-header{
+	top: 189px;
+	margin-left: 5%;
+}
+
+
+.col-width-1{ width:5%;}
+.col-width-2{ width:20%;}
+.col-width-3{ width:27%;}
+.col-width-4{ width:10%;}
+.col-width-5{ width:8%;}
+.col-width-6{ width:8%;}
+.col-width-7{ width:7%;}
+.col-width-8{ width:7%;}
+.col-width-9{ width:9%;}
+
+.th-width-1{width:5%}
+.th-width-2{width:19.6%}
+.th-width-3{width:26.8%}
+.th-width-4{width:10%}
+.th-width-5{width:8%}
+.th-width-6{width:8%}
+.th-width-7{width:13.6%}
+.th-width-8{width:9%}

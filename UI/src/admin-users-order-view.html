@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>Admin food items view</title>  
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script>
+    </head>
+    <body>
+        <div id="wrapper" >
+                <div class="backdrop hide-on-medium-and-up" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="./assets/images/user.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                                <li class="sidenav__item s-12">
+                                        <a class="sidenav__item-link"  href="index.html">Logout</a>
+                            </li>
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link" href="./user.html">Home</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link active"  href="admin-users-order-view.html">Orders</a>
+                            </li>
+
+                            <li class="sidenav__item s-12">
+                                    <a class="sidenav__item-link"  href="admin-items-view.html">Foods and Drinks</a>
+                            </li>
+                        </ul>
+                    </nav>
+            <div id="header" class="-orangeredBgColor">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="./assets/images/food_delivery_logo.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="admin.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height active" href="orders.html">Customer orders</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-items-view.html">Foods and drinks</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div id ="mainDimension" class="-whiteBgColor">
+                <div class="headerSeperator"></div>
+                <div class="page-title -col-sm-11 -col-m-11 -col-l-11 -fixed-pos -whiteBgColor" style="z-index: 119;"><h1 class=" -whiteBgColor -grayTxtColor">Customer Orders</h1></div>
+                <div class="table-form -col-sm-11 -col-m-11 -col-l-11 -fixed-pos -greenBgColor" style="z-index: 119;">
+                    <div class="search-form  -col-sm-10 -col-m-4 -col-l-4 -orangeredBgColor">
+                        <input type="search" class="search-form__input -col-sm-10" placeholder="Search..." name="search" id="search" />
+                        <div class="search-form__btn button -col-sm-2 -grayBgColor" id="searchBtn"><i class="material-icons -whiteTxtColor">search</i></div>
+                    </div>
+                    <div >
+                        <input class="table-form__input" style="" type ="date" />
+                    </div>
+                </div>
+                <div class="table-con -col-sm-11 -col-m-11 -col-l-11 -absolute-pos ">
+                <table class="res-table" style=" height: 500px; table-layout: fixed; overflow-y: scroll;">
+                        <col class="col-width-1">
+                        <col class="col-width-2">
+                        <col class="col-width-3" >
+                        <col class="col-width-4">
+                        <col class="col-width-5" >
+                        <col class="col-width-6">
+                        <col class="col-width-7" >
+                        <col class="col-width-8">
+                        <col class="col-width-9">
+                        <thead class="res-thead">
+                        <tr class="res-tr -fixed-pos -col-l-11">
+                                <th class="res-th th-width-1" >sn</th>
+                                <th class="res-th th-width-2">Customer name</th>
+                                <th class="res-th th-width-3" >Item Description</th>
+                                <th class="res-th th-width-4" >Time</th>
+                                <th class="res-th th-width-5" >Expected Delivery Time</th>
+                                <th class="res-th th-width-6" >Price</th>
+                                <th class="res-th  th-width-7">Action</th>
+                                <th class="res-th th-width-8">Completed</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                <tr class="res-tr">
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"></td>
+                                        <td class="res-td-2"><a href="#">accept</a></td>
+                                        <td class="res-td-2"><a href="#" >decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr>
+                                <tr class="res-tr">
+                                        <td class="res-td-2">1</td>
+                                        <td class="res-td-2">Judge Carrighton</td>
+                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N1450</td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -orangeBgColor" href="#">Accept</a></td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr>
+                                <tr class="res-tr">
+                                        <td class="res-td-2">2</td>
+                                        <td class="res-td-2">Judge Washington</td>
+                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N1450</td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -orangeBgColor" href="#">Accept</a></td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr>
+        
+                                <tr class="res-tr">
+                                        <td class="res-td-2">3</td>
+                                        <td class="res-td-2">Judge Washington</td>
+                                        <td class="res-td-2">Fried rice and 2 chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N2000</td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr>
+                                <tr class="res-tr">
+                                        <td class="res-td-2">5</td>
+                                        <td class="res-td-2">Judge Washington</td>
+                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N1450</td>
+                                        <td class="res-td-2"><button class="button -xsmall -whiteTxtColor -ff-roboto -grayBgColor" disabled>Accept</a></td>
+                                        <td class="res-td-2"><button class="button -xsmall -whiteTxtColor -ff-roboto -grayBgColor" disabled>decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" style="background-color: green" checked/></td>
+                                </tr>
+                                <tr class="res-tr">
+                                        <td class="res-td-2">3</td>
+                                        <td class="res-td-2">Judge Washington</td>
+                                        <td class="res-td-2">Fried rice and 1 chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N1450</td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr><tr class="res-tr">
+                                        <td class="res-td-2">3</td>
+                                        <td class="res-td-2">Judge Washington</td>
+                                        <td class="res-td-2">Fried rice and 2 chicken with 1 coke</td>
+                                        <td class="res-td-2">4:50pm</td>
+                                        <td class="res-td-2">5:30pm</td>
+                                        <td class="res-td-2"> N2000</td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
+                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
+                                        <td class="res-td-2"><input type="checkbox" /></td>
+                                </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                      
+            </div>
+           
+        
+                
+            <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+    </div>
+
+                
+            
+    </body>
+</html>

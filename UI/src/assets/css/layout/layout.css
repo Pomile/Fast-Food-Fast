@@ -1,0 +1,34 @@
+#header, #main, #footer {
+    width: 100%;
+}
+
+#header{
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 105;
+}
+
+#main{
+    height: 700px;
+}
+
+#mainDimension{
+    height: 3000px;
+    overflow-y: auto;
+}
+
+
+#footer{
+    height: 40px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    z-index: 121;
+}

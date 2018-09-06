@@ -1,0 +1,27 @@
+.display{
+    padding-left: 20px;
+}
+
+@media (min-width: 150px) {
+    .display{
+        padding-left: 0px;
+    }
+     
+    
+}
+
+@media (min-width: 600px) {
+    .display{
+        padding-left: 20px;
+    }
+    
+}
+
+
+@media (min-width: 991px) {
+    .display{
+        padding-left: 20px;
+    }
+    
+}
+

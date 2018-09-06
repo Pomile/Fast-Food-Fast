@@ -1,0 +1,55 @@
+.caption{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../images/Heathy-Fit.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.caption-overlay{
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    z-index: 100;
+    top: 56px;
+    background-color:  rgba(0, 0, 0, 0.5);
+    left: 0;
+}
+
+.caption-message{
+    position: absolute;
+    z-index: 101;
+    top: 120px;
+    height: 160px;
+    width: 100%;
+}
+
+.caption-search{
+    position: absolute;
+    z-index: 101;
+    top: 300px;
+    height: 60px;
+}
+
+.caption-search__input{
+    border-radius: 60px;
+    width: 100%;
+}
+
+
+@media (min-width: 240px){
+    .-fs-cs-large{
+        font-size: 30px;
+    }
+
+    .-fs-cs-medium{
+        font-size: 24px
+    }
+}
+
+@media (min-width: 601px){
+    .-fs-cs-medium{ font-size: 35px; }
+    .-fs-cs-large{ font-size: 48px;}
+}

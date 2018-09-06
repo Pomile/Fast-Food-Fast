@@ -1,0 +1,36 @@
+.tabular{
+    width: 90%;
+    height: 540px;
+    background-color: rgb(240, 240, 240);
+    margin-left: 5%;
+    padding-top: 20px;
+}
+
+.tabular__search{
+    width: 20%;
+    height: 40px;
+    margin-left: 1%;
+}
+
+.tabular__input{
+    height: 40px;
+    margin-top: 0px!important;
+    padding: 4px!important;
+    font-size: 14px!important;
+    
+}
+
+.tabular__img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.tabular__table{
+    width: 95%;
+    height: 430px;
+    margin-top: 20px;
+    margin-left: 1%;
+    overflow: scroll;
+    background-color: white;
+}

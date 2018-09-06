@@ -1,0 +1,75 @@
+.teal-bgcolor{
+    background-color: teal;
+}
+
+.-tomatoBgColor{
+    background-color: tomato;
+}
+
+/*...................Background Color..............................*/
+.transparent{
+    background-color: transparent;
+}
+.-transparentBg{
+    background-color:  rgba(0, 0, 0, 0.5);
+}
+
+.-whiteBgColor{
+    background-color:white;
+}
+.-redBgColor{
+    background-color: red;
+}
+.-orangeBgColor{
+    background-color: orange;
+}
+
+.-greenBgColor{
+    background-color: #4CAF50;
+}
+
+.-green-2-BgColor{
+    background-color: rgb(45, 192, 49);
+}
+
+.-orangeredBgColor{
+    background-color: orangered;
+}
+
+.-grayBgColor{
+ background-color: gray;
+}
+
+/*...................Text Color..............................*/
+.-blackTxtColor{
+    color: black;
+}
+
+.-whiteTxtColor{
+    color: white;
+}
+
+.-orangeredTxtColor{
+    color: rgb(196, 57, 6);
+}
+
+.-orangeTxtColor{
+    color: orange;
+}
+
+.-orange-1-TxtColor{
+    color: rgb(243, 200, 122);
+}
+.-redTxtColor{
+    color: red;
+}
+
+.-grayTxtColor{
+    color: gray;
+}
+
+.-offWhiteTxtColor{
+    color: whitesmoke;
+}
+
+
