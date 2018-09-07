@@ -292,7 +292,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('A user should not be able to get a fast food item', (done) => {
+    it('A user should be able to get a fast food item', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
@@ -357,6 +357,28 @@ describe('Fast-Food-Fast Test Suite', () => {
           description: '2 Chickens and a pack of chips',
           quantity: 25,
           expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.success).to.equal(true);
+          done();
+        });
+    });
+
+    it('The admin should be able to add a food category, food name, and food item,  if they does exist', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .post('/api/v1/fastFoods')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodCategoryName: 'Sides',
+          name: 'Pie',
+          price: 5500,
+          description: '2 Chicken Pie with a bottle of coke',
+          quantity: 25,
+          expectedDeliveryTime: '25 min',
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -486,6 +508,28 @@ describe('Fast-Food-Fast Test Suite', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('The admin should be able to update a food item', (done) => {
+      const { isAuth } = userAuth;
+      const { id } = userAuth;
+      request(app)
+        .put('/api/v1/fastFoods/9')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send({
+          foodId: 3,
+          image: null,
+          price: 2500,
+          description: '2 Chickens and a pack of chips with a bottle of coke',
+          quantity: 25,
+          expectedDeliveryTime: '45 min',
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.msg).to.equal('food item does not exist');
           done();
         });
     });
@@ -643,6 +687,27 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
+    it('A user should be able to place an order without authentication', (done) => {
+      const order = [
+        {
+          userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 3,
+        },
+        {
+          userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2,
+        },
+      ];
+      // const { isAuth } = userAuth;
+      // const { id } = userAuth;
+      request(app)
+        .post('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .send(order)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          expect(res.body.msg).to.equal('not authenticated');
+          done();
+        });
+    });
 
     it('A user should not be able to place an order without a quantity', (done) => {
       const orders = [
@@ -719,7 +784,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         .end((err, res) => {
           // console.log(res.body);
           expect(res.status).to.equal(200);
-          expect(res.body.length).to.equal(2);
+          expect(res.body.length).to.equal(4);
           done();
         });
     });

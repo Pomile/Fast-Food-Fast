@@ -3,6 +3,9 @@ import data from '../db/data';
 const verifyUser = (req, res, next) => {
   const authorized = req.headers.authorization;
   const userId = req.headers.user;
+  if (authorized === undefined || userId === undefined) {
+    res.status(403).json({ msg: 'not authenticated', success: false });
+  }
   if (authorized === 'false') {
     res.status(403).json({ msg: 'user is not authenticated', success: false });
   } else {

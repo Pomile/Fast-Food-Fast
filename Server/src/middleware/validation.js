@@ -1,4 +1,4 @@
-import { body, check, validationResult } from 'express-validator/check';
+import { body, validationResult } from 'express-validator/check';
 
 export const userValidator = [
   body('firstname', 'firstname is required')
@@ -126,15 +126,6 @@ export const validateFoodItemUpdate = [
     .not()
     .isEmpty()
     .withMessage('expectedDeliveryTime required')
-    .custom(value => value !== ''),
-];
-
-export const validateOrder = [
-  body('location')
-    .trim()
-    .exists()
-    .isEmpty()
-    .withMessage('Location is required')
     .custom(value => value !== ''),
 ];
 

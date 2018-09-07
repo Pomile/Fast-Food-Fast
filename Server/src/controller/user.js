@@ -38,16 +38,16 @@ class User {
 
     const userData = data.users.find(user => user.email === email);
     if (userData === undefined) {
-      res.status(404).json({ msg: 'user not found' });
+      res.status(404).json({ msg: 'user not found' }).end();
     } else {
       const hash = userData.password;
       bcrypt.compare(password, hash, (err, result) => {
         if (result) {
           res.status(200).json({
             sucess: true, msg: 'user logged in sucessfully', isAuth: true, user: userData.id,
-          });
+          }).end();
         } else {
-          res.status(401).json({ sucess: false, msg: 'invalid password' });
+          res.status(401).json({ sucess: false, msg: 'invalid password' }).end();
         }
       });
     }

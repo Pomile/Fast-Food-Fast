@@ -2,12 +2,20 @@
   "name": "fast-food-fast",
   "version": "1.0.0",
   "description": "Fast-Food-Fast is a food delivery service app for a restaurant that allows customers to make food orders and helps the food vendor to know what the customer want to eat.",
-  "main": "./Server/bin/www.js",
+  "main": "./Server/server.js",
+  "nyc": {
+    "include": [
+      "Server/src/",
+      "Server/src/controller/*"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
   "scripts": {
     "start:webpack-dev-watch": "webpack -d --watch",
     "start:webpack-devServer": "webpack-dev-server --open",
-    "test": "nodemon --watch . --exec cross-env NODE_ENV=test mocha --compilers js:@babel/register ./Server/spec/test.js",
-    "start": "babel-node ./Server/bin/www.js",
+    "test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
+    "start": "nodemon --watch . --exec babel-node ./Server/server.js",
     "build:ui-template": "webpack"
   },
   "repository": {
@@ -27,7 +35,9 @@
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",
+    "babel-plugin-istanbul": "^5.0.1",
     "clean-webpack-plugin": "^0.1.19",
+    "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
