@@ -687,7 +687,7 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
-    it('A user should be able to place an order without authentication', (done) => {
+    it('A user should not be able to place an order without authentication', (done) => {
       const order = [
         {
           userId: 1, foodItemId: 4, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 3,
@@ -696,8 +696,6 @@ describe('Fast-Food-Fast Test Suite', () => {
           userId: 1, foodItemId: 3, destinationAddress: '4, ereko street fadeyi, lagos', quantity: 2,
         },
       ];
-      // const { isAuth } = userAuth;
-      // const { id } = userAuth;
       request(app)
         .post('/api/v1/orders')
         .set('Accept', 'application/json')
@@ -782,7 +780,6 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set('Accept', 'application/json')
         .set({ authorization: `${isAuth}`, user: `${id}` })
         .end((err, res) => {
-          // console.log(res.body);
           expect(res.status).to.equal(200);
           expect(res.body.length).to.equal(2);
           done();
@@ -864,7 +861,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('The admin user should be able to mark an an order as uncompleted', (done) => {
+    it('The admin user should be able to mark an order as uncompleted', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
@@ -892,7 +889,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
-    it('A user or the admin should be able to get an orders', (done) => {
+    it('A user or the admin should be able to get an order', (done) => {
       const { isAuth } = userAuth;
       const { id } = userAuth;
       request(app)
