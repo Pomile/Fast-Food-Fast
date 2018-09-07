@@ -8,11 +8,8 @@ class User {
     const {
       firstname, lastname, email, password, phone, role,
     } = req.body;
-
     const userId = initialUsersCount + 1;
-    // find if existing account has a user name
     const findByEmail = data.users.find(user => user.email === email);
-
     if (findByEmail === undefined) {
       data.users.push({
         id: userId, firstname, lastname, email, phone, password, role,
@@ -32,10 +29,7 @@ class User {
   }
 
   static authenticate(req, res) {
-    const {
-      email, password,
-    } = req.body;
-
+    const { email, password } = req.body;
     const userData = data.users.find(user => user.email === email);
     if (userData === undefined) {
       res.status(404).json({ msg: 'user not found' }).end();

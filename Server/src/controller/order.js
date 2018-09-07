@@ -10,7 +10,6 @@ class order {
     const today = moment().format('dddd, MMMM Do YYYY');
     const currentTime = moment().format('h:mm:ss a');
     const expectedDeliveryTime = moment().add(45, 'minutes').format('h:mm:ss a');
-    // const foodItemLen = data.foodItems.length;
     const orderInfo = foodItems.map((item) => {
       const foodItem = item;
       foodItem.orderDate = today;
@@ -19,7 +18,6 @@ class order {
       foodItem.accept = false;
       foodItem.decline = false;
       foodItem.completed = false;
-
       return foodItem;
     });
     orderInfo.map((item) => {
@@ -27,11 +25,8 @@ class order {
       const len = data.orders.length;
       orderItem.id = len + 1;
       data.orders.push(orderItem);
-      return null;
     });
-
     const currentNoOfOrders = data.orders.length;
-
     if (InitialNoOforders < currentNoOfOrders) {
       res.status(201).json({ msg: 'order placed successfully', success: true }).end();
     }
@@ -54,44 +49,37 @@ class order {
     const id = req.params.orderId;
     data.orders.map((orderItem, index) => {
       const newOrderItem = { ...orderItem };
-      if (req.body.accept) {
-        if (orderItem.id === +id && newOrderItem.completed !== true) {
-          newOrderItem.accept = true;
-          newOrderItem.decline = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order accepted', data: newOrderItem });
-        } else if (orderItem.id === +id && newOrderItem.completed === true) {
-          res.status(409).json({ msg: 'cannot accept an order that is already completed' }).end();
-        }
-      } else if (req.body.decline) {
-        if (orderItem.id === +id && newOrderItem.completed !== true) {
-          newOrderItem.accept = false;
-          newOrderItem.decline = true;
-          newOrderItem.completed = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order declined', data: newOrderItem });
-        } else if (orderItem.id === +id && newOrderItem.completed === true) {
-          res.status(409).json({ msg: 'cannot decline an order that is already completed' }).end();
-        }
-      } else if (req.body.completed) {
-        if (orderItem.id === +id) {
-          newOrderItem.accept = true;
-          newOrderItem.decline = false;
-          newOrderItem.completed = true;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order completed', data: newOrderItem }).end();
-        }
-      } else if (req.body.completed === false) {
-        if (orderItem.id === +id) {
-          newOrderItem.accept = false;
-          newOrderItem.decline = false;
-          newOrderItem.completed = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order not completed', data: newOrderItem }).end();
-        }
+      if (req.body.accept && (orderItem.id === +id && newOrderItem.completed !== true)) {
+        newOrderItem.accept = true;
+        newOrderItem.decline = false;
+        data.orders[index] = newOrderItem;
+        res.status(200).json({ msg: 'order accepted', data: newOrderItem });
+      } else if (req.body.accept && (orderItem.id === +id && newOrderItem.completed === true)) {
+        res.status(409).json({ msg: 'cannot accept an order that is already completed' }).end();
+      } else if (req.body.decline && (orderItem.id === +id && newOrderItem.completed !== true)) {
+        newOrderItem.accept = false;
+        newOrderItem.decline = true;
+        newOrderItem.completed = false;
+        data.orders[index] = newOrderItem;
+        res.status(200).json({ msg: 'order declined', data: newOrderItem });
+      } else if (req.body.decline && (orderItem.id === +id && newOrderItem.completed === true)) {
+        res.status(409).json({ msg: 'cannot decline an order that is already completed' }).end();
+      } else if (req.body.completed && orderItem.id === +id) {
+        newOrderItem.accept = true;
+        newOrderItem.decline = false;
+        newOrderItem.completed = true;
+        data.orders[index] = newOrderItem;
+        res.status(200).json({ msg: 'order completed', data: newOrderItem }).end();
+      } else if (req.body.completed === false && orderItem.id === +id) {
+        newOrderItem.accept = false;
+        newOrderItem.decline = false;
+        newOrderItem.completed = false;
+        data.orders[index] = newOrderItem;
+        res.status(200).json({ msg: 'order not completed', data: newOrderItem }).end();
       }
     });
   }
+
 
   static getUserOrders(req, res) {
     const userId = req.user.id;
