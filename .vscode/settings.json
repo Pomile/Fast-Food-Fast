@@ -1,5 +1,5 @@
 {
-    "eslint.autoFixOnSave": true,
+    "eslint.autoFixOnSave": false,
     "eslint.enable": true,
     "eslint.run": "onSave"
 }
