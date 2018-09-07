@@ -24,15 +24,12 @@ These instructions will get you a copy of the project up and running on your loc
 To run the application in your local machine, please follow the guidelines below.
 >-Install Nodejs on your machine.
 >-Clone the repository
+>- cd into project folder
+>- Install the dependencies and devDependencies
+#
     ```sh
         >git clone https://github.com/Pomile/Fast-Food-Fast.git
-    ```
->- cd into project folder
-    ```sh
         >cd Fast-Food-Fast
-    ```
->- Install the dependencies and devDependencies
-    ```sh
         >npm install
     ```
 ### Run Test
