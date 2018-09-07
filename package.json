@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Fast-Food-Fast is a food delivery service app for a restaurant that allows customers to make food orders and helps the food vendor to know what the customer want to eat.",
   "main": "./Server/server.js",
+  "engines": {
+    "node": "10.9.0"
+  },
   "nyc": {
     "include": [
       "Server/src/",
