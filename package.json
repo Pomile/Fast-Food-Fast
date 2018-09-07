@@ -14,9 +14,12 @@
   "scripts": {
     "start:webpack-dev-watch": "webpack -d --watch",
     "start:webpack-devServer": "webpack-dev-server --open",
-    "test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
+    "local:test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
+    "mocha:test":"mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
     "start": "nodemon --watch . --exec babel-node ./Server/server.js",
-    "build:ui-template": "webpack"
+    "build:ui-template": "webpack",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
