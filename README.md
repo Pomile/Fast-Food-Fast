@@ -47,7 +47,7 @@ The test can be run in either development or test environment
 #### Test Environment
 
     ```sh
-        > npm local:test 
+        > npm run local:test 
             or 
         > npm test 
     ```
