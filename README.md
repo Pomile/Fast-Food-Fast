@@ -1,5 +1,5 @@
 # Fast-Food-Fast
-[![Build Status](https://travis-ci.org/Pomile/Fast-Food-Fast.svg?branch=develop)](https://travis-ci.org/Pomile/Fast-Food-Fast) [![Coverage Status](https://coveralls.io/repos/github/Pomile/Fast-Food-Fast/badge.svg?branch=chore%2F%23160337512%2FtravisCI-and-coveralls)](https://coveralls.io/github/Pomile/Fast-Food-Fast?branch=chore%2F%23160337512%2FtravisCI-and-coveralls)
+[![Build Status](https://travis-ci.org/Pomile/Fast-Food-Fast.svg?branch=develop)](https://travis-ci.org/Pomile/Fast-Food-Fast) [![Coverage Status](https://coveralls.io/repos/github/Pomile/Fast-Food-Fast/badge.svg?branch=chore%2F%23160337512%2FtravisCI-and-coveralls)](https://coveralls.io/github/Pomile/Fast-Food-Fast?branch=chore%2F%23160337512%2FtravisCI-and-coveralls) [![Maintainability](https://api.codeclimate.com/v1/badges/b85f8f715a866e2e2ce6/maintainability)](https://codeclimate.com/github/Pomile/Fast-Food-Fast/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/b85f8f715a866e2e2ce6/test_coverage)](https://codeclimate.com/github/Pomile/Fast-Food-Fast/test_coverage)
 
 Fast-Food-Fast is a food delivery service app for a restaurant that allows customers to place an order for fast food and helps the food vendor to know what the customer wants to eat and where to deliver the food item(s).
 
@@ -22,32 +22,30 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Installation
 To run the application in your local machine, please follow the guidelines below.
->-Install Nodejs on your machine.
+>-Install Nodejs on your machine
 >-Clone the repository
 >- cd into project folder
 >- Install the dependencies and devDependencies
-#
-    ```sh
-        >git clone https://github.com/Pomile/Fast-Food-Fast.git
-        >cd Fast-Food-Fast
-        >npm install
-    ```
+#### Example
+```sh
+     >git clone https://github.com/Pomile/Fast-Food-Fast.git
+     >cd Fast-Food-Fast
+     >npm install
+```
 ### Run Test
 
 The test can be run in either development or test environment
 
 #### Development Environment
-
-    ```sh
-        > npm run mocha:test
-    ```
+```sh
+ > npm run mocha:test
+```
 #### Test Environment
-
-    ```sh
-        > npm run local:test 
-            or 
-        > npm test 
-    ```
+ ```sh
+    > npm run local:test
+    or
+    > npm test
+```
 
 ## Technologies
 * Express - web framework
@@ -65,4 +63,4 @@ The test can be run in either development or test environment
 >- Raise a pull request.
 
 # Author
-*** Babatunde Ogedengbe ****
+* ** Babatunde Ogedengbe ****
