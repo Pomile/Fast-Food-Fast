@@ -1,4 +1,4 @@
-import { body, check, validationResult } from 'express-validator/check';
+import { body, validationResult } from 'express-validator/check';
 
 export const userValidator = [
   body('firstname', 'firstname is required')
@@ -129,15 +129,6 @@ export const validateFoodItemUpdate = [
     .custom(value => value !== ''),
 ];
 
-export const validateOrder = [
-  body('location')
-    .trim()
-    .exists()
-    .isEmpty()
-    .withMessage('Location is required')
-    .custom(value => value !== ''),
-];
-
 export const validateUserCrediential = [
   body('email', 'must be an email address')
     .trim()
@@ -152,15 +143,15 @@ export const validateUserCrediential = [
 ];
 
 export const validateUserOrder = [
-  body().isArray(),
-  body('orders.*.userId', 'user id must be an integer').exists().isInt(),
-  body('orders.*.foodItemId', 'food item id must be an integer').exists().isInt(),
-  body('orders.*.quantity', 'quantity is required and must be an integer')
+
+  body('data.*.userId', 'user id must be an integer').exists().isInt(),
+  body('data.*.foodItemId', 'food item id must be an integer').exists().isInt(),
+  body('data.*.quantity', 'quantity is required and must be an integer')
     .exists()
     .not()
     .isEmpty()
     .custom(value => Number.isInteger(value) && value > 0),
-  body('orders.*.destinationAddress', ' destinationAddress field must be a string')
+  body('data.*.destinationAddress', ' destinationAddress field must be a string')
     .trim()
     .exists()
     .not()

@@ -5,7 +5,7 @@ import getUser from '../helpers/getUser';
 
 class order {
   static placeOrder(req, res) {
-    const foodItems = req.body;
+    const foodItems = req.body.data;
     const InitialNoOforders = data.orders.length;
     const today = moment().format('dddd, MMMM Do YYYY');
     const currentTime = moment().format('h:mm:ss a');
@@ -34,8 +34,6 @@ class order {
 
     if (InitialNoOforders < currentNoOfOrders) {
       res.status(201).json({ msg: 'order placed successfully', success: true }).end();
-    } else {
-      res.status(200).json({ sucess: false, msg: 'order not successful' }).end();
     }
   }
 
@@ -47,9 +45,9 @@ class order {
       const foodItem = getFoodItem(o.foodItemId);
       currentOrder.user = user;
       currentOrder.foodItem = foodItem;
-      return customerOrders.push(currentOrder);
+      customerOrders.push(currentOrder);
     });
-    res.status(200).json(customerOrders);
+    res.status(200).json(customerOrders).end();
   }
 
   static modifyOrder(req, res) {
@@ -63,7 +61,7 @@ class order {
           data.orders[index] = newOrderItem;
           res.status(200).json({ msg: 'order accepted', data: newOrderItem });
         } else if (orderItem.id === +id && newOrderItem.completed === true) {
-          res.status(409).json({ msg: 'cannot accept an order that is already completed' });
+          res.status(409).json({ msg: 'cannot accept an order that is already completed' }).end();
         }
       } else if (req.body.decline) {
         if (orderItem.id === +id && newOrderItem.completed !== true) {
@@ -73,7 +71,7 @@ class order {
           data.orders[index] = newOrderItem;
           res.status(200).json({ msg: 'order declined', data: newOrderItem });
         } else if (orderItem.id === +id && newOrderItem.completed === true) {
-          res.status(409).json({ msg: 'cannot decline an order that is already completed' });
+          res.status(409).json({ msg: 'cannot decline an order that is already completed' }).end();
         }
       } else if (req.body.completed) {
         if (orderItem.id === +id) {
@@ -81,7 +79,7 @@ class order {
           newOrderItem.decline = false;
           newOrderItem.completed = true;
           data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order completed', data: newOrderItem });
+          res.status(200).json({ msg: 'order completed', data: newOrderItem }).end();
         }
       } else if (req.body.completed === false) {
         if (orderItem.id === +id) {
@@ -89,7 +87,7 @@ class order {
           newOrderItem.decline = false;
           newOrderItem.completed = false;
           data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order not completed', data: newOrderItem });
+          res.status(200).json({ msg: 'order not completed', data: newOrderItem }).end();
         }
       }
     });
@@ -103,13 +101,13 @@ class order {
         customerOrders.push(item);
       }
     });
-    res.status(200).json({ customerOrders, success: true });
+    res.status(200).json({ customerOrders, success: true }).end();
   }
 
   static getOrder(req, res) {
     const id = req.params.orderId;
     const findOrderById = data.orders.find(currentOrder => currentOrder.id === +id);
-    res.status(200).json({ success: true, data: findOrderById });
+    res.status(200).json({ success: true, data: findOrderById }).end();
   }
 }
 

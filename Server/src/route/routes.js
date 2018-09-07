@@ -5,7 +5,6 @@ import {
   validateFoodItem,
   validateFoodItemUpdate,
   validateFoodUpdate,
-  validateOrder,
   validateUserOrder,
 } from '../middleware/validation';
 import verifyUser from '../middleware/verification';
@@ -45,6 +44,7 @@ router.post(
   '/fastFoods',
   validateFoodItem,
   validationApi,
+  verifyUser,
   permit('admin'),
   fastFoods.addFoodItem,
 );
@@ -53,6 +53,7 @@ router.put(
   '/fastFoods/:foodItemId',
   validateFoodItemUpdate,
   validationApi,
+  verifyUser,
   permit('admin'),
   fastFoods.modifyFastFoodItem,
 );
@@ -61,24 +62,28 @@ router.put(
   '/fastFood/:foodId',
   validateFoodUpdate,
   validationApi,
+  verifyUser,
   permit('admin'),
   fastFoods.modifyFastFood,
 );
 
 router.delete(
   '/fastFood/:foodId',
+  verifyUser,
   permit('admin'),
   fastFoods.removeFastFood,
 );
 
 router.delete(
   '/fastFoods/:itemId',
+  verifyUser,
   permit('admin'),
   fastFoods.removeFastFoodItem,
 );
 
 router.post(
   '/orders',
+  verifyUser,
   validateUserOrder,
   validationApi,
   order.placeOrder,
@@ -99,6 +104,7 @@ router.get(
 
 router.put(
   '/orders/:orderId',
+  verifyUser,
   permit('admin'),
   order.modifyOrder,
 );

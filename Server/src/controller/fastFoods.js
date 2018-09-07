@@ -4,7 +4,7 @@ import data from '../db/data';
 class FastFood {
   static getFastFoods(req, res) {
     const fastFoods = data.foodItems;
-    res.status(200).json({ fastFoods, success: true });
+    res.status(200).json({ fastFoods, success: true }).end();
   }
 
   static getFastFood(req, res) {
@@ -12,9 +12,9 @@ class FastFood {
     const foodItem = data.foodItems.find(item => item.id === foodItemId);
 
     if (foodItem !== undefined && foodItem.quantity > 0) {
-      res.status(200).json({ foodItem });
+      res.status(200).json({ foodItem }).end();
     } else {
-      res.status(404).json({ success: false, msg: 'Fast food not found' });
+      res.status(404).json({ success: false, msg: 'Fast food not found' }).end();
     }
   }
 
@@ -58,9 +58,9 @@ class FastFood {
         expectedDeliveryTime,
       };
       data.foodItems.push(foodItem);
-      res.status(201).json({ success: true });
+      res.status(201).json({ success: true }).end();
     } else {
-      res.status(409).json({ success: false, msg: 'Food item already exists' });
+      res.status(409).json({ success: false, msg: 'Food item already exists' }).end();
     }
   }
 
@@ -79,14 +79,12 @@ class FastFood {
       data.foodItems[foodItemIndex].expectedDeliveryTime = expectedDeliveryTime;
       res.status(200).json({ msg: 'food item modified successfully', success: true }).end();
     } else {
-      res.status(404).json({ msg: 'food item does not exist', success: true }).end();
+      res.status(404).json({ msg: 'food item does not exist', success: false }).end();
     }
   }
 
   static modifyFastFood(req, res) {
-    const {
-      name,
-    } = req.body;
+    const { name } = req.body;
     const id = req.params.foodId;
     const foodIndex = data.foods.findIndex(item => item.id === +id);
     if (foodIndex !== -1) {
@@ -108,7 +106,6 @@ class FastFood {
         data.foodItems.splice(i, 1);
         return null;
       }
-
       return item;
     });
     res.status(204).end();
