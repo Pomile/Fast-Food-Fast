@@ -20,10 +20,9 @@
     "local:test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
     "mocha:test": "mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
-    "start": "nodemon --watch . --exec npm run babel ./Server/server.js",
+    "start": "nodemon --watch . --exec babel-node ./Server/server.js",
     "build:ui-template": "webpack",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "babel": "./node_modules/.bin/babel-node"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -66,8 +65,8 @@
     "webpack-dev-server": "^3.1.6"
   },
   "dependencies": {
+    "@babel/cli": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
-    "babel-cli": "^6.26.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
