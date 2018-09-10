@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Fast-Food-Fast is a food delivery service app for a restaurant that allows customers to make food orders and helps the food vendor to know what the customer want to eat.",
   "main": "./Server/server.js",
-  "engines": {
-    "node": "10.9.0"
-  },
   "nyc": {
     "include": [
       "Server/src/",
@@ -20,7 +17,7 @@
     "local:test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
     "mocha:test": "mocha --compilers js:@babel/register ./Server/spec/test.js --exit",
-    "start": "nodemon --watch . --exec babel-node ./Server/server.js",
+    "start": "babel-node ./Server/server.js",
     "build:ui-template": "webpack",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
