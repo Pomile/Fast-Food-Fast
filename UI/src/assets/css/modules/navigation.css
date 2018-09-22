@@ -36,3 +36,12 @@
 .navigation__link.active{
     background-color:  rgba(255,255,255,0.3);
 }
+
+.navigation__link .no-of-items {
+    padding: 5px 1px;
+    background: rgb(253, 221, 199);
+    text-align: center;
+    color: orangered;
+    right: 235px;
+    top: 5px;
+}

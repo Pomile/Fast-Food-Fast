@@ -16,7 +16,12 @@ import {
     closeUpdateFoodItem,
     closeDeleteFoodItem,
     orderBtn,
+    orderBtn2,
     closeLocationForm,
+    closeLocationForm2,
+    cartClip,
+    category,
+    categoryList,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
   import {
@@ -29,7 +34,10 @@ import {
   }
   
   if (backdrop) {
-    backdrop.onclick = () => closenav();
+    backdrop.onclick = () => {
+      closenav();
+      categoryList.classList.add("-sidenav-food-navigation--isHidden");
+    }
   }
 
   if (createAccountBtn) {
@@ -59,6 +67,15 @@ import {
       }else{
       
         foodCart.classList.remove('foodCart-onWindowScroll');
+      }
+
+      if ( window.scrollY >= 375){
+  
+        cartClip.classList.add('cartClip-onWindowScroll');
+      
+      }else{
+      
+        cartClip.classList.remove('cartClip-onWindowScroll');
       }
       
     })  
@@ -96,7 +113,12 @@ if(closeDeleteFoodItem){
 }
 
 if(orderBtn){
+  
   orderBtn.onclick = () => showModal('modal', 'locationForm');
+}
+
+if(orderBtn2){
+  orderBtn2.onclick = () => showModal('modal', 'locationForm');
 }
 
 if (closeLocationForm) {
@@ -104,6 +126,31 @@ if (closeLocationForm) {
   closeLocationForm.onclick = function () {
     closeModal('modal');
   };
+}
 
+if (closeLocationForm2) {
 
+  closeLocationForm2.onclick = function () {
+    closeModal('modal');
+  };
+}
+
+if(cartClip){
+  cartClip.onclick = function () {
+    showModal('modal', 'cart');
+  }
+}
+
+if(category){
+  category.onclick= function () {
+    categoryList.classList.remove("-sidenav-food-navigation--isHidden");
+  }
+
+  category.onmouseover = function () {
+    categoryList.classList.add("-sidenav-food-navigation--isHidden");
+  }
+
+  categoryList.onclick = function () {
+    categoryList.classList.add("-sidenav-food-navigation--isHidden");
+  }
 }

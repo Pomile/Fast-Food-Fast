@@ -1,0 +1,7 @@
+.-sidenav-food-navigation--isHidden{
+    display: none;
+}
+
+.-sidenav-food-navigation--isVisible{
+    display: block;
+}

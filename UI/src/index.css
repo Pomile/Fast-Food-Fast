@@ -30,7 +30,11 @@
 @import './assets/css/modules/responsiveTable.css';
 @import './assets/css/modules/modal.css';
 @import './assets/css/modules/search.css';
+@import './assets/css/modules/cartClip.css';
+@import './assets/css/modules/scrollBars.css';
 @import './assets/css/variables/position.css';
+@import './assets/css/state/sideNavfoodNav.css';
+
 
 
 

@@ -8,3 +8,8 @@
     position: fixed!important;
     top: 60px;
 }
+
+.cartClip-onWindowScroll{
+    position: fixed!important;
+    top: 90px!important;
+}
