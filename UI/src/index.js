@@ -28,6 +28,7 @@ import {
     showModal,
     closeModal,
   } from './assets/js/modal';
+  import './assets/js/table';
   
   if (sidedrawer) {
     sidedrawer.onclick = () => opennav();
@@ -36,7 +37,10 @@ import {
   if (backdrop) {
     backdrop.onclick = () => {
       closenav();
-      categoryList.classList.add("-sidenav-food-navigation--isHidden");
+      if(categoryList){
+        categoryList.classList.add("-sidenav-food-navigation--isHidden");
+      }
+      
     }
   }
 

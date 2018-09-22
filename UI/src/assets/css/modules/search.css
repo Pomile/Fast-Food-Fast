@@ -18,3 +18,14 @@
 .locationForm{
     display: flex; flex-flow: wrap; align-content:flex-start; height: 200px
 }
+
+.search .search__input{
+    padding: 8px 10px!important;
+    width: 100%;
+}
+
+.search__inputDate{
+    padding: 7px 9px!important;
+    margin-bottom: 8px!important;
+    width: 100%!important;
+}
