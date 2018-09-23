@@ -6,7 +6,7 @@
 
 .foodCart-onWindowScroll{
     position: fixed!important;
-    top: 60px;
+    top: 60px!important;
 }
 
 .cartClip-onWindowScroll{

@@ -21,3 +21,4 @@ export const closeLocationForm2 = document.getElementById('closeLocationForm2');
 export const cartClip = document.getElementById('cartClip');
 export const category = document.getElementById('category');
 export const categoryList = document.getElementById('categoryList');
+export const closeOrderDetails = document.getElementById('closeOrderDetails');

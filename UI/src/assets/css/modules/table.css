@@ -5,14 +5,14 @@
 }
 
 .table{
-    height: 400px;
+    height: 300px;
     width: 90%;
     margin-left: 5%;
 }
 
 .table .scrollBlock{
     width: 100%;
-    height: 400px;
+    height: 300px;
     color:white;
     overflow: scroll;
     text-align:justify;
@@ -197,6 +197,16 @@ thead{
     table {
         padding-left: 0px;
     }
+
+    .table{
+        height: 400px!important;
+        width: 90%!important;
+        margin-left: 5%;
+    }
+
+    .table .scrollBlock{
+        height: 400px!important;
+    }
     
     .search, .date{
         width: 96%;
@@ -220,7 +230,7 @@ thead{
 
 @media (min-width: 600px) {
     .table{
-        height: 400px;
+        height: 300px!important;
         width: 90%!important;
         margin-left: 5%;
     }
@@ -237,6 +247,11 @@ thead{
         margin-left: 20%;
     }
 
+    .table .scrollBlock{
+        height: 300px!important;
+    }
+    
+
 }
 
 @media (min-width: 992px) {
@@ -247,6 +262,10 @@ thead{
         width: 50%;
         margin-left: 25%;
     }
+    .table .scrollBlock{
+        height: 300px!important;
+    }
+    
 }
 
 @media
@@ -309,4 +328,38 @@ only screen and (max-width: 600px),
     .td-2:nth-of-type(6):before { content: "Qty"; }
     .td-2:nth-of-type(7):before { content: "Amount"; }
     .td-2:nth-of-type(8):before { content: "Status"; }
+}
+
+.more-details-btn:hover{
+        content: url('../../images/icons8-more-details-24-hover.png');
+}
+
+.accept-btn:hover{
+    content: url('../../images/icons8-ok-hand-24\ -hover.png');
+}
+
+.decline-btn:hover{
+    content: url('../../images/icons8-cancel-24-hover.png');
+}
+
+.accept-btn.accepted{
+    content: url('../../images/icons8-ok-hand-24\ -hover.png');
+}
+
+.decline-btn.declined{
+    content: url('../../images/icons8-cancel-24-hover.png');
+}
+
+.accept-btn.disabled{
+  cursor: not-allowed;
+  /* for "disabled" effect */
+  opacity: 0.5;
+  content: url('../../images/icons8-ok-hand-24-disabled.png');
+}
+
+.decline-btn.disabled{
+    cursor: not-allowed;
+  /* for "disabled" effect */
+    opacity: 0.5;
+    content: url('../../images/icons8-cancel-24-disabled.png');
 }

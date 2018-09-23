@@ -16,7 +16,6 @@ const customerOrders = document.getElementById("customerOrders");
 const userOrder = document.getElementById("userOrder");
 
 
-
 const hSn = document.getElementById("h-sn");
 const hCustomer = document.getElementById("h-customerName");
 const hDescription = document.getElementById("h-description");
@@ -67,7 +66,6 @@ function resCol2(){
     document.getElementById("h-status").style.width = ( statusCol-10.9).toString().concat("px");
 }
 
-
 function displayTableHeader() {
     const scrollBlockTop = scrollBlock.scrollTop;
     if(scrollBlockTop > 0 && window.visualViewport.width > 700 ){
@@ -110,42 +108,13 @@ if (customerOrders) {
     }
    
 };
-  /*Modals*/
-
 
 const showModal = (id) => {
 	return document.getElementById(id).style.display = "block";
 };
 
-
-
 const closeModal = (id) => {
 	document.getElementById(id).style.display = "none";
-/*image button hover*/
-
-function hoverAccept(element) {
-    element.setAttribute('src', './icons8-ok-hand-24 -hover.png');
-  }
-  
-  function unhoverAccept(element) {
-    element.setAttribute('src', './icons8-ok-hand-24.png');
-  }
-
-  function hoverDetail(element) {
-    element.setAttribute('src', './icons8-more-details-24-hover.png');
-  }
-  
-  function unhoverDetail(element) {
-    element.setAttribute('src', './icons8-more-details-24.png');
-  }
-
-  function hoverDecline(element) {
-    element.setAttribute('src', './icons8-cancel-24-hover.png');
-  }
-  
-  function unhoverDecline(element) {
-    element.setAttribute('src', './icons8-cancel-24.png');
-  }
 }
 
 if (userOrder) {
@@ -154,3 +123,4 @@ if (userOrder) {
     scrollBlock.addEventListener('scroll', displayTableHeader);
     scrollBlock.addEventListener('scroll', resCol2);
 }
+

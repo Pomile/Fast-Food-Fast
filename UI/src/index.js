@@ -22,6 +22,7 @@ import {
     cartClip,
     category,
     categoryList,
+    closeOrderDetails
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
   import {
@@ -57,26 +58,23 @@ import {
     window.addEventListener('scroll', () =>{
       let foodClientRectY = food.getClientRects()[0].y
       if ( window.scrollY >= 450){
+
         food.classList.add('food--onWindowScroll');
-      
-      
       }else{
+
         food.classList.remove('food--onWindowScroll');
       }
 
       if ( window.scrollY >= 240){
-  
+
         foodCart.classList.add('foodCart-onWindowScroll');
-      
       }else{
-      
+
         foodCart.classList.remove('foodCart-onWindowScroll');
       }
 
       if ( window.scrollY >= 375){
-  
         cartClip.classList.add('cartClip-onWindowScroll');
-      
       }else{
       
         cartClip.classList.remove('cartClip-onWindowScroll');
@@ -87,6 +85,7 @@ import {
 
   if(imageFile){
     imageFile.onchange = (event) =>{
+
       imageOutput.src = URL.createObjectURL(event.target.files[0]);
     }
   }
@@ -156,5 +155,11 @@ if(category){
 
   categoryList.onclick = function () {
     categoryList.classList.add("-sidenav-food-navigation--isHidden");
+  }
+}
+
+if(closeOrderDetails){
+  closeOrderDetails.onclick = function () {
+    closeModal('modal')
   }
 }

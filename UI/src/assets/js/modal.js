@@ -25,6 +25,14 @@ export const showModal = (id, modalBlock) => {
         }
         document.getElementById(id).style.display = 'block';
         break;
+      case 'orderDetail':
+        
+        const orderDetail = document.querySelector('#orderDetail');
+        if (orderDetail.style.display === 'none') {
+            document.querySelector("#orderDetail").style.display = 'block';
+        }
+        document.getElementById(id).style.display = 'block';
+        break;
       default:
         document.querySelector('#updateFoodItemContent').style.display = 'block';
         document.querySelector('#deleteFoodItemContent').style.display = 'none';
