@@ -18,13 +18,12 @@ const data = {
        state: string not null,
     */
   ],
-  foodCaterory: [
+  foodCategory: [
     /*
       id: int not null,
       title: string,
 
     */
-    { id: 1, name: 'Fries' },
     { id: 2, name: 'sides' },
     { id: 3, name: 'burger' },
     { id: 4, name: 'Tacos' },

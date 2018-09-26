@@ -39,6 +39,21 @@ describe('FastFood API', () => {
           }
         });
     });
+    it('A user should not be able to get a fast food item that does not exist', (done) => {
+      const { isAuth, id } = testData.userAuth;
+      request(app)
+        .get('/api/v1/fastFoods/9')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .end((err, res) => {
+          const { foodItem } = res.body;
+          if (!err) {
+            expect(res.status).to.equal(404);
+            expect(res.body.msg).to.equal('Fast food not found');
+            done();
+          }
+        });
+    });
     it('A user should not be able to get fast food item(s) if not authenticated', (done) => {
       const isAuth = false;
       const id = 1;
@@ -76,6 +91,7 @@ describe('FastFood API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body.success).to.equal(true);
+          expect(res.body.data.id).to.equal(5);
           done();
         });
     });
@@ -88,8 +104,10 @@ describe('FastFood API', () => {
         .set({ authorization: `${isAuth}`, user: `${id}` })
         .send(testData.foodCategoryNameItem)
         .end((err, res) => {
+          
           expect(res.status).to.equal(201);
           expect(res.body.success).to.equal(true);
+          expect(res.body.data.id).to.equal(6);
           done();
         });
     });
@@ -168,6 +186,20 @@ describe('FastFood API', () => {
         .send(testData.foodItemUpdate)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('The admin should not be able to update a food item that does not exist', (done) => {
+      const { isAuth, id } = testData.adminUserAuth;
+      request(app)
+        .put('/api/v1/fastFoods/20')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${isAuth}`, user: `${id}` })
+        .send(testData.foodItemUpdate)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.msg).to.equal('food item does not exist');
           done();
         });
     });
