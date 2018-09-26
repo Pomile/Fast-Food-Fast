@@ -165,7 +165,7 @@ export const validationApi = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     // console.log(errors.array());
-    res.status(422).json({ errors: errors.mapped() });
+    res.status(400).json({ errors: errors.mapped() });
   } else {
     next();
   }
