@@ -7,14 +7,11 @@ class order {
   static placeOrder(req, res) {
     const foodItems = req.body.data;
     const InitialNoOforders = data.orders.length;
-    const today = moment().format('dddd, MMMM Do YYYY');
-    const currentTime = moment().format('h:mm:ss a');
-    const expectedDeliveryTime = moment().add(45, 'minutes').format('h:mm:ss a');
     const orderInfo = foodItems.map((item) => {
       const foodItem = item;
-      foodItem.orderDate = today;
-      foodItem.orderTime = currentTime;
-      foodItem.expectedDeliveryTime = expectedDeliveryTime;
+      foodItem.orderDate = moment().format('dddd, MMMM Do YYYY');;
+      foodItem.orderTime =  moment().format('h:mm:ss a');
+      foodItem.expectedDeliveryTime = moment().add(45, 'minutes').format('h:mm:ss a');
       foodItem.accept = false;
       foodItem.decline = false;
       foodItem.completed = false;
@@ -82,10 +79,10 @@ class order {
 
 
   static getUserOrders(req, res) {
-    const userId = req.user.id;
+    const { user } = req;
     const customerOrders = [];
     data.orders.map((item) => {
-      if (item.userId === userId) {
+      if (item.userId === user) {
         customerOrders.push(item);
       }
     });
@@ -93,8 +90,8 @@ class order {
   }
 
   static getOrder(req, res) {
-    const id = req.params.orderId;
-    const findOrderById = data.orders.find(currentOrder => currentOrder.id === +id);
+    const { orderId } = req.params;
+    const findOrderById = data.orders.find(currentOrder => currentOrder.id === +orderId);
     res.status(200).json({ success: true, data: findOrderById }).end();
   }
 }
