@@ -22,3 +22,6 @@ export const cartClip = document.getElementById('cartClip');
 export const category = document.getElementById('category');
 export const categoryList = document.getElementById('categoryList');
 export const closeOrderDetails = document.getElementById('closeOrderDetails');
+export const myCart = document.getElementById('myCart');
+export const foodItemContainer = document.getElementById('foodItemContainer');
+export const burger1 = document.getElementById("burger1");

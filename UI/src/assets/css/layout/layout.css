@@ -3,7 +3,7 @@
 }
 
 #header{
-    height: 56px;
+    height: 8.5%;
     display: flex;
     justify-content: space-between;
     top: 0;
@@ -11,14 +11,24 @@
     position: fixed;
     z-index: 105;
 }
-
-#main{
-    height: 700px;
+#wrapper{
+    height: 100%;
+}
+#main-home{
+    height: 100vh;
 }
 
-#auto-main{
-    height: auto;
-    padding-bottom: 50px;
+#main{
+    height: 92%;
+}
+#main-2{
+    height: 93.5%;
+}
+
+#automain{
+    height: 100vh;
+    padding-bottom: 5px;
+    position: relative;
 }
 
 #mainDimension{
@@ -28,7 +38,7 @@
 
 
 #footer{
-    height: 40px;
+    height: 5%;
     position: relative;
     bottom: 0;
     left: 0;

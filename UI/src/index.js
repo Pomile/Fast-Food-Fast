@@ -22,7 +22,10 @@ import {
     cartClip,
     category,
     categoryList,
-    closeOrderDetails
+    closeOrderDetails,
+    myCart,
+    foodItemContainer,
+    burger1,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
   import {
@@ -59,10 +62,10 @@ import {
       let foodClientRectY = food.getClientRects()[0].y
       if ( window.scrollY >= 450){
 
-        food.classList.add('food--onWindowScroll');
+        food.classList.add('foodNavWrapper-onWindowScroll');
       }else{
 
-        food.classList.remove('food--onWindowScroll');
+        food.classList.remove('foodNavWrapper-onWindowScroll');
       }
 
       if ( window.scrollY >= 240){
@@ -163,3 +166,44 @@ if(closeOrderDetails){
     closeModal('modal')
   }
 }
+let viewCart = true;
+if(myCart && window.innerWidth > 900){
+  
+  
+  myCart.addEventListener('click', function(event){
+    console.log('mycart')
+    event.preventDefault();
+    if(viewCart){
+      foodCart.classList.remove('foodCart-isHidden');
+      foodCart.classList.add('foodCart-isVisible');
+      foodItemContainer.classList.remove('-col-l-9');
+      foodItemContainer.classList.add('-col-l-8');
+      viewCart = false;
+    }else{
+      
+      foodCart.classList.add('foodCart-isHidden');
+      foodCart.classList.remove('foodCart-isVisible');
+      foodItemContainer.classList.add('-col-l-9');
+      foodItemContainer.classList.remove('-col-l-8');
+      viewCart = true;
+    }
+  })
+  window.addEventListener('resize', ()=>{
+    foodCart.classList.add('hide-on-medium-and-down');
+    foodCart.classList.add('foodCart-isHidden');
+    foodCart.classList.remove('foodCart-isVisible');
+    foodItemContainer.classList.remove('-col-l-8');
+    foodItemContainer.classList.add('-col-l-9');
+  });
+}
+
+if(burger1 && window.innerWidth > 900){
+  burger1.onclick = () => {
+    foodCart.classList.remove('foodCart-isHidden');
+      foodCart.classList.add('foodCart-isVisible');
+      foodItemContainer.classList.remove('-col-l-9');
+      foodItemContainer.classList.add('-col-l-8');
+      viewCart = false;
+  }
+}
+

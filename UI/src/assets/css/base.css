@@ -3,6 +3,11 @@ body{
     padding: 0px;
     box-sizing: border-box;
     background-color: rgb(214, 62, 7);
+    height: 100%;
+}
+
+html{
+    height: 100%;
 }
 
 

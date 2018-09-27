@@ -1,6 +1,7 @@
 .food-navWrapper{
     height: 700px;
     display: flex;
+    
 }
 .-food-NavWrapper-align{
     padding-top: 50px;
@@ -12,7 +13,7 @@
     padding: 0;
     list-style-type: none;
     background-color: rgb(250, 205, 183);
-    height: 75%;
+    height: 100%;
 }
 
 

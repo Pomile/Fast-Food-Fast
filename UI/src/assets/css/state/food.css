@@ -1,6 +1,8 @@
-.food--onWindowScroll{
+.food-onWindowScroll{
+     width:100%; 
+}
+.foodNavWrapper-onWindowScroll{
     position: fixed!important;
-    width:100%;
     top: 10px;
 }
 
