@@ -5,5 +5,8 @@
     background: white;
     overflow: hidden;
     position: relative;
-    height:160vh;
+}
+.-panel-align{
+    height:140vh;
+    margin-top: 9vh
 }
