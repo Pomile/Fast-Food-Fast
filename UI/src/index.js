@@ -60,15 +60,19 @@ import {
     
     window.addEventListener('scroll', () =>{
       let foodClientRectY = food.getClientRects()[0].y
-      if ( window.scrollY >= 450){
+      if ( window.scrollY >= 370){
 
         food.classList.add('foodNavWrapper-onWindowScroll');
+        foodItemContainer.classList.add("-offset-l-2x");
+       
       }else{
 
         food.classList.remove('foodNavWrapper-onWindowScroll');
+        foodItemContainer.classList.remove("-offset-l-2x");
+  
       }
 
-      if ( window.scrollY >= 240){
+      if ( window.scrollY >= 40){
 
         foodCart.classList.add('foodCart-onWindowScroll');
       }else{

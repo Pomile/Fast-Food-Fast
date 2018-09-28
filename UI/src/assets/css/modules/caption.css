@@ -1,19 +1,20 @@
 .caption{
-    height: 400px;
+    height: 60vh;
     width: 100%;
     background-image: url("../../images/Heathy-Fit.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     position: relative;
+
 }
 
 .caption-overlay{
     width: 100%;
-    height: 400px;
+    height: 60vh;
     position: absolute;
     z-index: 100;
-    top: 56px;
+    top: 0vh;
     background-color:  rgba(0, 0, 0, 0.5);
     left: 0;
 }
@@ -21,7 +22,7 @@
 .caption-message{
     position: absolute;
     z-index: 101;
-    top: 120px;
+    top: 80px;
     height: 160px;
     width: 100%;
 }
@@ -29,7 +30,7 @@
 .caption-search{
     position: absolute;
     z-index: 101;
-    top: 300px;
+    top: 260px;
     height: 60px;
 }
 

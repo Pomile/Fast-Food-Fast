@@ -6,7 +6,7 @@
   }
 .navigation .navigation__item{
     float:left;
-    height: 56px;
+    height: 12vh;
     margin: 0px;
     width:150px;   
 }
@@ -15,11 +15,14 @@
     text-align: center;
     text-decoration: none;
     display: block;
+
     color:white;
     cursor: pointer;
 }
 .navigation__link-full-height{
-    padding: 19px 16px;
+    height: 70%;
+    padding-top: 15%
+
 }
 .navigation-shift-right{
     margin-right: 5%;
@@ -42,6 +45,6 @@
     background: rgb(253, 221, 199);
     text-align: center;
     color: orangered;
-    right: 235px;
+    right: 85px;
     top: 5px;
 }

@@ -1,9 +1,8 @@
 .foodCart{
-    height: 600px;
+    height: 530px;
     background-color: white;
     position: absolute;
-    width: 21%;
-    overflow-y: auto;
+    width: 19.5%;
     margin-left: 5%;
     box-shadow: 0 0 16px rgba(0, 0 ,0, 0.2);
     z-index: 111;
@@ -19,7 +18,7 @@
 
 .foodCart__items{
     overflow-y: scroll;
-    height: 170px!important;
+    height: 150px!important;
 }
 
 
@@ -53,7 +52,7 @@
 }
 .footCart-align{
     right: 10px;
-    top:300px;
+    top:110px;
 }
 
 .foodCart__button{

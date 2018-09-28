@@ -3,12 +3,12 @@
 }
 .foodNavWrapper-onWindowScroll{
     position: fixed!important;
-    top: 10px;
+    top: 10vh;
 }
 
 .foodCart-onWindowScroll{
     position: fixed!important;
-    top: 60px!important;
+    top: 10vh!important;
 }
 
 .cartClip-onWindowScroll{
