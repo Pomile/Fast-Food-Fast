@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>Admin food items view</title>  
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script> 
+    <link href="main.css" rel="stylesheet"></head>
+    <body class ="-whiteBgColor">
+        <div id="wrapper" >
+                <div class="backdrop" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="images/user.bundle.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                            <li class="sidenav__item s-12">
+                                        <a class="sidenav__item-link"  href="index.html">Logout</a>
+                            </li>
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link" href="./user.html">Home</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link"  href="admin-users-order-view.html">Orders</a>
+                            </li>
+
+                            <li class="sidenav__item s-12">
+                                    <a class="sidenav__item-link active"  href="admin-items-view.html">Foods and Drinks</a>
+                            </li>
+
+                            <ul class="tools__sidenav hide-on-medium-and-up">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-items-view.html">All</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Fries</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Burger</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Chicken</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Meals and combos</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Sweets and drinks</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Sides</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Deserts</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Tacos</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Misc</a></liv>
+                                </ul>
+                        </ul>
+                    </nav>
+            <div id="header" class="-orangeredBgColor">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="images/food_delivery_logo.bundle.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="admin.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-users-order-view.html">Customer orders</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height active" href="admin-items-view.html">Foods and drinks</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div id ="main-home" class="-whiteBgColor">
+                <div class="panel" style="margin-top: 9vh">
+                        <div class="tools  -tools-fixed-position hide-on-medium-and-down -col-m-3 -col-l-2">
+                                <div class="tools__header -col-m-3 -col-l-2">
+                                    <img src="images/icons8-food-service-filled-96.bundle.png" />
+                                </div>
+                                <ul class="tools__sidenav">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-items-view.html">All</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Fries</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Burger</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Chicken</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Meals and combos</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Sweets and drinks</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Sides</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Deserts</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Tacos</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-items-view.html">Misc</a></liv>
+                                </ul>
+                        </div>
+                        <div class="foodItems -align-top-2  -col-sm-10 -col-m-10 -col-l-9 -offset-l-2x -offset-m-1 -offset-sm-1">
+                            <div class="foodItems__searchWrapper">
+                                    <div class="search-form  -col-sm-10 -col-m-4 -col-l-4 -orangeredBgColor">
+                                            <input type="search" class="search-form__input -col-sm-10" placeholder="Search food items..." name="search" id="search" />
+                                            <div class="search-form__btn button -col-sm-2 -grayBgColor" id="searchBtn"><i class="material-icons -whiteTxtColor">search</i></div>
+                                    </div>
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/whataburger-original.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">whataburger original</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2000</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                        
+                                    </div>
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/shake-shack-smokeshack-evan-sung.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Shake Shack Smokeshack</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2000</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                    </div>
+                            </div>
+        
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/sonic-cherry-limeade.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Sonic cherry limeade</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N1500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                        
+                                    </div>
+                            </div>
+                        <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                        
+                                    </div>
+                                    <ul class="foodItemsAccordion --isHidden">
+                                            <liv class="foodItemsAccordion__item">
+                                                <div class="foodItemsAccordion__name">
+                                                    [food item description]
+                                                </div>
+                                                <a><i class="material-icons"></i></a></liv>
+                                    </ul>
+                        </div>
+                        <div class="foodItems__cardWrapper">  
+                            <div class="foodItems__card">
+                                <img class="foodItems__image"  src="images/burger.bundle.png"/>
+                                <h2 class="foodItems__title" id="foodItemsTitle">Double Burger</h2>
+                                <div class="foodItems__price"><h3 id="foodItemsPrice">N2400.00</h3></div>
+                                <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="foodItems__cardWrapper">  
+                                <div class="foodItems__card">
+                                    <img class="foodItems__image"  src="images/pep-pizza.bundle.png"/>
+                                    <h2 class="foodItems__title" id="foodItemsTitle">Peperoni Pizza</h2>
+                                    <div class="foodItems__price"><h3 id="foodItemsPrice">N3000</h3></div>
+                                    <div class="foodItems__description"><p id="foodItemsDescription">Some description</p></div>
+                                    
+                                </div>
+                        </div>
+    
+                        
+                    </div>
+                </div>
+                <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+            </div>
+            
+            <div class = "modal" id="modal" >
+                    <div class="modal__content -col-sm-11 -col-m-7 -col-l-6" id="updateFoodItemContent">
+                            <div class="modal__header">
+                                <span class="modal__close" id="closeUpdateFoodItem">&times;</span>
+                                <img src="images/icons8-food-24.bundle.png" style ="vertical-align: middle"/><span>Update Food Item</span>
+                            </div>
+                            <div class="modal-body">
+                                    <form class="foodForm">
+                                            <div class=" foodForm__item foodForm__picture-section">
+                                                <img src="images/burger.bundle.png" id="output" width=170px height=150px/>
+                                                <input type="file" accept="image/*" name="image" id="file" style="display: none;">
+                                                <label for="file" class="button -full -grayBgColor -whiteTxtColor">Upload image</label>
+                                            </div>
+                                            <div class=" foodForm__item foodForm__inputs">
+                                            
+                                                        <input  list="browse" placeholder="Food category"  name="foodCategory" value="Burger">
+                                                            <datalist id="browse">
+                                                              <option value="burger">
+                                                              <option value="Fries">
+                                                              <option value="Sweets and drinks">
+                                                              <option value="Chicken">
+                                                              <option value="Tacos">
+                                                              <option value="Sides">
+                                                            </datalist> 
+                                                    
+                                                    <input type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks" value="50"/>
+                                                    <input type="number" placeholder="Price" class="-price"  id="noOfPacks" value ="2000"/>
+                                                    <textarea name="description" rows="6" cols="40" id="description">
+                                                            Fried rice with 2 chicken
+                                                    </textarea>
+                                                    <div class="foodForm__btn">
+                                                        <button class="-small">Submit</button>
+                                                        <button class="-small">Cancel</button>
+                                                    </div>
+                                            </div>          
+                                    
+                                    </form>
+                            </div>
+                            <div class="modal-footer" style ="padding-bottom: 25px; margin-top: 40px;"></div>
+                    </div>
+                    
+    
+                    <div class="modal__content -col-sm-10 -col-m-7 -col-l-6" id="deleteFoodItemContent" style="height: 200px; width: 40%;" >
+                       
+                            <div class="-grayBgColor"><i class="material-icons -fs-cs-small">question</i><span class="modal__close " id="closeDeleteFoodItem">&times;</span></div>
+                            <center>
+                                    <h3 id ="upload-validation-message" style = "">Are you sure you want to delete this contact ?</h3>
+                                    <input type="submit" class= "button -small teal-bgcolor" id='yesBtn' value="Yes"  style ="margin-top: 10px;" />
+                                    <input type="submit" class= "button -small orangered-bgcolor" id='noBtn' value="No"  style ="margin-top: 10px;" />
+                            </center>
+                   </div>
+
+            </div>
+    </div>
+
+                
+            
+    <script type="text/javascript" src="js/main.bundle.js"></script></body>
+</html>

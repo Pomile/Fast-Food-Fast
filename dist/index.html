@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>Home</title>
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script>
+    <link href="main.css" rel="stylesheet"></head>
+    <body>
+        <div id="wrapper" >
+                <div class="backdrop" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="images/user.bundle.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link" href="./signin.html">Sign in</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link" href="./signup.html">Create account</a>
+                            </li>
+                        </ul>
+                    </nav>
+            <div id="header" class=" -transparentBg">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="images/food_delivery_logo.bundle.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-with-border" href="signup.html">Create account</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-with-border" href="signin.html">Sign in</a></li>
+                </ul>
+            </div>
+            <div id ="main-home">
+                
+                <div class="landingBlock">
+                        <div class="landingBlock__backdrop -transparentBg"></div>
+                        <div class="landingBlock__caption -transparentBg">
+                            <h1 style="" class="landingBlock__caption-font-size">Order for Fast Food Online</h1>
+                        </div>
+                        <h1 class="landingBlock__caption-2 landingBlock__caption-2-txtShadow -whiteTxtColor landingBlock__caption-2-font-size">How it Works</h1>
+                        <div class="landingBlock__how-it-works">
+                            <div class="landingBlock__how-it-works-step">
+                                <div class="landingBlock__how-it-works-icon">
+                                        <i class="material-icons -fs-cs-xxlarge">add_shopping_cart</i></button>
+                                </div>
+                                <div class="landingBlock__how-it-works-description">
+                                        <span class="-whiteTxtColor -fs-cs-small -fw-bold">Place your Order</span><br />
+                                </div>
+                            </div>
+                            <div class="landingBlock__how-it-works-step">
+                                    <div class="landingBlock__how-it-works-icon">
+                                            <i class="material-icons -fs-cs-xxlarge">payment</i></button>
+                                    </div>
+                                        <div class="landingBlock__how-it-works-description">
+                                                <span class="-whiteTxtColor -fs-cs-small -fw-bold">Make payment</span><br />
+                                        </div>
+                            </div>
+                            <div class="landingBlock__how-it-works-step">
+                                    <div class="landingBlock__how-it-works-icon">
+                                            <i class="material-icons -fs-cs-xxlarge">motorcycle</i></button>
+                                    </div>
+                                        <div class="landingBlock__how-it-works-description">
+                                                <span class="-whiteTxtColor -fs-cs-small -fw-bold">We Deliver</span><br />
+                                        </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    <script type="text/javascript" src="js/main.bundle.js"></script></body>
+</html>
