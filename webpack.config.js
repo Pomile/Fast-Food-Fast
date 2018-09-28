@@ -138,7 +138,7 @@ module.exports = {
       filename: 'admin-users-order-view.html',
       template: 'admin-users-order-view.html',
     }),
-    new CleanWebpackPlugin(['dist']) ,
+    new CleanWebpackPlugin(['UI/dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
   ],

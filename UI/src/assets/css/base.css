@@ -38,6 +38,7 @@ th{
 
 
 input[type=text],
+input[type=time],
 input[type=password],
 input[type=email],
 input[type=phone],
@@ -45,7 +46,8 @@ input[type=number],
 input[type=tel],
 input[list=state],
 input[type=date],
-input[list=browse]
+input[list=browse],
+input[list=food]
 {
     width: 96%;
     font-size: 16px;
