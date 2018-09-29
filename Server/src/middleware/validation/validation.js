@@ -1,4 +1,7 @@
 import { body, validationResult } from 'express-validator/check';
+import { checkOrderFields, checkUserInfoFields } from './checkOrderFields';
+import { userinfofields, userOrderfields } from './validationFields';
+import { checkUserData, checkOrderData } from './validateOrderData';
 
 export const userValidator = [
   body('firstname', 'firstname is required')
@@ -142,11 +145,11 @@ export const validateUserCrediential = [
     .withMessage('must contain a number'),
 ];
 
-export const validateUserOrder = [
+/*export const validateUserOrderUpdate = [
 
   body('data.*.userId', 'user id must be an integer').exists().isInt(),
-  body('data.*.foodItemId', 'food item id must be an integer').exists().isInt(),
-  body('data.*.quantity', 'quantity is required and must be an integer')
+  body('data.*.orders.*.foodItemId', 'food item id must be an integer').exists().isInt(),
+  body('data.*.orders.*.quantity', 'quantity is required and must be an integer')
     .exists()
     .not()
     .isEmpty()
@@ -158,7 +161,24 @@ export const validateUserOrder = [
     .isEmpty()
     .withMessage('Food description is required')
     .custom(value => value !== ''),
-];
+];*/
+
+export const validateUserOrderData = (req, res, next) => {
+  const validateOrderFields = checkOrderFields(req, userOrderfields);
+  const validateUserInfoFields = checkUserInfoFields(req, userinfofields);
+  if (validateOrderFields.allOrderFieldExists === false || validateUserInfoFields.allUserInfoFieldExist === false) {
+    const { field } = validateOrderFields.missingFields[0] || validateUserInfoFields.missingFields[0];
+    res.status(400).json({ msg: `${field} is required` });
+  } else {
+    const orderResult = checkOrderData(req);
+    const userInfoResult = checkUserData(req);
+    if (orderResult.isValid && userInfoResult.isValid) {
+      next();
+    } else {
+      res.status(400).json({ errors: orderResult.errors, userInfoErr: userInfoResult });
+    }
+  }
+};
 
 
 export const validationApi = (req, res, next) => {

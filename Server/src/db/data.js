@@ -102,17 +102,25 @@ const data = {
   ],
   orders: [
     /*
+
     id: int not null,
     userId: int not null,
     foodItemId: int not null,
     qauntity: int not null,
     Orderdate: date not null,
-    destinationAddress: string not null,
     OrderTime: time not null,
     deliveryTime: time null,
     accepted: boolean null,
     declined: boolean null,
     completed: boolean null,
+    */
+  ],
+  destinationAddress: [
+    /*
+    id: int NOT Null,
+    address: string NOT NULL,
+    orderId: int Not null,
+
     */
   ],
 };

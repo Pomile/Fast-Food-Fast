@@ -5,8 +5,8 @@ import {
   validateFoodItem,
   validateFoodItemUpdate,
   validateFoodUpdate,
-  validateUserOrder,
-} from '../middleware/validation';
+  validateUserOrderData,
+} from '../middleware/validation/validation';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
@@ -84,7 +84,7 @@ router.delete(
 router.post(
   '/orders',
   verifyUser,
-  validateUserOrder,
+  validateUserOrderData,
   validationApi,
   order.placeOrder,
 );
@@ -94,10 +94,10 @@ router.get(
   verifyUser,
   (req, res) => {
     if (req.query.customerOrders === 'true') {
-      order.getUserOrders(req, res);
-    } else {
       permit('admin, user');
-      order.getOrders(req, res);
+      order.adminGetUserOrders(req, res);
+    } else {
+      order.getUserOrder(req, res);
     }
   },
 );
