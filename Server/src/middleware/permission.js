@@ -1,10 +1,8 @@
-import data from '../db/data';
 
 const permit = (...permited) => (req, res, next) => {
-  const userData = data.users.find(user => user.id === Number(req.headers.user));
+  const userData = req.user;
   const userRole = userData.role;
-  const authorized = req.headers.authorization;
-  if (authorized === 'true' && permited.indexOf(userRole) !== -1) {
+  if (JSON.parse(req.headers.isauth) && permited.indexOf(userRole) !== -1) {
     req.user = userData.id;
     next();
   } else {

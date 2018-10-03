@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import data from '../db/data';
 
 
@@ -36,9 +37,10 @@ class User {
     } else {
       const hash = userData.password;
       bcrypt.compare(password, hash, (err, result) => {
+        const token = jwt.sign({ data: userData.id }, 'landxxxofxxxopporxxxtunixxxty', { expiresIn: '24h' });
         if (result) {
           res.status(200).json({
-            sucess: true, msg: 'user logged in sucessfully', isAuth: true, user: userData.id,
+            sucess: true, msg: 'user logged in sucessfully', isAuth: true, token,
           }).end();
         } else {
           res.status(401).json({ sucess: false, msg: 'invalid password' }).end();

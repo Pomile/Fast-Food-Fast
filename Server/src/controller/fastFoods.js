@@ -81,15 +81,12 @@ class FastFood {
   static modifyFastFood(req, res) {
     const { name } = req.body;
     const { foodId } = req.params;
-    console.log(Number.isInteger(+foodId));
     if (Number.isInteger(+foodId)) {
-      console.log(foodId);
       const foodIndex = data.foods.findIndex(item => item.id === +foodId);
       if (foodIndex !== -1) {
         data.foods[foodIndex].name = name;
         res.status(200).json({ msg: 'food modified successfully', success: true, data: { id: foodId, name } }).end();
       } else {
-        console.log('Does not exist');
         res.status(404).json({ msg: 'food does not exist', success: false }).end();
       }
     } else {

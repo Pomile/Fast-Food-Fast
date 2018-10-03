@@ -123,7 +123,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set('Accept', 'application/json')
         .send(testData.adminUserCredentials)
         .end((err, res) => {
-          testData.adminUserAuth.id = res.body.user;
+          testData.adminUserAuth.token = res.body.token;
           testData.adminUserAuth.isAuth = res.body.isAuth;
           expect(res.body.msg).to.equal('user logged in sucessfully');
           done();
@@ -136,7 +136,7 @@ describe('Fast-Food-Fast Test Suite', () => {
         .set('Accept', 'application/json')
         .send(testData.userCredentials)
         .end((err, res) => {
-          testData.userAuth.id = res.body.user;
+          testData.userAuth.token = res.body.token;
           testData.userAuth.isAuth = res.body.isAuth;
           expect(res.body.msg).to.equal('user logged in sucessfully');
           done();
@@ -165,5 +165,5 @@ describe('Fast-Food-Fast Test Suite', () => {
           done();
         });
     });
-  }); 
+  });
 });

@@ -102,11 +102,11 @@ const testData = {
   },
 
   adminUserAuth: {
-    id: null,
+    token: null,
     isAuth: false,
   },
   userAuth: {
-    id: null,
+    token: null,
     isAuth: false,
   },
 

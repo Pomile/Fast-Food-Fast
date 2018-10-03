@@ -8,12 +8,12 @@ const expect = chai.expect;
 
 describe('FastFood API', () => {
   it('A user should be able to get a list of fast food items', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, token } = testData.userAuth;
 
     request(app)
       .get('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         const { fastFoods } = res.body;
         if (!err) {
@@ -25,11 +25,11 @@ describe('FastFood API', () => {
   });
 
   it('A user should be able to get a fast food item', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, token } = testData.userAuth;
     request(app)
       .get('/api/v1/fastFoods/1')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         const { foodItem } = res.body;
         if (!err) {
@@ -40,12 +40,11 @@ describe('FastFood API', () => {
       });
   });
   it('A user should be able to get a list fast food', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
-
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .get('/api/v1/foods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         const { foods } = res.body;
         if (!err) {
@@ -56,11 +55,11 @@ describe('FastFood API', () => {
       });
   });
   it('A user should not be able to get a fast food item with invalid id', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, token } = testData.userAuth;
     request(app)
       .get('/api/v1/fastFoods/gffgff')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         if (!err) {
           expect(res.status).to.equal(400);
@@ -70,11 +69,11 @@ describe('FastFood API', () => {
       });
   });
   it('A user should not be able to get a fast food item that does not exist', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, token } = testData.userAuth;
     request(app)
       .get('/api/v1/fastFoods/9')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         if (!err) {
           expect(res.status).to.equal(404);
@@ -84,12 +83,10 @@ describe('FastFood API', () => {
       });
   });
   it('A user should not be able to get fast food item(s) if not authenticated', (done) => {
-    const isAuth = false;
-    const id = 1;
     request(app)
       .get('/api/v1/fastFoods/1')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ isAuth: `${false}` })
       .end((err, res) => {
         if (!err) {
           expect(res.status).to.equal(401);
@@ -99,11 +96,11 @@ describe('FastFood API', () => {
       });
   });
   it('A user should not be able to add a food item', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, token } = testData.userAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItem)
       .end((err, res) => {
         expect(res.status).to.equal(403);
@@ -111,11 +108,11 @@ describe('FastFood API', () => {
       });
   });
   it('The admin should be able to add a food item', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItem)
       .end((err, res) => {
         expect(res.status).to.equal(201);
@@ -126,11 +123,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to add a food category, food name, and food item,  if they does exist', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodCategoryNameItem)
       .end((err, res) => {
         expect(res.status).to.equal(201);
@@ -140,11 +137,11 @@ describe('FastFood API', () => {
       });
   });
   it('The admin should not be able to add a food item that already exists', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodCategoryNameItem)
       .end((err, res) => {
         expect(res.status).to.equal(409);
@@ -154,11 +151,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to add a food item without food name', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemWithoutName)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -167,11 +164,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to add a food item with invalid price', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemWithInvalidprice)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -180,11 +177,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to add a food item without quantity', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemWithoutQuantity)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -193,11 +190,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to add a food item without a description', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .post('/api/v1/fastFoods')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemWithoutDescription)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -206,11 +203,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to update a food item', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/5')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(200);
@@ -219,11 +216,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item with invalid request id', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/food')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -232,11 +229,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item that does not exist', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/20')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -246,11 +243,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item that does not exists', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/9')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemThatDoesNotExistUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -260,11 +257,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item without a price', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/5')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemWithoutPrice)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -273,11 +270,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item without a description', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/5')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemUpdateWithoutDescription)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -286,11 +283,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food item without a deliveryTime', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFoods/5')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodItemUpdateWithoutExpectedDeliveryTime)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -299,11 +296,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to update a food name', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFood/3')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodNameUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(200);
@@ -313,11 +310,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food name wit invalid id', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFood/huyuyeuy')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodNameUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -326,11 +323,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food that does not exist', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFood/13')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodNameUpdate)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -339,11 +336,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to update a food without a name', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .put('/api/v1/fastFood/3')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send(testData.foodUpdateWithoutName)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -352,11 +349,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to delete a food and its item', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .delete('/api/v1/fastFood/3')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send({
         foodId: 3,
       })
@@ -367,11 +364,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to delete a food and its item with invalid id', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .delete('/api/v1/fastFood/yydyu')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         expect(res.status).to.equal(400);
         done();
@@ -379,11 +376,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to delete a food item', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .delete('/api/v1/fastFoods/4')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send({
         foodId: 3,
       })
@@ -394,11 +391,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should be able to delete a food', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .delete('/api/v1/fastFood/1')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         expect(res.status).to.equal(204);
         done();
@@ -406,11 +403,11 @@ describe('FastFood API', () => {
   });
 
   it('The admin should not be able to delete a food item with invalid id', (done) => {
-    const { isAuth, id } = testData.adminUserAuth;
+    const { isAuth, token } = testData.adminUserAuth;
     request(app)
       .delete('/api/v1/fastFoods/unbnbn')
       .set('Accept', 'application/json')
-      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         expect(res.status).to.equal(400);
         done();
