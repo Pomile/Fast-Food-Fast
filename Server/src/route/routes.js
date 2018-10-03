@@ -40,6 +40,13 @@ router.get(
   verifyUser,
   fastFoods.getFastFood,
 );
+
+router.get(
+  '/foods',
+  verifyUser,
+  fastFoods.getFoods,
+);
+
 router.post(
   '/fastFoods',
   validateFoodItem,

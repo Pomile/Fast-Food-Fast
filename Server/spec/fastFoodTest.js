@@ -39,6 +39,36 @@ describe('FastFood API', () => {
         }
       });
   });
+  it('A user should be able to get a list fast food', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+
+    request(app)
+      .get('/api/v1/foods')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .end((err, res) => {
+        const { foods } = res.body;
+        if (!err) {
+          expect(res.status).to.equal(200);
+          expect(foods.length).to.equal(2);
+          done();
+        }
+      });
+  });
+  it('A user should not be able to get a fast food item with invalid id', (done) => {
+    const { isAuth, id } = testData.userAuth;
+    request(app)
+      .get('/api/v1/fastFoods/gffgff')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .end((err, res) => {
+        if (!err) {
+          expect(res.status).to.equal(400);
+          expect(res.body.msg).to.equal('invalid request');
+          done();
+        }
+      });
+  });
   it('A user should not be able to get a fast food item that does not exist', (done) => {
     const { isAuth, id } = testData.userAuth;
     request(app)
@@ -46,7 +76,6 @@ describe('FastFood API', () => {
       .set('Accept', 'application/json')
       .set({ authorization: `${isAuth}`, user: `${id}` })
       .end((err, res) => {
-        const { foodItem } = res.body;
         if (!err) {
           expect(res.status).to.equal(404);
           expect(res.body.msg).to.equal('Fast food not found');
@@ -189,6 +218,19 @@ describe('FastFood API', () => {
       });
   });
 
+  it('The admin should not be able to update a food item with invalid request id', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .put('/api/v1/fastFoods/food')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .send(testData.foodItemUpdate)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+  });
+
   it('The admin should not be able to update a food item that does not exist', (done) => {
     const { isAuth, id } = testData.adminUserAuth;
     request(app)
@@ -270,6 +312,32 @@ describe('FastFood API', () => {
       });
   });
 
+  it('The admin should not be able to update a food name wit invalid id', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .put('/api/v1/fastFood/huyuyeuy')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .send(testData.foodNameUpdate)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+  });
+
+  it('The admin should not be able to update a food that does not exist', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .put('/api/v1/fastFood/13')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .send(testData.foodNameUpdate)
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        done();
+      });
+  });
+
   it('The admin should not be able to update a food without a name', (done) => {
     const { isAuth, id } = testData.adminUserAuth;
     request(app)
@@ -298,6 +366,18 @@ describe('FastFood API', () => {
       });
   });
 
+  it('The admin should not be able to delete a food and its item with invalid id', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .delete('/api/v1/fastFood/yydyu')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+  });
+
   it('The admin should be able to delete a food item', (done) => {
     const { isAuth, id } = testData.adminUserAuth;
     request(app)
@@ -309,6 +389,30 @@ describe('FastFood API', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(204);
+        done();
+      });
+  });
+
+  it('The admin should be able to delete a food', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .delete('/api/v1/fastFood/1')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .end((err, res) => {
+        expect(res.status).to.equal(204);
+        done();
+      });
+  });
+
+  it('The admin should not be able to delete a food item with invalid id', (done) => {
+    const { isAuth, id } = testData.adminUserAuth;
+    request(app)
+      .delete('/api/v1/fastFoods/unbnbn')
+      .set('Accept', 'application/json')
+      .set({ authorization: `${isAuth}`, user: `${id}` })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
         done();
       });
   });

@@ -24,7 +24,8 @@ class order {
       const len = data.orders.length;
       orderItem.id = len + 1;
       const addressLen = data.destinationAddress.length;
-      data.destinationAddress.push({ id: addressLen + 1, orderId: orderItem.id, destinationAddress });
+      orderItem.destinationAddressId = addressLen + 1;
+      data.destinationAddress.push({ id: addressLen + 1, destinationAddress });
       data.orders.push(orderItem);
     });
     const currentNoOfOrders = data.orders.length;
@@ -77,7 +78,7 @@ class order {
     const { id } = req.user;
     const customerOrders = [];
     data.orders.map((item) => {
-      if (item.userId === id) {
+      if (item.userId === +id) {
         customerOrders.push(item);
       }
     });

@@ -244,7 +244,7 @@ describe('Order API', () => {
   });
 
   it('A user should be able to get his or her orders', (done) => {
-    const { isAuth, id } = testData.userAuth;
+    const { isAuth, id } = testData.adminUserAuth;
     request(app)
       .get('/api/v1/orders')
       .set('Accept', 'application/json')
