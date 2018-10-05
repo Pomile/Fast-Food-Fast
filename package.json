@@ -8,6 +8,7 @@
       "Server/src/",
       "Server/src/controller/*"
     ],
+    "exclude":[ "Server/src/model/*"],
     "sourceMap": false,
     "instrument": false
   },
@@ -16,7 +17,7 @@
     "start:webpack-devServer": "webpack-dev-server --open",
     "local:test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
-    "mocha:test": "mocha --compilers js:@babel/register ./Server/spec/userTest.js ./Server/spec/fastFoodTest.js ./Server/spec/orderTest.js --exit",
+    "mocha:test": "mocha --compilers js:@babel/register  --require @babel/polyfill ./Server/spec/userTest.js ./Server/spec/fastFoodTest.js ./Server/spec/orderTest.js --exit",
     "start": "babel-node ./Server/server.js",
     "build:ui-template": "webpack",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
@@ -37,6 +38,7 @@
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^5.0.1",
@@ -66,6 +68,7 @@
   "dependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
