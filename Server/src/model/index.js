@@ -11,18 +11,12 @@ const env = process.env.NODE_ENV;
 const config = configs[env];
 const db = {};
 
-let pgClient;
+let pgConnection;
 
 if (config.use_env_variable) {
-  pgClient = new Pool({
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-  });
+  pgConnection = new Pool({ connectionString: process.env[config.use_env_variable] });
 } else {
-  pgClient = new Pool({
+  pgConnection = new Pool({
     database: config.database,
     user: config.username,
     password: config.password,
@@ -30,20 +24,40 @@ if (config.use_env_variable) {
     port: config.port,
   });
 }
-const query = {
-  call: (text, params, callback) => {
+db.query = {
+  queryCall: (text, params, callback) => {
     const start = Date.now();
-    return pgClient.query(text, params, (err, res) => {
-      const duration = Date.now() - start;
-      console.log('executed query', { text, duration, rows: res });
-      callback(err, res);
-    });
+    return pgConnection
+      .connect()
+      .then(client => client.query(text, params, (err, res) => {
+        const duration = Date.now() - start;
+        console.log('executed query', { text, duration, rows: res });
+        callback(err, res);
+      }));
   },
-
-  asyncCall: async (text, params) => {
+  postCall: (query) => {
+    const start = Date.now();
+    pgConnection
+      .connect()
+      .then(client => client
+        .query(query)
+        .then((res) => {
+          console.log(` duration: ${Date.now() - start}`);
+          console.log(JSON.stringify(res));
+          client.end();
+          // res.status(201).json({ success: true }).end();
+        }).catch((e) => {
+          console.error(e.stack);
+          client.end();
+          // res.status(409).json({ err: e.message, success: false }).end();
+        }));
+  },
+  asyncQueryCall: async (text, params) => {
     try {
-      const res = await pgClient.query(text, params);
-      console.log(res.rows[0]);
+      const start = Date.now();
+      const res = await pgConnection.connect().query(text, params);
+      const duration = Date.now() - start;
+      console.log(res.rows[0], duration);
       return res.rows;
       // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
     } catch (err) {
@@ -51,42 +65,41 @@ const query = {
       return err.stack;
     }
   },
+
 };
 
-db.pool = {
-  pgClient,
-};
+db.pgConnection = pgConnection;
 
 db.models = {
   sync: async (options) => {
     if (options.force === false) {
       try {
-        await Users.createTable(pgClient); // Parent to orders, foods
-        await FoodCategories.createTable(pgClient); // Parent to Foods
-        await Foods.createTable(pgClient); // Parent to foodVariants
-        await Addresses.createTable(pgClient); // Parent to Orders
-        await FoodVariants.createTable(pgClient);
-        await Orders.createTable(pgClient);
+        await Users.createTable(pgConnection); // Parent to orders, foods
+        await FoodCategories.createTable(pgConnection); // Parent to Foods
+        await Foods.createTable(pgConnection); // Parent to foodVariants
+        await Addresses.createTable(pgConnection); // Parent to Orders
+        await FoodVariants.createTable(pgConnection);
+        await Orders.createTable(pgConnection);
       } catch (err) {
         console.debug(err.message);
       }
     } else {
       try {
         // drop table
-        await Orders.dropTable(pgClient);
-        await Addresses.dropTable(pgClient);
-        await FoodVariants.dropTable(pgClient);
-        await Foods.dropTable(pgClient);
-        await FoodCategories.dropTable(pgClient);
-        await Users.dropTable(pgClient);
+        await Orders.dropTable(pgConnection);
+        await Addresses.dropTable(pgConnection);
+        await FoodVariants.dropTable(pgConnection);
+        await Foods.dropTable(pgConnection);
+        await FoodCategories.dropTable(pgConnection);
+        await Users.dropTable(pgConnection);
 
         // create table
-        await Users.createTable(pgClient);
-        await FoodCategories.createTable(pgClient);
-        await Foods.createTable(pgClient);
-        await Addresses.createTable(pgClient);
-        await FoodVariants.createTable(pgClient);
-        await Orders.createTable(pgClient);
+        await Users.createTable(pgConnection);
+        await FoodCategories.createTable(pgConnection);
+        await Foods.createTable(pgConnection);
+        await Addresses.createTable(pgConnection);
+        await FoodVariants.createTable(pgConnection);
+        await Orders.createTable(pgConnection);
       } catch (err) {
         console.debug(err.message);
       }

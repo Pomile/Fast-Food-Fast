@@ -21,7 +21,8 @@
     "start": "babel-node ./Server/server.js",
     "build:ui-template": "webpack",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "db:migrate": "babel-node ./Server/src/migration/migration.js"
+    "db:migrate": "babel-node ./Server/src/migration/migration.js",
+    "db:connection": "babel-node ./Server/src/helpers/connection.js"
   },
   "repository": {
     "type": "git",

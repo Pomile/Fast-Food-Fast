@@ -8,7 +8,7 @@ const Users = {
       email text NOT NULL UNIQUE,
       image bytea,
       password text NOT NULL,
-      phone int NOT NULL,
+      phone character varying(16) NOT NULL,
       role character varying(15) DEFAULT 'user'::character varying,
       CONSTRAINT "Users_pkey" PRIMARY KEY (id)
      );
