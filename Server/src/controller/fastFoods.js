@@ -33,6 +33,17 @@ class FastFood {
     }
   }
 
+  static async addFoodCategory(req, res) {
+    const { foodCategoryName } = req.body;
+    const foodCat = await addFoodCategory(foodCategoryName);
+    if (!foodCat.exist && foodCat.success) {
+      res.status(201).json({ msg: foodCat.msg, success: foodCat.success, data: foodCat.data }).end();
+    } else if (foodCat.exist && !foodCat.success) {
+      res.status(409).json({ msg: foodCat.msg, success: foodCat.success }).end();
+    } else {
+      res.status(500).json({ error: foodCat.error });
+    }
+  }
 
   static async addFoodItem(req, res) {
     const {

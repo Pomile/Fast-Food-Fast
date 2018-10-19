@@ -38,7 +38,15 @@ export const userValidator = [
     .trim()
     .custom((value, { req }) => value === req.body.password),
 ];
-
+export const validateFoodCategory = [
+  body('foodCategoryName')
+    .trim()
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage('foodCategoryName is required')
+    .custom(value => value !== ''),
+];
 export const validateFoodItem = [
   body('foodCategoryName')
     .trim()
@@ -161,7 +169,7 @@ export const validateUserCrediential = [
     .isEmpty()
     .withMessage('Food description is required')
     .custom(value => value !== ''),
-];*/
+]; */
 
 export const validateUserOrderData = (req, res, next) => {
   const validateOrderFields = checkOrderFields(req, userOrderfields);

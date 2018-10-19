@@ -6,6 +6,7 @@ import {
   validateFoodItemUpdate,
   validateFoodUpdate,
   validateUserOrderData,
+  validateFoodCategory,
 } from '../middleware/validation/validation';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
@@ -54,6 +55,15 @@ router.post(
   verifyUser,
   permit('admin'),
   fastFoods.addFoodItem,
+);
+
+router.post(
+  '/fastFoodCategory',
+  validateFoodCategory,
+  validationApi,
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFoodCategory,
 );
 
 router.put(
