@@ -13,7 +13,7 @@ const Users = {
       CONSTRAINT "Users_pkey" PRIMARY KEY (id)
      );
      `;
-    console.log(createUserTable);
+    console.log(JSON.stringify(createUserTable));
     const users = await pgClient.query(createUserTable);
     return users;
   },

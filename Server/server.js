@@ -6,7 +6,7 @@ import fileUpload from 'express-fileupload';
 import routes from './src/route/routes';
 import db from './src/model';
 
-const { models } = db;
+const { models, pgConnection } = db;
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,9 +30,9 @@ app.get('/', (req, res) => {
 });
 app.use('/api/v1', routes);
 if (process.env.NODE_ENV === 'development') {
-  app.listen(port, () => {
+  app.listen(port, async () => {
+    await models.sync({ force: false });
     console.log(`Server is listening on http://localhost:${port}/`);
-    models.sync({ force: false });
   });
 }
 

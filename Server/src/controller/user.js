@@ -2,18 +2,19 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 // import data from '../db/data';
 import db from '../model';
+import { switchUserValuesToObject } from '../helpers/switchArrayToObject';
 
 const { pgConnection } = db;
 
 class User {
   static async addUser(req, res) {
     const {
-      firstname, lastname, email, password, phone,
+      firstname, lastname, email, password, phone, role,
     } = req.body;
     const query = {
       name: 'add-user',
-      text: 'INSERT INTO users (firstname, lastname, email, phone, password) VALUES($1, $2, $3, $4, $5)',
-      values: [firstname, lastname, email, phone, password],
+      text: 'INSERT INTO users (firstname, lastname, email, phone, password, role ) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+      values: [firstname, lastname, email, phone, password, role],
       rowMode: 'array',
     };
 
@@ -30,17 +31,18 @@ class User {
 
     const dbClient = await pgConnection.connect();
     const findUserByEmail = await dbClient.query(findUserQuery);
+
     if (findUserByEmail.rows.length === 0) {
       pgConnection.connect()
         .then((client) => {
           client.query(query)
             .then((result) => {
-              console.log(result.rows);
+              const data = switchUserValuesToObject(result);
+              return data;
+            }).then((data) => {
               client.release();
               res.status(201).json({
-                data: {
-                  firstname, lastname, email, phone,
-                },
+                data,
                 success: true,
               }).end();
             }).catch((err) => {

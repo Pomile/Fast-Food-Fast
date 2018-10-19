@@ -1,18 +1,36 @@
 import moment from 'moment';
 import addFoodCategory from './addFoodCategory';
+import db from '../model';
+
+const { pgConnection } = db;
 
 
-const addFood = (userId, foodCategoryName, name) => {
-  const data = addFoodCategory(foodCategoryName);
-  const foodCat = data.foodCategory.find(cat => cat.name === foodCategoryName);
-  const foodLen = data.foods.length;
-  const foodIndex = data.foods.findIndex(food => food.name === name);
-  if (foodIndex === -1) {
-    data.foods.push({
-      id: foodLen + 1, foodCategoryId: foodCat.id, userId, name, date: moment().format('LLLL'),
-    });
-    return data;
+const addFood = async (userId, foodCategoryName, name) => {
+  let res = {};
+  const result = await addFoodCategory(foodCategoryName);
+  if (result.success || result.exist) {
+    const dbClient = await pgConnection.connect();
+    const findFoodByName = await dbClient.query({ name: 'find food by name', text: 'SELECT  * FROM Foods WHERE name = $1', values: [name] });
+    if (findFoodByName.rows.length === 0) {
+      try {
+        await pgConnection.connect()
+          .then((client) => {
+            const food = client.query({ name: 'add food', text: 'INSERT INTO Foods (userId, foodCategoryId, name, date) VALUES ($1, $2, $3, $4) RETURNING *', values: [userId, result.data.id, name, moment().format('LLLL')] });
+            client.release();
+            return food;
+          }).then(food => food.rows[0]).then((data) => {
+            res = {
+              data, msg: 'food added successfully', exist: false, success: true,
+            };
+          });
+      } catch (e) {
+        res = { error: e.message, success: false };
+      }
+    } else {
+      res = { msg: 'food already exist', exist: true, success: false };
+    }
   }
-  return data;
+  return res;
 };
+
 export default addFood;

@@ -1,5 +1,10 @@
-import data from '../db/data';
+// import data from '../db/data';
 import addFood from '../helpers/addFood';
+import db from '../model';
+import { switchFoodVariantsValuesToObject } from '../helpers/switchArrayToObject';
+
+const { pgConnection } = db;
+
 
 class FastFood {
   static getFastFoods(req, res) {
@@ -27,24 +32,26 @@ class FastFood {
     }
   }
 
-  static addFoodItem(req, res) {
+  static async addFoodItem(req, res) {
     const {
       foodCategoryName, name, description, price, quantity, expectedDeliveryTime,
     } = req.body;
     const { user } = req;
-    const dbData = addFood(user, foodCategoryName, name);
-
-    const foodData = dbData.foods.find(food => food.name === name);
-    let foodItem = dbData.foodItems.find(item => item.description === description);
-    const foodItemsLen = dbData.foodItems.length;
-    if (foodData !== undefined && foodItem === undefined) {
-      foodItem = {
-        id: foodItemsLen + 1, foodId: foodData.id, description, price, quantity, expectedDeliveryTime,
-      };
-      data.foodItems.push(foodItem);
-      res.status(201).json({ success: true, data: foodItem }).end();
-    } else {
-      res.status(409).json({ success: false, msg: 'Food item already exists' }).end();
+    const dbClient = await pgConnection.connect();
+    const food = await addFood(user, foodCategoryName, name);
+    try {
+      const foodVariant = await dbClient.query({ name: 'find food variant', text: 'SELECT * FROM FoodVariants WHERE description = $1', values: [description] });
+      if (food.success && foodVariant.rows.length === 0) {
+        const result = await dbClient.query({ name: 'add food variant', text: 'INSERT INTO FoodVariants (foodId, userId, description, price, quantity, expectedDeliveryTime) VALUES($1, $2, $3, $4, $5, $6 ) RETURNING *', values: [food.data.id, user, description, price, quantity, expectedDeliveryTime] });
+        const data = result.rows[0];
+        res.status(201).json({ success: true, data, msg: food.msg }).end();
+      } else {
+        res.status(409).json({ success: false, msg: 'Food item already exists' }).end();
+      }
+    } catch (e) {
+      res.status(500).json({ error: e.message }).end();
+    } finally {
+      dbClient.release();
     }
   }
 

@@ -29,7 +29,7 @@ const Orders = {
           ON DELETE NO ACTION
      );
      `;
-    console.log(createOrdersTable);
+    console.log(JSON.stringify(createOrdersTable));
     const orders = await pgClient.query(createOrdersTable);
     return orders;
   },

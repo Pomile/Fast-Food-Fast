@@ -6,7 +6,7 @@ const Addresses = {
             CONSTRAINT "Addresses_pkey" PRIMARY KEY (id)
         );
         `;
-    console.log(createAddressTable);
+    console.log(JSON.stringify(createAddressTable));
     const addresses = await pgClient.query(createAddressTable);
     return addresses;
   },

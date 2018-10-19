@@ -5,12 +5,10 @@ const FoodVariants = {
       id serial NOT NULL,
       userId int NOT NULL,
       foodId int NOT NULL,
-      destinationAddressId int NOT NULL,
-      image bytea Not NULL,
       quantity int NOT NULL,
       description character varying(150) NOT NULL UNIQUE,
       price float NOT NULL,
-      expectedDeliveryTime time NOT NULL,
+      expectedDeliveryTime character varying(10) NOT NULL,
   
       CONSTRAINT "FoodVariants_pkey" PRIMARY KEY (id),
       CONSTRAINT "FoodVariants_foodId_fkey" FOREIGN KEY (foodId)
@@ -24,7 +22,7 @@ const FoodVariants = {
      
      );
      `;
-    console.log(createFoodVariantTable);
+    console.log(JSON.stringify(createFoodVariantTable));
     const foodVariants = await pgClient.query(createFoodVariantTable);
     return foodVariants;
   },

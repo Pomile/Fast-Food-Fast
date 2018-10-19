@@ -43,7 +43,25 @@ db.query = {
         .query(query)
         .then((res) => {
           console.log(` duration: ${Date.now() - start}`);
-          console.log(JSON.stringify(res));
+
+          const result = {};
+          res.rows[0].map((item, index) => {
+            switch (index) {
+              case 0:
+                result.id = item;
+                break;
+
+              case 1:
+                result.firstname = item;
+                break;
+              case 2:
+                result.lastname = item;
+                break;
+              default:
+                // do nothing
+            }
+          });
+          console.log(JSON.stringify(result));
           client.end();
           // res.status(201).json({ success: true }).end();
         }).catch((e) => {
@@ -70,6 +88,7 @@ db.query = {
 
 db.pgConnection = pgConnection;
 
+
 db.models = {
   sync: async (options) => {
     if (options.force === false) {
@@ -80,6 +99,7 @@ db.models = {
         await Addresses.createTable(pgConnection); // Parent to Orders
         await FoodVariants.createTable(pgConnection);
         await Orders.createTable(pgConnection);
+      
       } catch (err) {
         console.debug(err.message);
       }
@@ -100,6 +120,7 @@ db.models = {
         await Addresses.createTable(pgConnection);
         await FoodVariants.createTable(pgConnection);
         await Orders.createTable(pgConnection);
+        
       } catch (err) {
         console.debug(err.message);
       }

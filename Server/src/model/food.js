@@ -5,7 +5,8 @@ const Foods = {
       id serial NOT NULL,
       userId int NOT NULL,
       foodCategoryId int NOT NULL,
-      name character varying(150) NOT NULL,
+      image bytea NULL,
+      name character varying(150) NOT NULL UNIQUE ,
       date date NOT NULL,
       CONSTRAINT "Foods_pkey" PRIMARY KEY (id),
       CONSTRAINT "Foods_userId_fkey" FOREIGN KEY (userId)
@@ -19,14 +20,14 @@ const Foods = {
      );
      `;
 
-    console.log(createFoodTable);
+    console.log(JSON.stringify(createFoodTable));
     const food = await pgClient.query(createFoodTable);
     return food;
   },
 
   dropTable: async (pgClient) => {
     const dropFoodTable = 'DROP TABLE IF EXISTS Foods;';
-    console.log(dropFoodTable);
+    console.log(JSON.stringify(dropFoodTable));
     const food = await pgClient.query(dropFoodTable);
     return food;
   },

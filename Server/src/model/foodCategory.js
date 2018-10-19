@@ -8,7 +8,7 @@ const FoodCategories = {
      );
      `;
 
-    console.log(createFoodCategoryTable);
+    console.log(JSON.stringify(createFoodCategoryTable));
 
     const foodCategory = await pgClient.query(createFoodCategoryTable);
     return foodCategory;
