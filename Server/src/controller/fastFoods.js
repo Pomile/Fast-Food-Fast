@@ -1,5 +1,6 @@
 // import data from '../db/data';
 import addFood from '../helpers/addFood';
+import addFoodCategory from '../helpers/addFoodCategory';
 import db from '../model';
 import { switchFoodVariantsValuesToObject } from '../helpers/switchArrayToObject';
 
@@ -32,6 +33,7 @@ class FastFood {
     }
   }
 
+
   static async addFoodItem(req, res) {
     const {
       foodCategoryName, name, description, price, quantity, expectedDeliveryTime,
@@ -41,7 +43,7 @@ class FastFood {
     const food = await addFood(user, foodCategoryName, name);
     try {
       const foodVariant = await dbClient.query({ name: 'find food variant', text: 'SELECT * FROM FoodVariants WHERE description = $1', values: [description] });
-      if (food.success && foodVariant.rows.length === 0) {
+      if ((food.success || food.exist) && foodVariant.rows.length === 0) {
         const result = await dbClient.query({ name: 'add food variant', text: 'INSERT INTO FoodVariants (foodId, userId, description, price, quantity, expectedDeliveryTime) VALUES($1, $2, $3, $4, $5, $6 ) RETURNING *', values: [food.data.id, user, description, price, quantity, expectedDeliveryTime] });
         const data = result.rows[0];
         res.status(201).json({ success: true, data, msg: food.msg }).end();

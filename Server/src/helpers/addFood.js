@@ -27,7 +27,9 @@ const addFood = async (userId, foodCategoryName, name) => {
         res = { error: e.message, success: false };
       }
     } else {
-      res = { msg: 'food already exist', exist: true, success: false };
+      res.exist = true;
+      res.msg = 'food already exist';
+      [res.data] = findFoodByName.rows;
     }
   }
   return res;
