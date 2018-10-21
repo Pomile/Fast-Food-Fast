@@ -50,11 +50,11 @@ class FastFood {
     const { id } = req.params;
     try {
       const foodCatClient = await pgConnection.connect();
-      const foodCat = await foodCatClient.query({ name: 'find-food-category', text: 'SELECT * FROM FoodCategories WHERE id = $1', values: [id] });
+      const foodCat = await foodCatClient.query({ name: 'find-food-category', text: 'SELECT * FROM FoodCategories WHERE id = $1', values: [+id] });
       await foodCatClient.release();
       if (foodCat.rows.length > 0) {
         const modifyFoodCatClient = await pgConnection.connect();
-        const modifyFoodCat = await modifyFoodCatClient.query({ name: 'update food category', text: 'UPDATE FoodCategories SET type = $1 WHERE id =$2 RETURNING *', values: [foodCategoryName, id] });
+        const modifyFoodCat = await modifyFoodCatClient.query({ name: 'update food category', text: 'UPDATE FoodCategories SET type = $1 WHERE id =$2 RETURNING *', values: [foodCategoryName, +id] });
         await modifyFoodCatClient.release();
         res.status(200).json({ data: modifyFoodCat.rows[0], success: true, msg: 'food category updated successfully' });
       } else {
