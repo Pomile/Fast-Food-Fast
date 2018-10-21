@@ -67,6 +67,15 @@ router.post(
 );
 
 router.put(
+  '/fastFoodCategory/:id',
+  validateFoodCategory,
+  validationApi,
+  verifyUser,
+  permit('admin'),
+  fastFoods.modifyFoodCategory,
+);
+
+router.put(
   '/fastFoods/:foodItemId',
   validateFoodItemUpdate,
   validationApi,
