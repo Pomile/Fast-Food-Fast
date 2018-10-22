@@ -8,6 +8,7 @@ import {
   validateUserOrderData,
   validateFoodCategory,
 } from '../middleware/validation/validation';
+import vaidateImage from '../middleware/validation/validateImage';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
@@ -76,12 +77,13 @@ router.put(
 );
 
 router.put(
-  '/fastFoods/:foodItemId',
-  validateFoodItemUpdate,
+  '/fastFoods/:id',
+  validateFoodUpdate,
   validationApi,
+  vaidateImage,
   verifyUser,
   permit('admin'),
-  fastFoods.modifyFastFoodItem,
+  fastFoods.modifyFood,
 );
 
 router.put(

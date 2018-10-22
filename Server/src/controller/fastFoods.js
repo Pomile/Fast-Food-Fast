@@ -65,6 +65,33 @@ class FastFood {
     }
   }
 
+  static async modifyFood(req, res) {
+    const { name } = req.body;
+    const { id } = req.params;
+    const { image } = req.files;
+    try {
+      const dbClient = await pgConnection.connect();
+      const findFoodById = await dbClient.query({ name: 'find food by name', text: 'SELECT  * FROM Foods WHERE id = $1', values: [+id] });
+      await dbClient.release();
+      if (findFoodById.rows.length > 0) {
+        await pgConnection.connect()
+          .then((client) => {
+            const food = client.query({ name: 'add food', text: 'UPDATE Foods SET name = $1, image = $2 WHERE id =$3 RETURNING *', values: [name, image, +id] });
+            client.release();
+            return food;
+          }).then(food => food.rows[0]).then((data) => {
+            res.status(200).json({
+              data, msg: 'food updated successfully', update: true, success: true,
+            });
+          });
+      } else {
+        res.status(404).json({ msg: 'food not found', success: false });
+      }
+    } catch (e) {
+      (e.message === 'invalid image') ? res.status(400).json({ msg: `${e.message} image must format be jpg or png` }) : res.status(500).json({ error: e.message, success: false });
+    }
+  }
+
   static async addFoodItem(req, res) {
     const {
       foodCategoryName, name, description, price, quantity, expectedDeliveryTime,
