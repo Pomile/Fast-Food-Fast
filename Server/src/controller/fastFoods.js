@@ -92,6 +92,33 @@ class FastFood {
     }
   }
 
+  static async modifyFoodVariants(req, res) {
+    const {
+      description, price, quantity, expectedDeliveryTime,
+    } = req.body;
+    const { id } = req.params;
+    try {
+      const foodVariantConnect = await pgConnection.connect();
+      const foodVariantFinderById = await foodVariantConnect.query({ name: 'find food variant', text: 'SELECT * FROM FoodVariants WHERE id = $1', values: [+id] });
+      await foodVariantConnect.release();
+      if (foodVariantFinderById.rows.length > 0) {
+        await pgConnection.connect().then((client) => {
+          const foodUpdate = client.query({
+            name: 'update a food variant',
+            text: 'UPDATE FoodVariants SET price = $1, description = $2, quantity = $3, expectedDeliveryTime = $4 WHERE id = $5 RETURNING *',
+            values: [price, description, quantity, expectedDeliveryTime, id],
+          });
+          client.release();
+          return foodUpdate;
+        }).then(foodUpdate => res.status(200).json({ data: foodUpdate.rows[0], success: true, msg: 'food variant updated successfully' }));
+      } else {
+        res.status(404).json({ msg: 'food variant not found', success: false });
+      }
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  }
+
   static async addFoodItem(req, res) {
     const {
       foodCategoryName, name, description, price, quantity, expectedDeliveryTime,

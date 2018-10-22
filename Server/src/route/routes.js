@@ -3,12 +3,13 @@ import {
   userValidator, validationApi,
   validateUserCrediential,
   validateFoodItem,
-  validateFoodItemUpdate,
+  validateFoodVariantUpdate,
   validateFoodUpdate,
   validateUserOrderData,
   validateFoodCategory,
 } from '../middleware/validation/validation';
 import vaidateImage from '../middleware/validation/validateImage';
+import validateParamsId from '../middleware/validation/idValidator';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
@@ -84,6 +85,16 @@ router.put(
   verifyUser,
   permit('admin'),
   fastFoods.modifyFood,
+);
+
+router.put(
+  '/fastFoodVariants/:id',
+  validateFoodVariantUpdate,
+  validationApi,
+  validateParamsId,
+  verifyUser,
+  permit('admin'),
+  fastFoods.modifyFoodVariants,
 );
 
 router.put(

@@ -107,7 +107,7 @@ export const validateFoodUpdate = [
     .custom(value => value !== ''),
 
 ];
-export const validateFoodItemUpdate = [
+export const validateFoodVariantUpdate = [
 
   body('price')
     .exists()
