@@ -21,9 +21,48 @@ class FastFood {
     }
   }
 
-  static getFastFoods(req, res) {
-    const fastFoods = data.foodItems;
-    res.status(200).json({ fastFoods, success: true }).end();
+  static async getFastFoods(req, res) {
+    let query = {
+      name: 'get all foods', text: 'SELECT id, image, name FROM Foods',
+    };
+    try {
+      if (req.query.limit && req.query.offset) {
+        const { limit, offset } = req.query;
+        if (Number.isInteger(+limit) && Number.isInteger(+offset)) {
+          query = {
+            name: 'get all foods', text: 'SELECT id, image, name FROM Foods LIMIT $1 OFFSET $2', values: [+limit, +offset],
+          };
+        } else {
+          throw new Error('invalid input');
+        }
+      }
+      const dbClient = await pgConnection.connect();
+      const getAllFoods = await dbClient.query(query);
+      dbClient.release();
+      res.status(200).json({ data: getAllFoods.rows, success: true }).end();
+    } catch (e) {
+      if (e.message === 'invalid input') {
+        res.status(400).json({ msg: `${e.message}. limit and offset must be an integer` }).end();
+      } else {
+        res.status(500).json({ error: e.message }).end();
+      }
+    }
+  }
+
+  static async getFastFoodsByCategoryId(req, res) {
+    const { id } = req.params;
+    try {
+      const dbClient = await pgConnection.connect();
+      const getAllFoodsByCategoryId = await dbClient.query({
+        name: 'get all foods',
+        text: 'SELECT id, foodCategoryId, image, name FROM Foods WHERE foodCategoryId = $1',
+        values: [+id],
+      });
+      dbClient.release();
+      res.status(200).json({ data: getAllFoodsByCategoryId.rows, success: true }).end();
+    } catch (e) {
+      res.status(500).json({ error: e.message }).end();
+    }
   }
 
   static getFoods(req, res) {
@@ -33,7 +72,6 @@ class FastFood {
 
   static getFastFood(req, res) {
     const { id } = req.params;
-
     const foodItem = data.foodItems.find(item => item.id === +id);
     if (Number.isInteger(+id)) {
       if (foodItem !== undefined && foodItem.quantity > 0) {

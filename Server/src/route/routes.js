@@ -38,6 +38,15 @@ router.get(
   verifyUser,
   fastFoods.getFastFoods,
 );
+
+router.get(
+  '/fastFoods/category/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodsByCategoryId,
+);
+
+
 router.get(
   '/fastFoods/:id',
   verifyUser,
