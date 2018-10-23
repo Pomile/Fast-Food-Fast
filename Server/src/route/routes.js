@@ -48,7 +48,7 @@ router.get(
 
 
 router.get(
-  '/fastFoods/:id',
+  '/fastFood',
   verifyUser,
   fastFoods.getFastFood,
 );

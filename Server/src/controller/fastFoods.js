@@ -70,17 +70,19 @@ class FastFood {
     res.status(200).json({ foods, success: true }).end();
   }
 
-  static getFastFood(req, res) {
-    const { id } = req.params;
-    const foodItem = data.foodItems.find(item => item.id === +id);
-    if (Number.isInteger(+id)) {
-      if (foodItem !== undefined && foodItem.quantity > 0) {
-        res.status(200).json({ foodItem }).end();
-      } else {
-        res.status(404).json({ success: false, msg: 'Fast food not found' }).end();
-      }
-    } else {
-      res.status(400).json({ msg: 'invalid request', success: false });
+  static async getFastFood(req, res) {
+    const { search } = req.query;
+    try {
+      const dbClient = await pgConnection.connect();
+      const getAFoodById = await dbClient.query({
+        name: 'get a food items',
+        text: 'SELECT * FROM Foods WHERE name = $1',
+        values: [search],
+      });
+      dbClient.release();
+      res.status(200).json({ data: getAFoodById.rows[0], success: true }).end();
+    } catch (e) {
+      res.status(500).json({ error: e.message }).end();
     }
   }
 
