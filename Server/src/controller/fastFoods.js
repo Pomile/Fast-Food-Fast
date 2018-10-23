@@ -2,12 +2,25 @@
 import addFood from '../helpers/addFood';
 import addFoodCategory from '../helpers/addFoodCategory';
 import db from '../model';
-import { switchFoodVariantsValuesToObject } from '../helpers/switchArrayToObject';
+// import { switchFoodVariantsValuesToObject } from '../helpers/switchArrayToObject';
 
 const { pgConnection } = db;
 
 
 class FastFood {
+  static async getFoodCategories(req, res) {
+    try {
+      const dbClient = await pgConnection.connect();
+      const getAllFoodCategories = await dbClient.query({
+        name: 'get all food categories',
+        text: 'SELECT * FROM FoodCategories',
+      });
+      res.status(200).json({ data: getAllFoodCategories.rows, success: true }).end();
+    } catch (e) {
+      res.status(500).json({ error: e.message }).end();
+    }
+  }
+
   static getFastFoods(req, res) {
     const fastFoods = data.foodItems;
     res.status(200).json({ fastFoods, success: true }).end();

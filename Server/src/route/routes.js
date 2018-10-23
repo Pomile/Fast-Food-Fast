@@ -50,6 +50,12 @@ router.get(
   fastFoods.getFoods,
 );
 
+router.get(
+  '/fastFoodCategories',
+  verifyUser,
+  fastFoods.getFoodCategories,
+);
+
 router.post(
   '/fastFoods',
   validateFoodItem,
@@ -60,7 +66,7 @@ router.post(
 );
 
 router.post(
-  '/fastFoodCategory',
+  '/fastFoodCategories',
   validateFoodCategory,
   validationApi,
   verifyUser,
