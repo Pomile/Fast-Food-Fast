@@ -54,6 +54,13 @@ router.get(
 );
 
 router.get(
+  '/fastFoods/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodVariants,
+);
+
+router.get(
   '/foods',
   verifyUser,
   fastFoods.getFoods,
@@ -112,24 +119,17 @@ router.put(
   fastFoods.modifyFoodVariants,
 );
 
-router.put(
-  '/fastFood/:foodId',
-  validateFoodUpdate,
-  validationApi,
-  verifyUser,
-  permit('admin'),
-  fastFoods.modifyFastFood,
-);
 
 router.delete(
-  '/fastFood/:foodId',
+  '/fastFoods/:id',
+  validateParamsId,
   verifyUser,
-  permit('admin'),
+  permit('super-admin'),
   fastFoods.removeFastFood,
 );
 
 router.delete(
-  '/fastFoods/:itemId',
+  '/fastFoodVariants/:id',
   verifyUser,
   permit('admin'),
   fastFoods.removeFastFoodItem,

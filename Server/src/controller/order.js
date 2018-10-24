@@ -1,6 +1,6 @@
 import moment from 'moment';
 import data from '../db/data';
-import getFoodItem from '../helpers/getFoodItem';
+// import getFoodItem from '../helpers/getFoodItem';
 import getUser from '../helpers/getUser';
 
 class order {
@@ -86,16 +86,16 @@ class order {
   }
 
   static adminGetUserOrders(req, res) {
-    const customerOrders = [];
-    data.orders.map((o) => {
-      const currentOrder = o;
-      const u = getUser(o.userId);
-      const foodItem = getFoodItem(o.foodItemId);
-      currentOrder.user = u;
-      currentOrder.foodItem = foodItem;
-      customerOrders.push(currentOrder);
-    });
-    res.status(200).json({ customerOrders, success: true, length: customerOrders.length }).end();
+    // const customerOrders = [];
+    // data.orders.map((o) => {
+    // const currentOrder = o;
+    // const u = getUser(o.userId);
+    // const foodItem = getFoodItem(o.foodItemId);
+    // currentOrder.user = u;
+    // currentOrder.foodItem = foodItem;
+    // customerOrders.push(currentOrder);
+    // });
+    // res.status(200).json({ customerOrders, success: true, length: customerOrders.length }).end();
   }
 
   static getOrder(req, res) {

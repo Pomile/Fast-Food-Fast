@@ -1,6 +1,7 @@
 // import data from '../db/data';
 import addFood from '../helpers/addFood';
 import addFoodCategory from '../helpers/addFoodCategory';
+import getFoodVariants from '../helpers/getFoodVariants';
 import db from '../model';
 // import { switchFoodVariantsValuesToObject } from '../helpers/switchArrayToObject';
 
@@ -83,6 +84,18 @@ class FastFood {
       res.status(200).json({ data: getAFoodById.rows[0], success: true }).end();
     } catch (e) {
       res.status(500).json({ error: e.message }).end();
+    }
+  }
+
+  static async getFastFoodVariants(req, res) {
+    const { id } = req.params;
+    const result = await getFoodVariants(id);
+    if (result.success) {
+      res.status(200).json(result).end();
+    } else if (!result.success) {
+      res.status(404).json(result).end();
+    } else if (result.error) {
+      res.status(500).json(result).end();
     }
   }
 
@@ -225,38 +238,8 @@ class FastFood {
     }
   }
 
-  static modifyFastFood(req, res) {
-    const { name } = req.body;
-    const { foodId } = req.params;
-    if (Number.isInteger(+foodId)) {
-      const foodIndex = data.foods.findIndex(item => item.id === +foodId);
-      if (foodIndex !== -1) {
-        data.foods[foodIndex].name = name;
-        res.status(200).json({ msg: 'food modified successfully', success: true, data: { id: foodId, name } }).end();
-      } else {
-        res.status(404).json({ msg: 'food does not exist', success: false }).end();
-      }
-    } else {
-      res.status(400).json({ msg: 'invalid request' });
-    }
-  }
-
-  static removeFastFood(req, res) {
-    const { foodId } = req.params;
-    if (Number.isInteger(+foodId)) {
-      const foodIndex = data.foods.findIndex(food => food.id === +foodId);
-      data.foods.splice(foodIndex, 1);
-      data.foodItems.map((item, i) => {
-        if (item.foodId === +foodId) {
-          data.foodItems.splice(i, 1);
-          res.status(204).end();
-          return null;
-        }
-        return item;
-      });
-    } else {
-      res.status(400).json({ msg: 'invalid request' });
-    }
+  static async removeFastFood(req, res) {
+    const { id } = req.params;
   }
 
   static removeFastFoodItem(req, res) {
