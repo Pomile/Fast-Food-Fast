@@ -3,7 +3,8 @@
 }
 
 #header{
-    height: 9vh;
+    min-height: 56px;
+    height: 8vh;
     display: flex;
     justify-content: space-between;
     top: 0;
@@ -19,17 +20,17 @@
 }
 
 #main{
-    height: 92%;
+    height: 92vh;
 }
 #main-2{
-    height: 93.5vh;
+    height: 95vh;
 }
 
 #automain{
     height: auto;
+    min-height: 100vh;
     position: relative;
     margin-top: 8vh;
-    padding-bottom: 0vh;
 }
 
 .automain-top{ 
@@ -43,21 +44,23 @@
 
 
 #footer{
+    min-height: 30px;
     height: 5vh;
     position: relative;
-    bottom: 0;
     left: 0;
+    bottom: 0%;
     text-align: center;
     color: white;
     padding-top: 10px;
 }
 #footer-2{
+    min-height: 30px;
     height: 5vh;
+    width: 100%;
     position: relative;
-    bottom: 0;
-    left: 0;
+    left: 0vh;
+    bottom: 0vh;
     text-align: center;
     color: white;
     padding-top: 10px;
-    top: 5vh;
 }

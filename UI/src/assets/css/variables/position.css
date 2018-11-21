@@ -9,3 +9,7 @@
 .-absolute-pos{
     position: absolute;
 }
+
+.-index{
+    z-index: 300;
+}

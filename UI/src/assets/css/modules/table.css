@@ -5,14 +5,16 @@
 }
 
 .table{
-    height: 300px;
+    min-height: 300px;
+    height: 35vh;
     width: 90%;
     margin-left: 5%;
 }
 
 .table .scrollBlock{
     width: 100%;
-    height: 300px;
+    min-height: 300px;
+    height: 35vh;
     color:white;
     overflow: scroll;
     text-align:justify;
@@ -20,9 +22,35 @@
     border-bottom: 1px solid grey;
 }
 
+.-table-header-margin{
+    margin-top: 8vh;
+}
+
 .header{
     color: gray;
     padding-left: 5%;
+    padding-top: 7vh;
+    margin-top: -2vh;
+    font-size: 2.5vw;
+}
+
+.header-with-fixed-position{
+    color: gray;
+    padding-left: 5%;
+    padding-top: 7vh;
+    margin-top: -2vh;
+    font-size: 2.5vw;
+    position: fixed;
+    background: white;
+    width: 100%;
+}
+
+
+.separator{
+    height: 20vh;
+    width: 100%;
+    position: relative;
+    background-color: green;
 }
 
 .nav-left, .nav-right{ font-size:28px!important; vertical-align: middle;}
@@ -35,7 +63,7 @@
 }
 
 .navPane{
-    height: 50px; padding-top: 15px; padding-left: 45%;
+    height: 20vh; padding-top: 12vh; padding-left: 45%;
 }
 
 .orderTools{
@@ -51,14 +79,18 @@
 .action-description{
     display: flex;
     padding-left: 5%;
+}
 
+.-action-description-margin{
+    top: 50vh;
+    left: 0px;
 }
 
 .action-description__item{
     padding-right: 10px;
     vertical-align: middle;
     margin-left: 8px;
-    font-size: 13px;
+    font-size: 1.1vw;
 }
 
 .table__header{
@@ -80,16 +112,18 @@
 .table__amount,
 .table__quantity
 {
-    height: 20px;
+    min-height: 20px;
+    height: 1.2vh;
     background-color: gray;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 3 vh;
+    padding-bottom:  3vh;
     padding-left: 10px;
     text-align: justify;
     color: white;
     border-left: 1px solid white;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.1vw;
 }
 
 .tb-sn{ width: 1%;}
@@ -118,17 +152,19 @@
 .tb-w-35{ width: 35%;}
 
 .table__scroll-pad{
-    width: 16px;
+    min-width: 16px;
+    width: 1.3vw;
     background-color: black;
 }
 
 td, .td-2{
-    padding: 4px 10px;
-    font-size: 14px;
+    padding: 1.5vh 1.5vw;
+    font-size: 16px;
+
 }
 .td-img {
-    height: 60px;
-    width: 60px;
+    height: 3vh;
+    width: 3vw;
     border-radius: 50%;
 }
 
@@ -189,7 +225,7 @@ thead{
     
 }
 .separator{
-    height: 40px;
+    height: 6vh;
 }
 
 @media (min-width: 200px) {
@@ -205,7 +241,7 @@ thead{
     }
 
     .table .scrollBlock{
-        height: 400px!important;
+        height: 40vh!important;
     }
     
     .search, .date{
@@ -248,7 +284,7 @@ thead{
     }
 
     .table .scrollBlock{
-        height: 300px!important;
+        height: 35vh!important;
     }
     
 
@@ -263,7 +299,7 @@ thead{
         margin-left: 25%;
     }
     .table .scrollBlock{
-        height: 300px!important;
+        height: 40vh!important;
     }
     
 }

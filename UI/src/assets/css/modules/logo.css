@@ -1,13 +1,15 @@
 /* avoid element selector */
 .logo{
-    height: 48px;
-    width: 52px;
+    min-height: 48px;
+    min-width: 52px;
+    height: 6vh;
+    width: 4vh;
     margin: 4px 0px 0px 5% ;
     padding: 4px 7px;
     cursor: pointer;
 }
 
 .logo__img{
-    height: 40px;
-    width: 40px; 
+    height: 100%;
+    width: 100%; 
 }

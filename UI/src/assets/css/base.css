@@ -23,7 +23,9 @@ table {
 }
 
 th {
-    height: 50px;
+    min-height: 50px;
+    height: 6vh;
+    font-size: 1.2vw;
 }
 
 col {
@@ -54,7 +56,7 @@ input[list=food]
 }
 
 .-input-height{
-    height: 20px;
+    height: 3vh;
     padding: 8px;
 }
 

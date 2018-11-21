@@ -1,19 +1,26 @@
 .foodForm{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 4vh 0px;
+    box-shadow: 0 0 16px rgba(0, 0 ,0, 0.3);
+}
+
+.-foodForm-margin{
+    margin-bottom: 10vh;
 }
 
 .foodForm__item{
-    grid-gap: 4px;
+    height: 8vh;
+    min-height: 56px;
 }
+
 .foodForm__inputs{
-    height: 400px;
-    grid-column: 2/ span 3;
+    min-height: 400px;    
 }
 
 .foodForm__picture-section{
-    height: 300px;
+    min-height: 170px;
+    height: 30vh;
 }
 
 .-noOfPacks{
@@ -29,56 +36,15 @@
 }
 
 @media (min-width: 150px) {
-    .foodForm{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr)!important;
-    } 
-
-    .foodForm__inputs{
-        height: 400px;
-        grid-column: 1;
-    }
-
-    .foodForm__picture-section{
-        height: 200px;
-    }
-    
+   
 }
 
 @media (min-width: 600px) {
-    .foodForm{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr)!important;
-    } 
-
-    .foodForm__inputs{
-        height: 400px;
-        grid-column: 1;
-    }
-
-    .foodForm__picture-section{
-        height: 200px;
-    } 
+    
 }
 
 
 @media (min-width: 991px) {
-    .foodForm{
-        display: grid;
-        grid-template-columns: repeat(6, 1fr)!important;
-        grid-gap: 10px;
-    }
     
-    .foodForm__item{
-        grid-gap: 4px;
-    }
-    .foodForm__inputs{
-        height: 400px;
-        grid-column: 2/ span 3;
-    }
-    
-    .foodForm__picture-section{
-        height: 300px;
-    }
 }
 

@@ -6,8 +6,8 @@
     color: gray;
     position: absolute;
     z-index: 101;
-    top: 450px;
-    right: 30px;
+    top: 430px;
+    right: 15px;
     border-radius: 20px;
     padding-top: 14px;
     box-shadow: 0 0 16px rgba(0, 0 ,0, 0.2);
@@ -17,14 +17,15 @@
     background: rgb(247, 219, 167);
 }
 .no-of-items{
-    width: 30px;
+    min-width: 18px;
+    width: 2vw;
     z-index: 101;
     border-radius: 50%;
     background: orangered;
     color: white;
     position: absolute;
     text-align: center;
-    padding: 15px 8px;
-    top: -30px;
+    padding: 1vh 8px;
+    top: -20px;
     right: 4px;
 }

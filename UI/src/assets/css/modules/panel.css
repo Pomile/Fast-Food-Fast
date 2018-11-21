@@ -7,6 +7,6 @@
     position: relative;
 }
 .-panel-align{
-    height:140vh;
-    margin-top: 9vh
+    height:auto;
+    margin-top: 8vh
 }

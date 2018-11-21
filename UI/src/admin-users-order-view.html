@@ -66,30 +66,22 @@
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
                 </ul>
             </div>
-            <div id ="main-home" class="-whiteBgColor">
-
-                <div class="separator"></div>
+            <div id ="automain" class="-whiteBgColor">
                 
-               <div class="-fixed-pos -whiteBgColor -col-sm-12"><h2 class="header">Customer Orders</h2></div> 
-               <div class="separator"></div>
-               <div class="separator"></div>
-
-                <div class="action-description">
+                <h2 id ="header-pane" class="header -header-margin">Customer Orders</h2> 
+                <div class="action-description -action-description-margin">
                     <div><img src="./assets/images/icons8-more-details-24.png" class= "action-description__item" /><span>Order details</span></div>
                     <div><img src="./assets/images/icons8-ok-hand-24.png" class= "action-description__item" /><span>Accept order</span></div>
                     <div><img src="./assets/images/icons8-cancel-24.png" class= "action-description__item" /><span>Decline order</span></div>
                     <div><img src="./assets/images/icons8-checkmark-21.png" class= "action-description__item" /><span>Order completed</span></div>
                 </div>
-                
-                <h4 style="padding-left: 5%;">Total Amount: N 3,000,000.00
-                </h4>
+                <h4 style="padding-left: 5%;">Total Amount: N 3,000,000.00</h4>
                 <div class="orderTools">
                     <div class ="search"><input type="text" placeholder="Search order..." id="searchOrders" class="search__input"></div>
-        
                     <div class ="date"><input type="date" id="searchOrdersByDate" class="search__inputDate"></div>
                 </div>
                 <div class="table" id="customerOrders">
-                    <div class="table__header" id="tableHeader">
+                    <div class="table__header -table-header-margin" id="tableHeader">
                         <div class="table__sn tb-w-4" id="h-sn">sn</div>
                         <div class="table__customerName tb-w-24" id="h-customerName">Customer Name</div>
                         <div class="table__description tb-w-24" id="h-description">Item description</div>
@@ -104,7 +96,7 @@
                     <table class="table__body">
                         <colgroup>
                             <col width="5%">
-                            <col width="25%" >
+                            <col width="25%">
                             <col width="23%">
                             <col width="5%">
                             <col width="5%">
@@ -252,7 +244,6 @@
                     </table>
                 </div>
                 </div>
-                <div class="separator"></div>
                 <div class="navPane">
                     <i class=" nav-left nav-right-padding fa fa-caret-left" id="navLeft" ></i><input type="text" value="1" id="navInput" style="width: 30px; text-align: center;">
                     <i class="nav-right nav-left-padding fa fa-caret-right " id="navRight" ></i>

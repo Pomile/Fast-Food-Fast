@@ -1,0 +1,41 @@
+.status-card{
+    height: 80vh;
+    box-shadow: 0 0 16px rgba(0, 0 ,0, 0.3);
+    padding: 4vh 2%;
+}
+
+.status-icon{
+    min-width: 200px;
+    width: 96%;
+    border-radius: 50%;
+    min-height: 200px;
+    height: 30vh;
+    border: 1px solid rgb(5, 175, 14);
+    text-align: center;
+    color: white;
+}
+
+.status-card__good-status{
+    background: green;
+}
+
+.status-card__fairly-good{
+    background: rgb(243, 97, 0);
+}
+
+.status-card__poor-status{
+    background: rgb(255, 30, 0);
+}
+
+.status-card__total-amount{
+    width: 96%;
+    min-height: 40px;
+    height: 7vh;
+
+}
+
+.status-card__label, 
+.status-card__value,
+{
+    font-size: 1.3vw;
+}

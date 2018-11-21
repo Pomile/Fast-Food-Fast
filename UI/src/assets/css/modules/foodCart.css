@@ -1,5 +1,6 @@
 .foodCart{
-    height: 530px;
+    height: 50vh;
+    min-height: 530px;
     background-color: white;
     position: absolute;
     width: 19.5%;
@@ -75,7 +76,7 @@
 }
 
 .foodCart__item-totalPrice{
-    height: 40px;
+    height: 7vh;
 }
 
 .-Btngroup{

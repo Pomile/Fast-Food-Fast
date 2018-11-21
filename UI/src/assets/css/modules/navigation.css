@@ -8,14 +8,14 @@
     float:left;
     height: 12vh;
     margin: 0px;
-    width:150px;   
+    min-width:150px;   
+    width: 10vw;
 }
 
 .navigation .navigation__link{
     text-align: center;
     text-decoration: none;
     display: block;
-
     color:white;
     cursor: pointer;
 }

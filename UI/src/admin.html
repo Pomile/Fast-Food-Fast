@@ -7,7 +7,7 @@
         <title>Admin</title>   
     </head>
     <body>
-        <div id="wrapper" >
+            <div id="wrapper" >
                 <div class="backdrop" id="backdrop" >
 
                 </div>
@@ -56,22 +56,21 @@
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
                 </ul>
             </div>
-            <div id ="main-2" class="-whiteBgColor">
-                <div class="headerSeperator"></div>
+            <div id ="automain" class="-whiteBgColor">
                 <div class="panel">
-                        <div class="tools  hide-on-medium-and-down -col-l-2">
+                        <div class="tools  -tools-fixed-position hide-on-medium-and-down -col-l-2">
                                 <div class="tools__header -col-m-4 -col-l-3">
                                     <img src="./assets/images/icons8-food-96.png" />
                                 </div>
-                                <ul class="tools__sidenav">
+                                <ul class="tools__sidenav tools__sidenav-margin">
                                     <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>Add food</a></liv>
                                     <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>Manage food</a></liv>
                                 </ul>
                         </div>
-                        <div class="display  -col-sm-12 -col-m-8 -col-l-9">
+                        <div class="display  -col-sm-12 -col-m-8 -col-l-6 -offset-l-2x -offset-m-1 -offset-sm-0">
                                 <h2 class="display__header -ff-roboto -grayTxtColor">Add Food Item</h2>
                                 <div class="display__content">
-                                        <form class="foodForm">
+                                        <form class="foodForm -foodForm-margin">
                                                 <div class=" foodForm__item foodForm__picture-section ">
                                                 
                                                 <center>
@@ -79,12 +78,10 @@
                                                     <input type="file" accept="image/*" name="image" id="file" style="display: none;">
                                                     <label for="file" class="button -full -col-sm-10 -grayBgColor -whiteTxtColor">Upload image</label>
                                                 </center>
-                                                    
                                                 </div>
                                                 <div class=" foodForm__item foodForm__inputs">
                                                     <center>
 
-                                                   
                                                             <div class="-col-sm-10">
                                                                     <input  class="-input-height -input-marginTop" list="browse" placeholder="Food category"  name="foodCategory">
                                                                     <datalist id="browse">
@@ -116,7 +113,6 @@
                                                         
                                                                     <button class="-small">Submit</button>
                                                                     <button class="-small">Cancel</button>
-                                                        
                                                             
                                                         </div>
                                                     </center>
@@ -125,7 +121,7 @@
                                 </div>
                         </div>
                 </div>
-                
+               
             </div>
             <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
         </div>
