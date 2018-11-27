@@ -1,0 +1,21 @@
+.top-10{
+    display: flex;
+    height: auto;
+    padding: 5vh 2%;
+    flex-flow: wrap;
+}
+
+.top-10__foods{
+    min-height: 120px;
+    height: 18vh;
+    min-width: 120px;
+    width: 12vw;
+    background: green;
+    margin: 1vh 1%;
+    overflow: hidden;
+}
+
+.top-10__image{
+    width: 100%;
+    height: 100%;
+}

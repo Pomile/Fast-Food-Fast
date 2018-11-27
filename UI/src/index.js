@@ -27,6 +27,7 @@ import {
   foodItemContainer,
   burger1,
   headerPane,
+  closeFoodVariants,
 } from './assets/js/globals';
 import { opennav, closenav } from './assets/js/sidenav';
 import {
@@ -131,6 +132,12 @@ if (closeLocationForm) {
   };
 }
 
+if (closeFoodVariants) {
+  closeFoodVariants.onclick = function () {
+    closeModal('modal');
+  };
+}
+
 if (closeLocationForm2) {
   closeLocationForm2.onclick = function () {
     closeModal('modal');
@@ -190,17 +197,13 @@ if (myCart && window.innerWidth > 900) {
   });
 }
 
-if (burger1 && window.innerWidth > 900) {
+if (burger1) {
   burger1.onclick = () => {
-    foodCart.classList.remove('foodCart-isHidden');
-    foodCart.classList.add('foodCart-isVisible');
-    foodItemContainer.classList.remove('-col-l-9');
-    foodItemContainer.classList.add('-col-l-8');
-    viewCart = false;
+    showModal('modal', 'foodVariants');
   };
 }
 
-if (headerPane) {
+if (closeF)   {if (headerPane) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       headerPane.classList.remove('header');
@@ -210,4 +213,4 @@ if (headerPane) {
       headerPane.classList.add('header');
     }
   });
-}
+}}

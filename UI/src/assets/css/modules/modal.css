@@ -20,13 +20,30 @@
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    height: 460px;
+    height: 50vh;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
+
+.modal__content-2{
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    height: 65vh;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+
+
 
 
 /* Add Animation */
@@ -44,7 +61,7 @@ to {top:0; opacity:1}
 .modal__close {
 color: rgb(194, 193, 193);
 float: right;
-font-size: 28px;
+font-size: 2.5vw;
 font-weight: bold;
 }
 

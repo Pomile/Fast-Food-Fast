@@ -1,6 +1,4 @@
 .foodCart{
-    height: 50vh;
-    min-height: 530px;
     background-color: white;
     position: absolute;
     width: 19.5%;
@@ -19,7 +17,7 @@
 
 .foodCart__items{
     overflow-y: scroll;
-    height: 150px!important;
+    height: 20vh!important;
 }
 
 
@@ -28,6 +26,7 @@
     color: rgb(95, 93, 93);
     width: 90%;
     margin-left: 5%;
+    font-size: 1.8vw;
 }
 
 .foodCart__item{
@@ -43,6 +42,9 @@
 
 .foodCart__image{
     padding-left: 0%;
+    min-width: 150px;
+    width: 10vw;
+    height: 15vh;
 }
 
 .foodCart__item-name{
@@ -53,15 +55,16 @@
 }
 .footCart-align{
     right: 10px;
-    top:110px;
+    top: 10vh;
 }
 
 .foodCart__button{
     width: 90%;
     margin-left: 5%;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding: 18px 0px;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    padding: 2vh 0px;
+    font-size: 1vw;
 }
 
 

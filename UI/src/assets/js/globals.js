@@ -25,4 +25,5 @@ export const closeOrderDetails = document.getElementById('closeOrderDetails');
 export const myCart = document.getElementById('myCart');
 export const foodItemContainer = document.getElementById('foodItemContainer');
 export const burger1 = document.getElementById('burger1');
+export const closeFoodVariants = document.getElementById('closeFoodVariants');
 export const headerPane = document.getElementById('header-pane');

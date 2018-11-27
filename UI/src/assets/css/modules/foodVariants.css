@@ -1,0 +1,72 @@
+.food-variant{
+    height: auto;
+}
+
+.food-variant__food{
+    display: grid;
+}
+
+.food-variant__grid-template{
+    grid-template-columns: 24% 74%;
+    grid-template-rows: 24vh; 
+}
+.food-variant__grid-gap{
+    grid-column-gap: 2%;
+}
+.food-variant__image{
+    background-color: green;
+    overflow: hidden;
+}
+
+.foodVariant__label{
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
+.foodVariant__details {
+    padding: 2vh 1vw;
+}
+.foodVariant__details .foodVariant__name{
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.foodVariant__price{
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: gray;
+}
+
+.food-variant__options{
+    
+    padding: 1vh 1%;
+    overflow-y: scroll;
+    height: 26vh;
+}
+
+.food-variant__item{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid gray;
+    height: 5vh;
+    margin: 2vh 0px;
+}
+
+.food-variant__description{
+    width: 70%;
+}
+
+.food-variant__description, .food-variant__price{
+    font-size: 1.3vw;
+}
+
+.food-variant__price{
+    width: 18%;
+}
+
+.food-variant__button{
+    width: 8%;
+}
+
+
+

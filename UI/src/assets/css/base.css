@@ -49,19 +49,20 @@ input[type=tel],
 input[list=state],
 input[type=date],
 input[list=browse],
-input[list=food]
+input[list=food],
+.state
 {
     width: 96%;
-    font-size: 16px;
+    font-size: 1.3vw;
 }
 
 .-input-height{
     height: 3vh;
-    padding: 8px;
+    padding: 2vh 0px;
 }
 
-.-input-marginTop{
-    margin-top: 10px;
+.-input-marginTop, .streetAddress, .state, .locationButton{
+    margin-top: 2vh;
 }
 
 textarea{
@@ -77,9 +78,20 @@ textarea{
     margin-top: 10px;
 }
 
-select{
-    width: 96%;
-    height: 40px;
-    padding: 8px;
-    font-size: 18px;
+select, .state{
+    height: 6vh;
+    padding: 1vh 1vw;
+    font-size: 1.5vw;
+}
+
+.locationButton{
+    text-align: center;
+    height: 8vh;
+    background: rgb(255, 51, 0);
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+.locationButton:hover{
+    background-color: rgb(247, 102, 49)
 }
