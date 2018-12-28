@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>Admin</title>   
+    <link href="main.css" rel="stylesheet"></head>
+    <body>
+        <div id="wrapper" >
+                <div class="backdrop" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="images/user.bundle.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                                <li class="sidenav__item s-12">
+                                        <a class="sidenav__item-link"  href="index.html">Logout</a>
+                            </li>
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link active" href="./user.html">Home</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link"  href="admin-users-order-view.html">Orders</a>
+                            </li>
+
+                            <li class="sidenav__item s-12">
+                                    <a class="sidenav__item-link"  href="admin-items-view.html">Foods and Drinks</a>
+                            </li>
+
+                            <ul class="tools__sidenav hide-on-large-only">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>Add food</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>Manage food</a></liv>
+                            </ul>
+                        </ul>
+                    </nav>
+            <div id="header" class="-orangeredBgColor">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="images/food_delivery_logo.bundle.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height active" href="dashboard.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-users-order-view.html">Customer orders</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="admin-items-view.html">Foods and drinks</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div id ="automain" class="-whiteBgColor">
+                <div class="panel">
+                        <div class="tools hide-on-medium-and-down -col-m-3 -col-l-2">
+                                <div class="tools__header -col-m-3 -col-l-2">
+                                    <img src="images/icons8-food-96-white.bundle.png" />
+                                </div>
+                                <ul class="tools__sidenav">
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link" href="admin.html"><i class="material-icons -fic-alignMiddle" >add_circle</i>Add food</a></liv>
+                                    <liv class="tools__sidenav-item"><a class="tools__sidenav-link active" href="admin-manage-foodItems.html"><i class="material-icons -fic-alignMiddle" >settings</i>Manage food</a></liv>
+                                </ul>
+                        </div>
+                        <div class="display  -col-sm-10 -col-m-10 -col-l-9 -offset-sm-1 -offset-m-1 -offset-l-0">
+                                <h2 class="display__header -ff-roboto -grayTxtColor">Manage food items</h2>
+                                
+                                    <div class="search-form  -col-sm-8 -col-m-4 -col-l-4 -orangeredBgColor">
+                                        <input type="search" class="search-form__input -col-sm-10" placeholder="Search food items..." name="search" id="search" />
+                                        <div class="search-form__btn button -col-sm-2 -grayBgColor" id="searchBtn"><i class="material-icons -whiteTxtColor">search</i></div>
+                                    </div>
+                                    
+                        
+                                <div class="display__content">
+                                    <div id="style-2" class="table-wrapper -col-sm-12 -col-m-12 -col-l-10">
+                                        
+                                        <table class="res-table">
+                                                <col style="width:20%">
+                                                <col style="width:60%">
+                                                <col style="width:5%">
+                                                <col style="width:5%">
+                                                <thead class="res-thead">
+                                                <tr class="res-tr">
+                                                    <th class="res-th" >Picture</th>
+                                                    <th class="res-th">Food Item description</th>
+                                                    <th class="res-th" colspan="2">Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="res-tbody">
+                                                    <tr class="res-tr">
+                                                        <td class="res-td"><img src="images/friedrice.bundle.jpg" width=60px height=40px;></td>
+                                                        <td class="res-td">Fried rice with chicken</td>
+                                                        <td class="res-td"><a href="#" class="-orangeredTxtColor" id="edit1"><i class="material-icons -fic-alignMiddle">edit</i></a>
+                                                                
+                                                        </td>
+                                                        <td class="res-td">
+                                                            <a href="#" class="-redTxtColor" id="rm1"><i class="material-icons -fic-alignMiddle">remove_circle</i></a>
+                                                        
+                                                    </tr>
+                                                    <tr class="res-tr">
+                                                            <td class="res-td"><img src="images/burger.bundle.png" width=60px height=40px;></td>
+                                                            <td class="res-td">Double Burger</td>
+                                                            <td class="res-td"><a href="#" class="-orangeredTxtColor" id="edit2"><i class="material-icons -fic-alignMiddle">edit</i></a>
+                                                                
+                                                            </td>
+                                                            <td class="res-td">
+                                                                <a href="#" class="-redTxtColor" id="rm2"><i class="material-icons -fic-alignMiddle">remove_circle</i></a>
+                                                            </td>
+                                                            
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                
+            </div>
+            <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+            <div class = "modal" id="modal" >
+                    <div class="modal__content -col-sm-11 -col-m-7 -col-l-6" id="updateFoodItemContent" style="overflow-y: scroll">
+                            <div class="modal__header">
+                                <span class="modal__close" id="closeUpdateFoodItem">&times;</span>
+                                <img src="images/icons8-food-24.bundle.png" style ="vertical-align: middle"/><span>Update Food Item</span>
+                            </div>
+                            <div class="modal-body">
+                                    <form class="foodForm">
+                                            <div class=" foodForm__item foodForm__picture-section ">
+                                            
+                                            <center>
+                                                <img src="images/pictureImg.bundle.png" id="output" width=170px height=150px/>
+                                                <input type="file" accept="image/*" name="image" id="file" style="display: none;">
+                                                <label for="file" class="button -full -col-sm-10 -grayBgColor -whiteTxtColor">Upload image</label>
+                                            </center>
+                                                
+                                            </div>
+                                            <div class=" foodForm__item foodForm__inputs">
+                                                <center>
+
+                                               
+                                                        <div class="-col-sm-10">
+                                                                <input  class="-input-height -input-marginTop" list="browse" placeholder="Food category"  name="foodCategory">
+                                                                <datalist id="browse">
+                                                                  <option value="burger">
+                                                                  <option value="Fries">
+                                                                  <option value="Sweets and drinks">
+                                                                  <option value="Chicken">
+                                                                  <option value="Tacos">
+                                                                  <option value="Sides">
+                                                                </datalist> 
+                                                        </div>
+                                                        <div class="-col-sm-10">
+                                                                <input  class="-input-height -input-marginTop" type="text" placeholder="Food"  name="food">
+                                                                 
+                                                        </div>
+                                                    
+                                                    <div class="-col-sm-10"><input class="-input-height -input-marginTop" type="time" placeholder="deliverytime" class="-price"  id="price"/>
+                                                    <input class="-input-height -input-marginTop" type="number" placeholder="Price" class="-price"  id="price"/>
+                                                    <input class="-input-height -input-marginTop" type="number" placeholder="No of Packs" class="-noOfPacks"  id="noOfPacks"/>
+                                                            
+                                                    </div>
+                                                    
+                                                    <div  class="-col-sm-10">
+                                                        <textarea class="-textarea-marginTop" name="description" rows="6" col="40" id="description">
+                                                            Fried rice with 2 chiken
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="foodForm__btn">
+                                                    
+                                                                <button class="-small">Submit</button>
+                                                                <button class="-small">Cancel</button>
+                                                    
+                                                        
+                                                    </div>
+                                                </center>
+                                            </div>               
+                                    </form>
+                            </div>
+                            <div class="modal-footer" style ="padding-bottom: 25px; margin-top: 40px;"></div>
+                    </div>
+                    
+    
+                    <div class="modal__content -col-sm-10 -col-m-7 -col-l-6" id="deleteFoodItemContent" style="height: 200px; width: 40%;" >
+                       
+                            <div class="-grayBgColor"><i class="material-icons -fs-cs-small">question</i><span class="modal__close " id="closeDeleteFoodItem">&times;</span></div>
+                            <center>
+                                    <h3 id ="upload-validation-message" style = "">Are you sure you want to delete this contact ?</h3>
+                                    <input type="submit" class= "button -small teal-bgcolor" id='yesBtn' value="Yes"  style ="margin-top: 10px;" />
+                                    <input type="submit" class= "button -small orangered-bgcolor" id='noBtn' value="No"  style ="margin-top: 10px;" />
+                            </center>
+                   </div>
+            </div>
+    </div>
+
+                
+            
+    <script type="text/javascript" src="js/main.bundle.js"></script></body>
+</html>

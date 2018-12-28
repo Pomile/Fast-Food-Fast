@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <title>User</title>
+        <style>
+            #wrapper{
+                display: none;
+            }
+
+       </style>
+       <script>
+           window.onload = function () {
+               document.getElementById("wrapper").style.display = "block";
+           };
+
+       </script>
+    <link href="main.css" rel="stylesheet"></head>
+    <body>
+        <div id="wrapper" class="-whiteBgColor" >
+                <div class="backdrop" id="backdrop" >
+
+                </div>
+                    <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
+                        <div class="-col-sm-12 sidenav-wrapper__header">
+                                    
+                            <div class="sidenav-wrapper__picture-holder">
+                                <img src="images/user.bundle.png" height=40px width=40px>
+                            </div>
+                    
+                        </div>
+                        <ul class="sidenav">
+                            <li class="sidenav__item">
+                                <a class="sidenav__item-link" href="./user.html">Home</a>
+                            </li>
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link" href="./order.html">Order history</a>
+                            </li>
+
+                            <li class="sidenav__item s-12">
+                                <a class="sidenav__item-link" >Cart <span class="no-of-items">10</span></a>
+                            </li>
+
+                            <li class="sidenav__item hide-on-medium-and-up s-12">
+                                    <a class="sidenav__item-link" href="#" id="category">Category</a>
+                            </li>
+                            <ul id="categoryList" class="food-navigation -index -sidenav-food-navigation-align -sidenav-food-navigation-height -sidenav-food-navigation--isHidden -col-sm-12 hide-on-medium-and-up -whiteBgColor -absolute-pos -box-shadow-1">
+                                <li class="food-navigation__item"><a class="food-navigation__link active">All</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Fries</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Burger</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Chicken</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Meals and Combos</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Sweets and drinks</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Sides</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Tacos</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Deserts</a></li>
+                                <li class="food-navigation__item"><a class="food-navigation__link">Misc</a></li>
+                            </ul>
+                        </ul>
+                    </nav>
+            <div id="header" class="-orangeredBgColor">
+                <div class="sidedrawer hide-on-large-only" id="sidedrawer">
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                    <div class="sidedrawer__stroke"></div>
+                </div>
+                <div class="logo">
+                        <img class="logo__img" src="images/food_delivery_logo.bundle.png"/>
+                </div>
+                
+                <ul class="navigation navigation-shift-right hide-on-medium-and-down">
+                    <li class="navigation__item"><a class="navigation__link navigation__link-full-height active" href="user.html">Home</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="order.html">Order history</a></li>
+                    
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="dashboard.html">See admin</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height"  id="myCart" href="#">Cart<span class="no-of-items">5</span></a></li>
+                </ul>
+            </div>
+            <div id ="automain" class="-whiteBgColor">
+                <div class="caption">
+                            <div class="caption-overlay -tranparentBg"></div>
+                            <div class="caption-message">
+                                <h2 class="-ff-roboto -fs-cs-largex -ftxt-align-center -orange-1-TxtColor -ftxt-blackshadow">Tasty Fast Foods</h2>
+                                <h2 class="-ff-roboto -fs-cs-medium -ftxt-align-center -whiteTxtColor -ftxt-blackshadow">We will Deliver to your Doorstep</h2>
+                            </div>
+                            
+                            
+                            <div class="caption-search -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4">
+                                  <input type="text" class="caption-search__input -input-height -sm-font-2x -m-font-1 -l-font-1" id="foodSearch" name="foodSearch"  placeholder="Search Food...." />
+                            </div>
+                </div>
+                <div class="section-2 -col-sm-12" style="display: flex; align-items:stretch; position: relative; height: auto; top: 4vh">
+                    
+                    <div  id="food" class="food-navWrapper hide-on-small-only  -col-m-3x -col-l-2 -food-NavWrapper-align" style="margin-left: 2%; ">
+                        <ul class="food-navigation  hide-on-small-only  -col-sm-12">
+                            <li class="food-navigation__item"><a class="food-navigation__link active">All</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Fries</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Burger</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Chicken</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Meals and Combos</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Sweets and drinks</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Sides</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Tacos</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Deserts</a></li>
+                            <li class="food-navigation__item"><a class="food-navigation__link">Misc</a></li>
+                        </ul>
+                        
+                    </div>
+                    
+                    <div id = "foodItemContainer" class="foodItems  -foodItems-align -align-foodItem -align-top -col-sm-12 -col-m-9 -col-l-9 -offset-l-0">
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/whataburger-original.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">whataburger original</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2100</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button" id="burger1"><i class="material-icons -redTxtColor -fs-cs-medium  -ftxt-align-center">add_circle</i></div>
+                                    </div>
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/shake-shack-smokeshack-evan-sung.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Shake Shack Smokeshack</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2200</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                            </div>
+        
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/sonic-cherry-limeade.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Sonic cherry limeade</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">N2400</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">3500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">3500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                                    
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">3500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                                    
+                            </div>
+                            <div class="foodItems__cardWrapper">  
+                                    <div class="foodItems__card">
+                                        <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                        <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                        <div class="foodItems__price"><h3 id="foodItemsPrice">3500</h3></div>
+                                        <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                        <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                    </div>
+                                    
+                            </div>
+                        <div class="foodItems__cardWrapper">  
+                            <div class="foodItems__card">
+                                <img class="foodItems__image"  src="images/burger.bundle.png"/>
+                                <h2 class="foodItems__title" id="foodItemsTitle">Double Burger</h2>
+                                <div class="foodItems__price"><h3 id="foodItemsPrice">N2400.00</h3></div>
+                                <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                            </div>
+                            
+                        </div>
+                        <div class="foodItems__cardWrapper">  
+                                <div class="foodItems__card">
+                                    <img class="foodItems__image"  src="images/friedanddodowithchiken.bundle.png"/>
+                                    <h2 class="foodItems__title" id="foodItemsTitle">Fried Rice</h2>
+                                    <div class="foodItems__price"><h3 id="foodItemsPrice">3500</h3></div>
+                                    <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                                    <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                                </div>
+                                
+                    </div>
+                    <div class="foodItems__cardWrapper">  
+                        <div class="foodItems__card">
+                            <img class="foodItems__image"  src="images/burger.bundle.png"/>
+                            <h2 class="foodItems__title" id="foodItemsTitle">Double Burger</h2>
+                            <div class="foodItems__price"><h3 id="foodItemsPrice">N2400.00</h3></div>
+                            <div class="foodItems__description"><p id="foodItemsDescription">description</p></div>
+                            <div class="foodItems__button"><i class="material-icons -redTxtColor -ftxt-align-center -fs-cs-medium">add_circle</i></div>
+                        </div>
+                        
+                    </div>
+
+                    </div>
+                   
+                
+                </div>
+                <div id="footer-2" class="-orangeredBgColor -index">soft-sky@live.co.uk</div>
+            </div>
+                <div class="foodCart footCart-align foodCart-isHidden hide-on-medium-and-down" id="foodCart">
+                            <h2 class="foodCartHeader -ftxt-align-center">Estimate</h2>
+                            
+                            <div class="foodCart__item foodCart--isEmpty">
+                                <center>
+                                    <div class="foodCart__image">
+                                        <img class="foodCart__image" src="images/emptyCart.bundle.png">
+                                    </div>
+                                <div id="foodCart__isEmptyMessage" class="foodCart__isEmptyMessage -fs-cs-small -grayTxtColor -ftxt-align-center">Cart is Empty</div>
+                                </center>
+                            </div>
+                            <div class="foodCart__item foodCart__item-totalPrice">
+                                    <span class=" -fs-res-1x -ff-roboto -fw-bold" id="totalPrice">Total Price: 0.00 </span>
+                            </div>
+                            <div class="foodCart__items" id="style-2">
+                                <div style="height: auto">
+                                    <div class="foodCart__item">
+                                        <div class="foodCart__item-description">
+                                            <div class=" foodCart__item-name -ftxt-align-start -fs-res-1">[food name]</div>
+                                            <div class="foodCart__item-price -ftxt-align-end -fs-res-1">N 2500</div>
+                                        </div>
+                                        <div class="foodCart_item-btns">
+                                            <div class="foodCart_item-btn -grayTxtColor">
+                                                <a href="#">
+                                                    <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                                </a>
+                                            </div>
+                                            <div class ="foodCart_item-btn -Btngroup">
+                                                <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor -ftxt-align-center">add_circle</i></a>
+                                                <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                                <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor -ftxt-align-center">remove_circle</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="foodCart__item">
+                                            <div class="foodCart__item-description">
+                                                <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                                <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                            </div>
+                                            <div class="foodCart_item-btns">
+                                                <div class="foodCart_item-btn -grayTxtColor">
+                                                    <a href="#">
+                                                        <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                                    </a>
+                                                </div>
+                                                <div class ="foodCart_item-btn -Btngroup">
+                                                    <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor -ftxt-align-center">add_circle</i></a>
+                                                    <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                                    <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor -ftxt-align-center">remove_circle</i></a>
+                                                </div>
+                                            </div>
+                                        </div><div class="foodCart__item">
+                                                <div class="foodCart__item-description">
+                                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                                    <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                                </div>
+                                                <div class="foodCart_item-btns">
+                                                    <div class="foodCart_item-btn -grayTxtColor">
+                                                        <a href="#">
+                                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class ="foodCart_item-btn -Btngroup">
+                                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor -ftxt-align-center">add_circle</i></a>
+                                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor -ftxt-align-center">remove_circle</i></a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="foodCart__item">
+                                                    <div class="foodCart__item-description">
+                                                        <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                                        <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                                    </div>
+                                                    <div class="foodCart_item-btns">
+                                                        <div class="foodCart_item-btn -grayTxtColor">
+                                                            <a href="#">
+                                                                <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class ="foodCart_item-btn -Btngroup">
+                                                            <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor -ftxt-align-center">add_circle</i></a>
+                                                            <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                                            <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor -ftxt-align-center">remove_circle</i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    
+                                </div>
+                                
+                            </div>
+                            <a class="foodCart__button  button -orangeredBgColor -whiteTxtColor" id="orderBtn">Proceed</a>
+                           
+            </div>
+
+
+            <div class="cartClip hide-on-large-only -ff-roboto -fs-cs-xxsmall" id="cartClip">
+                    Cart<span class="no-of-items">10</span>
+            </div>
+    
+            
+                
+            
+            <div class="modal" id ="modal">
+                <div class="modal__content -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4" id="cart">
+                    <span class="modal__close" id="closeLocationForm">&times;</span>
+                    <div class="foodCart -foodCart-height -foodCart-width hide-on-large-only" id="foodCart">
+                        <h2 class="foodCartHeader -ftxt-align-center">Estimate</h2>
+                        
+                        <div class="foodCart__item foodCart__item-totalPrice">
+                                <span class=" -fs-small -ff-quicksand -fw-bold" id="totalPrice">Total Price: 0.00 </span>
+                        </div>
+                        
+                        <div class="foodCart__items" id="style-2">
+                        <div style="height: auto">
+                        <div class="foodCart__item">
+                                <div class="foodCart__item-description">
+                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                    <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                </div>
+                                <div class="foodCart_item-btns">
+                                    <div class="foodCart_item-btn -grayTxtColor">
+                                        <a href="#">
+                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                        </a>
+                                    </div>
+                                    <div class ="foodCart_item-btn -Btngroup">
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="foodCart__item">
+                                <div class="foodCart__item-description">
+                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                    <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                </div>
+                                <div class="foodCart_item-btns">
+                                    <div class="foodCart_item-btn -grayTxtColor">
+                                        <a href="#">
+                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                        </a>
+                                    </div>
+                                    <div class ="foodCart_item-btn -Btngroup">
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="foodCart__item">
+                                <div class="foodCart__item-description">
+                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                    <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                </div>
+                                <div class="foodCart_item-btns">
+                                    <div class="foodCart_item-btn -grayTxtColor">
+                                        <a href="#">
+                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                        </a>
+                                    </div>
+                                    <div class ="foodCart_item-btn -Btngroup">
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="foodCart__item">
+                                <div class="foodCart__item-description">
+                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                    <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                                </div>
+                                <div class="foodCart_item-btns">
+                                    <div class="foodCart_item-btn -grayTxtColor">
+                                        <a href="#">
+                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                        </a>
+                                    </div>
+                                    <div class ="foodCart_item-btn -Btngroup">
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="foodCart__item">
+                            <div class="foodCart__item-description">
+                                <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                <div class="foodCart__item-price -ftxt-align-end">N 2500</div>
+                            </div>
+                            <div class="foodCart_item-btns">
+                                <div class="foodCart_item-btn -grayTxtColor">
+                                    <a href="#">
+                                        <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                    </a>
+                                </div>
+                                <div class ="foodCart_item-btn -Btngroup">
+                                    <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                    <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                    <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                </div>
+                            </div>
+                    </div>
+
+                        <div class="foodCart__item">
+                                <div class="foodCart__item-description">
+                                    <div class=" foodCart__item-name -ftxt-align-start ">[food name]</div>
+                                    <div class="foodCart__item-price -ftxt-align-end">N 5500</div>
+                                </div>
+                                <div class="foodCart_item-btns">
+                                    <div class="foodCart_item-btn -grayTxtColor">
+                                        <a href="#">
+                                            <span><i class="material-icons -fic-alignMiddle -grayTxtColor">close</i></span>
+                                        </a>
+                                    </div>
+                                    <div class ="foodCart_item-btn -Btngroup">
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -orangeTxtColor">add_circle</i></a>
+                                        <div class="footCart__item-result-display" id="footCartItemResultDisplay">1</div>
+                                        <a href="#" class="-ftxt-align-center"><i class="material-icons -redTxtColor">remove_circle</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <a class="foodCart__button  button -orangeredBgColor -whiteTxtColor" id="orderBtn2">Order Now</a>
+                </div>
+
+            </div>
+            <div class="modal__content -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4" id="locationForm">
+                    <span class="modal__close" id="closeLocationForm2">&times;</span>
+                <h1 class="-whiteBgColor -ftxt-align-center" style="font-size: 2vw;">Choose your Location</h1>
+                <form class="locationForm">
+                    <div class=" -col-sm-12">
+                        <div class="streetAddress -col-sm-12 ">
+                        
+                            <input type="text" id="streetAddress" class=" -input-height -col-sm-9 -offset-sm-1" placeholder="Street, Area"/>
+                            
+                        </div>
+                        
+                        <div class="-col-sm-12">
+                            <select name="State" id="state" class="state -col-sm-9x -offset-sm-1 -input-height">
+                                <option value="Abuja">Abuja</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Portharcourt">Portharcourt</option>
+                                <option value="">Rivers</option>
+                            </select>
+                        </div>
+                        <div class="-col-sm-12" >
+                            <div class="locationButton button -col-sm-9x -offset-sm-1 -orangeredBgColor -whiteTxtColor" id="locationBtn">Submit</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal__content-2 -col-sm-10 -offset-sm-1 -col-m-10 -offset-m-1 -col-l-8 -offset-l-2" id="foodVariants">
+                    <span class="modal__close" id="closeFoodVariants">&times;</span>
+                <div class="food-variant">
+                <div class="food-variant__food food-variant__grid-template food-variant__grid-gap">
+                        <div class="food-variant__image">
+                            <img class="food-variant__image" src="images/burger.bundle.png" />
+                        </div>
+                        <div class="foodVariant__details">
+                            <div id="foodName" class="foodVariant__name">Fried rice with + 1 chiken + dodo</div>
+                            <div id="foodQty" class="foodVariant__qty">12</div>
+                            <div id="foodPrice" class="foodVariant__price">N 2,500</div>
+                        </div>
+                </div>
+                <h3 style="background: white; padding-left: 2%;">Options</h3>
+                <div class="food-variant__options">
+                    
+                    <div class="food-variant__item">
+                        <div class="food-variant__description">Fried rice with + 1 chiken + dodo</div>
+                        <div class="food-variant__price">2,500</div>
+                        <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                    </div>
+                    <div class="food-variant__item">
+                            <div class="food-variant__description">Fried rice with + 1 chiken + dodo</div>
+                            <div class="food-variant__price">2,500</div>
+                            <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                        </div>
+                        <div class="food-variant__item">
+                                <div class="food-variant__description">Fried rice with + 1 chiken + dodo</div>
+                                <div class="food-variant__price">2,500</div>
+                                <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                            </div>
+                        <div class="food-variant__item">
+                                <div class="food-variant__description">Fried rice with + 1 chiken + dodo</div>
+                                <div class="food-variant__price">2,500</div>
+                                <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                            </div>
+                            <div class="food-variant__item">
+                                    <div class="food-variant__description">Fried rice with + 1 chiken + dodo</div>
+                                    <div class="food-variant__price">2,500</div>
+                                    <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                                </div>
+                    <div class="food-variant__item">
+                            <div class="food-variant__description">Fried rice with + 2 chiken + dodo + 1 coke</div>
+                            <div class="food-variant__price">3,700</div>
+                            <div class="food-variant__button"><i class="material-icons -orangeredTxtColor">add</i></div>
+                    </div>
+                </div>
+
+              </div>
+            <div></div>
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/main.bundle.js"></script></body>
+</html>
