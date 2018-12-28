@@ -23,7 +23,7 @@
 }
 
 .-table-header-margin{
-    margin-top: 8vh;
+    margin-top: 0vh;
 }
 
 .header{
@@ -94,8 +94,10 @@
 }
 
 .table__header{
-    display: none;
+    display: flex;
     width: 100%;
+    background: white;
+    
 }
 .table__sn,
 .table__customerName,
@@ -113,10 +115,8 @@
 .table__quantity
 {
     min-height: 20px;
-    height: 1.2vh;
-    background-color: gray;
-    padding-top: 3 vh;
-    padding-bottom:  3vh;
+    padding-top: 2vh;
+    padding-bottom:  2vh;
     padding-left: 10px;
     text-align: justify;
     color: white;
@@ -152,18 +152,20 @@
 .tb-w-35{ width: 35%;}
 
 .table__scroll-pad{
-    min-width: 16px;
+    min-width: 18px;
     width: 1.3vw;
-    background-color: black;
+    background-color: white;
 }
 
 td, .td-2{
-    padding: 1.5vh 1.5vw;
-    font-size: 16px;
+    padding: 1.5vh 1.7vw;
+    font-size: 1vw;
 
 }
 .td-img {
-    height: 3vh;
+    min-height: 40px;
+    min-width: 40px;
+    height: 5vh;
     width: 3vw;
     border-radius: 50%;
 }
@@ -221,7 +223,7 @@ td, .td-2{
 }
 
 thead{
-    background: #ccc;
+    background-color: orangered;
     
 }
 .separator{
@@ -235,13 +237,13 @@ thead{
     }
 
     .table{
-        height: 400px!important;
+        height: 500px!important;
         width: 90%!important;
         margin-left: 5%;
     }
 
     .table .scrollBlock{
-        height: 40vh!important;
+        height: 50vh!important;
     }
     
     .search, .date{

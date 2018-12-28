@@ -43,7 +43,7 @@
 .sidenav__item-link:hover,
 .sidenav__item-link:active,
 .sidenav__item-link.active{
-    background-color: rgb(197, 62, 13);
+    background-color: rgb(250, 81, 19);
     color: white;
 }
 
@@ -52,11 +52,19 @@
     margin-right: 5px;
 }
 
+ 
+
+
 .sidenav__item-link .no-of-items{
-    padding: 5px 1px;
+    min-width: 24px;
+    width: 2vw;
+    z-index: 101;
+    border-radius: 50%;
     background: orangered;
-    text-align: center;
     color: white;
+    position: absolute;
+    text-align: center;
+    padding: 1vh 4px;
     left: 55px;
     top: 200px;
 }

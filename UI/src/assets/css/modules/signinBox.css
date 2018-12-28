@@ -1,8 +1,9 @@
 .signinBox{
     display: flex;
     box-sizing: border-box;
-    height: 500px;
-    margin-top: 5vh;
+    height: auto;
+    margin-top: 8vh;
+
 }
 
 .signinBox__section{
@@ -20,9 +21,12 @@
 }
 
 .signinBox__img{
-    margin-left: 35%;
+    margin-left: 30%;
 }
-
+.box-img{
+    width: 9vw;
+    height: 13vh;
+}
 .signinBox__form{
     width: 90%;
     margin-top: 5px;
@@ -36,7 +40,7 @@
 .signinBox__button-with-border{
     margin-top: 15px;
     border: 1px solid orange!important;
-    padding: 15px 2px;
+    padding: 2vh 1vw;
     border-radius: 50px;
     cursor: pointer;
 }

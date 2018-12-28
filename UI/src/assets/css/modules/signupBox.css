@@ -1,7 +1,8 @@
 .signupBox{
     display: flex;
     box-sizing: border-box;
-    height: 500px;
+    height: auto;
+    margin-top: 6vh;
 }
 
 .signupBox__section-1{

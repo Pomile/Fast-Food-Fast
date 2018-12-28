@@ -9,29 +9,34 @@
     transition-duration: 0.4s;
 }
 .-small{
-    padding: 8px 30px 8px;
-    font-size: 1.2vw;   
+    padding: 2vh 20vw 2vh;
+    font-size: 3.2vw;
+    margin-right: 2%;   
 }
 
 .-xsmall{
-    padding: 3px 10px 3px;
-    font-size: 12px;   
+    padding: 1vh 4vw 1vh;
+    font-size: 12px;
+    margin-right: 2%;  
 }
 
 .-medium{
-    padding: 12px 45px 12px;
+    padding: 2vh 12vw 2vh;
     font-size: 18px;
+    margin-right: 2%;
 }
 
 .-large{
-    padding: 25px 50px 0px;
-    font-size: 22px;
+    padding: 2vh 6vw 2vh;
+    font-size: 1.2vw;
+    margin-right: 2%;   
 }
 
 .-full{
     width: 100%;
     padding: 10px 0px 10px;
     font-size: 18px;
+    margin-right: 2%;
 }
 
 .button:hover {

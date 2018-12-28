@@ -2,7 +2,7 @@ body{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: rgb(214, 62, 7);
+    background-color: orangered;
     height: 100%;
 }
 
@@ -25,8 +25,10 @@ table {
 th {
     min-height: 50px;
     height: 6vh;
+    color: white;
     font-size: 1.2vw;
 }
+
 
 col {
     display: table-column;
@@ -52,18 +54,21 @@ input[list=browse],
 input[list=food],
 .state
 {
-    width: 96%;
-    font-size: 1.3vw;
+    width: 90%;
+    font-size: 16px;
 }
 
 .-input-height{
     height: 3vh;
-    padding: 2vh 0px;
+    padding: 2vh 3%;
 }
 
 .-input-marginTop, .streetAddress, .state, .locationButton{
     margin-top: 2vh;
 }
+
+
+
 
 textarea{
     resize: none;
@@ -80,15 +85,15 @@ textarea{
 
 select, .state{
     height: 6vh;
-    padding: 1vh 1vw;
+    padding: 1vh 2%;
     font-size: 1.5vw;
 }
 
 .locationButton{
     text-align: center;
-    height: 8vh;
     background: rgb(255, 51, 0);
-    font-size: 1vw;
+    padding: 3vh 0%; 
+    font-size: 16px;
     cursor: pointer;
 }
 

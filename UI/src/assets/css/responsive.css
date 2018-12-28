@@ -11,6 +11,10 @@
         display: none
     }
    
+    .-small{
+        padding: 2vh 20vw!important;
+        font-size: 3.2vw!important;   
+    }
     .-col-sm-1 {width: 8.33%!important;}
     .-col-sm-2 {width: 16.66%!important;}
     .-col-sm-3 {width: 25%!important;}
@@ -20,9 +24,22 @@
     .-col-sm-7 {width: 58.33%!important;}
     .-col-sm-8 {width: 66.66%!important;}
     .-col-sm-9 {width: 75%!important;}
+    .-col-sm-9x {width: 81.32%!important;}
     .-col-sm-10 {width: 83.33%!important;}
     .-col-sm-11 {width: 91.66%!important;}
     .-col-sm-12 {width: 100%!important;}
+
+    .-sm-font-1{ font-size: 2vw!important }
+    .-sm-font-2{ font-size: 3vw!important }
+    .-sm-font-2x{ font-size: 3.4vw!important }
+    .-sm-font-3{ font-size: 4vw!important }
+    .-sm-font-4{ font-size: 5vw!important }
+
+    .-xsm-font-1{ font-size: 3vw }
+    .-xsm-font-2{ font-size: 4vw }
+    .-xsm-font-3{ font-size: 6vw }
+    .-xsm-font-4{ font-size: 8vw }
+
 
     .-offset-sm-0 {margin-left: 0%!important;}
     .-offset-sm-1 {margin-left: 8.33%!important;}
@@ -64,6 +81,15 @@
     .hide-on-small-only{
         display: block!important;
     }
+    .-small{
+        padding: 2vh 15vw!important;
+        font-size: 2.8vw!important;   
+    }
+    .-m-font-1{ font-size: 1.8vw!important }
+    .-m-font-2{ font-size: 2.8vw!important }
+    .-m-font-2x{ font-size: 3.2vw!important }
+    .-m-font-3{ font-size: 3.8vw!important }
+    .-m-font-4{ font-size: 4.8vw!important }
 
     .-col-m-1 {width: 8.33%!important;}
     .-col-m-2 {width: 16.66%!important;}
@@ -119,6 +145,14 @@
     .hide-on-medium-and-up{
         display: none!important;
     }
+    .-small{
+        padding: 2vh 6vw!important;
+        font-size: 1.2vw!important;
+    }
+    .-l-font-1{ font-size: 1vw!important }
+    .-l-font-2{ font-size: 2vw!important }
+    .-l-font-3{ font-size: 3vw!important }
+    .-l-font-4{ font-size: 4vw!important }
 
     .-col-l-1 {width: 8.33%;}
     .-col-l-2 {width: 16.66%!important;}

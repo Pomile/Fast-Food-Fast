@@ -16,7 +16,7 @@
     height: 100%;
 }
 #main-home{
-    height: 100vh;
+    height: 100%;
 }
 
 #main{
@@ -58,6 +58,7 @@
     height: 5vh;
     width: 100%;
     position: relative;
+    z-index: 100;
     left: 0vh;
     bottom: 0vh;
     text-align: center;

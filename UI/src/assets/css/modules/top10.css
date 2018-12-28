@@ -1,7 +1,7 @@
 .top-10{
     display: flex;
     height: auto;
-    padding: 5vh 2%;
+    padding: 5vh 0%;
     flex-flow: wrap;
 }
 

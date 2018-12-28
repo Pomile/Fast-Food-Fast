@@ -25,7 +25,7 @@
 
 }
 
-.status-card__good-status{
+.status-card__good{
     background: green;
 }
 
@@ -41,7 +41,6 @@
     width: 96%;
     min-height: 40px;
     height: 6vh;
-
 }
 
 .status-card__label, 

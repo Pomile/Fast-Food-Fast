@@ -203,7 +203,8 @@ if (burger1) {
   };
 }
 
-if (closeF)   {if (headerPane) {
+if (closeFoodVariants) { 
+if (headerPane) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       headerPane.classList.remove('header');
@@ -213,4 +214,5 @@ if (closeF)   {if (headerPane) {
       headerPane.classList.add('header');
     }
   });
-}}
+} 
+}
