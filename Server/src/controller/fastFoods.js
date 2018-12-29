@@ -240,8 +240,6 @@ class FastFood {
 
   static async removeFastFood(req, res) {
     const { id } = req.params;
-<<<<<<< Updated upstream
-=======
     const dbClient = await pgConnection.connect();
     try {
       await dbClient.query('BEGIN');
@@ -259,7 +257,6 @@ class FastFood {
     } finally {
       await dbClient.release();
     }
->>>>>>> Stashed changes
   }
 
   static removeFastFoodItem(req, res) {
