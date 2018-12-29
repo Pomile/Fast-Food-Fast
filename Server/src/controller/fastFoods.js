@@ -240,6 +240,26 @@ class FastFood {
 
   static async removeFastFood(req, res) {
     const { id } = req.params;
+<<<<<<< Updated upstream
+=======
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const removeFoodVariantsById = await dbClient.query('DELETE FROM FoodVariants WHERE foodId = $1', [+id]);
+      const removeFoodById = await dbClient.query('DELETE FROM Foods WHERE id = $1 RETURNING *', [+id]);
+      const getFoodById = await dbClient.query('SELECT * FROM Foods WHERE id = $1', [+id]);
+      console.log('remove food', removeFoodById.rows, getFoodById.rows.length);
+      if (getFoodById.rows.length) {
+        res.status(204).json.end();
+      }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      console.log(err);
+    } finally {
+      await dbClient.release();
+    }
+>>>>>>> Stashed changes
   }
 
   static removeFastFoodItem(req, res) {
