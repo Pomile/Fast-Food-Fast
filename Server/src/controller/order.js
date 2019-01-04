@@ -1,7 +1,6 @@
 import moment from 'moment';
 import db from '../model';
-// import data from '../db/data';
-// import getFoodItem from '../helpers/getFoodItem';
+import getFoodVariants from '../helpers/getFoodVariants';
 import getUser from '../helpers/getUser';
 import FoodVariants from '../model/foodVariants';
 
@@ -31,6 +30,33 @@ class order {
       if (orders.length > 0) {
         res.status(201).json({ orders, msg: 'order placed successfully' }).end();
       }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
+  }
+
+  static async getAllCustomersOrder(req, res) {
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const customersOrder = await dbClient.query('SELECT * FROM ORDERS');
+      const result = await Promise.all([...customersOrder.rows].map(async (item) => {
+        const {
+          quantity, orderDate, orderTime, destinationAddressId, accept, decline, complete,
+        } = item;
+        const foodVariant = await dbClient.query('SELECT id, price, description from FoodVariants WHERE id = $1', [item.id]);
+        if (foodVariant.rows.length > 0) {
+          const food = await dbClient.query('SELECT image, name FROM Foods WHERE id = $1', [foodVariant.rows[0].id]);
+          return {
+            ...food.rows[0], ...foodVariant.rows[0], quantity, orderDate, orderTime, destinationAddressId, accept, decline, complete,
+          };
+        }
+      }));
+      res.status(200).json({ data: result });
       await dbClient.query('COMMIT');
     } catch (err) {
       await dbClient.query('ROLLBACK');

@@ -70,7 +70,6 @@ const data = {
       price: 1000,
       quantity: 40,
       expectedDeliveryTime: '30 min',
-
     },
     {
       id: 2,

@@ -145,16 +145,11 @@ router.post(
 );
 
 router.get(
-  '/orders',
+  '/customers/orders',
   verifyUser,
-  (req, res) => {
-    if (req.query.customerOrders === 'true') {
-      permit('admin, user');
-      order.adminGetUserOrders(req, res);
-    } else {
-      order.getUserOrder(req, res);
-    }
-  },
+  permit('admin'),
+  order.getAllCustomersOrder,
+
 );
 
 router.put(
