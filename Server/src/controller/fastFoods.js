@@ -208,51 +208,58 @@ class FastFood {
     }
   }
 
-  static modifyFastFoodItem(req, res) {
-    const {
-      description, price, quantity, expectedDeliveryTime, foodId, name,
-    } = req.body;
-
-    const { foodItemId } = req.params;
-    if (Number.isInteger(+foodItemId)) {
-      const foodItemIndex = data.foodItems.findIndex(item => item.id === +foodItemId);
-      const foodIndex = data.foods.findIndex(item => item.id === +foodId);
-      if (foodItemIndex !== -1) {
-        data.foods[foodIndex].name = name;
-        data.foodItems[foodItemIndex].quantity = quantity;
-        data.foodItems[foodItemIndex].description = description;
-        data.foodItems[foodItemIndex].price = price;
-        data.foodItems[foodItemIndex].expectedDeliveryTime = expectedDeliveryTime;
-        res.status(200).json({
-          msg: 'food item modified successfully',
-          success: true,
-          data: {
-            id: foodIndex, description, price, quantity, expectedDeliveryTime, foodId, name,
-          },
-        }).end();
-      } else {
-        res.status(404).json({ msg: 'food item does not exist', success: false }).end();
-      }
-    } else {
-      res.status(400).json({ msg: 'invalid request' });
-    }
-  }
-
   static async removeFastFood(req, res) {
     const { id } = req.params;
     const dbClient = await pgConnection.connect();
     try {
       await dbClient.query('BEGIN');
+      const getFoodById = await dbClient.query('SELECT * FROM Foods WHERE id = $1', [+id]);
+
+      if (getFoodById.rows.length > 0) {
+        await dbClient.query('DELETE FROM FoodVariants WHERE foodId = $1', [+id]);
+        await dbClient.query('DELETE FROM Foods WHERE id = $1 RETURNING *', [+id]);
+        res.status(204).json.end();
+      } else {
+        res.status(404).json({ msg: 'fast food not found' }).end();
+      }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      await dbClient.release();
+    }
+  }
+
+<<<<<<< Updated upstream
+  static async removeFastFood(req, res) {
+=======
+  static async removeFastFoodVariant(req, res) {
+>>>>>>> Stashed changes
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+<<<<<<< Updated upstream
       const removeFoodVariantsById = await dbClient.query('DELETE FROM FoodVariants WHERE foodId = $1', [+id]);
       const removeFoodById = await dbClient.query('DELETE FROM Foods WHERE id = $1 RETURNING *', [+id]);
       const getFoodById = await dbClient.query('SELECT * FROM Foods WHERE id = $1', [+id]);
       console.log('remove food', removeFoodById.rows, getFoodById.rows.length);
       if (getFoodById.rows.length) {
         res.status(204).json.end();
+=======
+      const getFoodVariantById = await dbClient.query('SELECT * FROM FoodVariants WHERE id = $1', [+id]);
+      if (getFoodVariantById.rows.length > 0) {
+        await dbClient.query('DELETE FROM FoodVariants WHERE id = $1', [+id]);
+        res.status(204).end();
+      } else {
+        res.status(404).json({ msg: 'fast food not found' }).end();
+>>>>>>> Stashed changes
       }
       await dbClient.query('COMMIT');
     } catch (err) {
       await dbClient.query('ROLLBACK');
+<<<<<<< Updated upstream
       console.log(err);
     } finally {
       await dbClient.release();
@@ -272,6 +279,11 @@ class FastFood {
       });
     } else {
       res.status(400).json({ msg: 'invalid request' });
+=======
+      res.status(500).json({ error: err.message });
+    } finally {
+      await dbClient.release();
+>>>>>>> Stashed changes
     }
   }
 }
