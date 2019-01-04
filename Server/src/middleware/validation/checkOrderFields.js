@@ -5,7 +5,7 @@ export const checkOrderFields = (req, fields) => {
   const missingFields = [];
 
   let allOrderFieldExists = true;
-  data.order.map((orderItem, i) => {
+  data.orders.map((orderItem, i) => {
     availableFields = Object.keys(orderItem);
     // find missing field
     if (availableFields.length !== expectedFields.length) {

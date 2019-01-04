@@ -130,10 +130,7 @@ router.delete(
 
 router.delete(
   '/fastFoodVariants/:id',
-<<<<<<< Updated upstream
-=======
   validateParamsId,
->>>>>>> Stashed changes
   verifyUser,
   permit('admin'),
   fastFoods.removeFastFoodVariant,

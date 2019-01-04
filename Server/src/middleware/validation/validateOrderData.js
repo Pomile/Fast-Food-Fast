@@ -4,25 +4,20 @@ export const checkUserData = (req) => {
   const errors = [];
   Object.keys(req.body.data).map((field) => {
     switch (field) {
-      case 'userId':
-        // console.log('userId', req.body.data[field]);
-        // console.log(Number.isInteger(req.body.data[field]) === false);
-        if (Number.isInteger(req.body.data[field]) === false) {
+      case 'state':
+        if (req.body.data[field].trim() === '') {
           isValid = false;
-          errors.push({ field, value: req.body.data[field], msg: 'user is required and id must be an integer' });
+          errors.push({ field, value: req.body.data[field], msg: 'state is required' });
         }
         break;
-
       case 'destinationAddress':
-        // console.log(req.body.data[field]);
         if (req.body.data[field].trim() === '') {
           isValid = false;
           errors.push({ field, value: req.body.data[field], msg: 'Destination address is required' });
         }
         break;
-
       default:
-                // do nothing
+      // do nothing
     }
   });
   // console.log({ isValid, errors });
@@ -32,24 +27,23 @@ export const checkOrderData = (req) => {
   let isValid = true;
   const errors = [];
 
-  if (req.body.data.order.length !== 0) {
-    req.body.data.order.map((orderItem, i) => {
+  if (req.body.data.orders.length !== 0) {
+    req.body.data.orders.map((orderItem, i) => {
       if (isValid) {
         Object.keys(orderItem).map((field) => {
-          const { foodItemId } = orderItem;
+          const { foodVariantId } = orderItem;
           const { quantity } = orderItem;
           if (field && isValid) {
             switch (field) {
-              case 'foodItemId':
-                if (!Number.isInteger(foodItemId)) {
+              case 'foodVariantId':
+                if (!Number.isInteger(foodVariantId)) {
                   isValid = false;
                   errors.push({
-                    name: field, value: foodItemId, msg: 'Food id must be an integer', index: i,
+                    name: field, value: foodVariantId, msg: 'Food id must be an integer', index: i,
                   });
                 }
                 break;
               case 'quantity':
-
                 // console.log(quantity);
                 if (typeof quantity !== 'number' || quantity === 0) {
                   isValid = false;

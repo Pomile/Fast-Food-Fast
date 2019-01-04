@@ -1,36 +1,42 @@
 import moment from 'moment';
-import data from '../db/data';
+import db from '../model';
+// import data from '../db/data';
 // import getFoodItem from '../helpers/getFoodItem';
 import getUser from '../helpers/getUser';
+import FoodVariants from '../model/foodVariants';
+
+const { pgConnection } = db;
 
 class order {
-  static placeOrder(req, res) {
-    const foodItems = req.body.data.order;
-    const { userId, destinationAddress } = req.body.data;
-    const InitialNoOforders = data.orders.length;
-    const orderInfo = foodItems.map((item) => {
-      const foodItem = item;
-      foodItem.orderDate = moment().format('dddd, MMMM Do YYYY');
-      foodItem.orderTime = moment().format('h:mm:ss a');
-      foodItem.expectedDeliveryTime = moment().add(45, 'minutes').format('h:mm:ss a');
-      foodItem.userId = userId;
-      foodItem.accept = false;
-      foodItem.decline = false;
-      foodItem.completed = false;
-      return foodItem;
-    });
-    orderInfo.map((item) => {
-      const orderItem = item;
-      const len = data.orders.length;
-      orderItem.id = len + 1;
-      const addressLen = data.destinationAddress.length;
-      orderItem.destinationAddressId = addressLen + 1;
-      data.destinationAddress.push({ id: addressLen + 1, destinationAddress });
-      data.orders.push(orderItem);
-    });
-    const currentNoOfOrders = data.orders.length;
-    if (InitialNoOforders < currentNoOfOrders) {
-      res.status(201).json({ msg: 'order placed successfully', success: true }).end();
+  static async placeOrder(req, res) {
+    const { data } = req.body;
+    const { id } = req.user;
+    const dbClient = await pgConnection.connect();
+
+    try {
+      await dbClient.query('BEGIN');
+      const addOrderAddress = await dbClient.query('INSERT INTO Addresses (destinationAddress, state) VALUES($1, $2) RETURNING *', [data.destinationAddress, data.state]);
+      let orders;
+      if (addOrderAddress.rows.length > 0) {
+        orders = await Promise.all([...data.orders].map(async (item) => {
+          const findFood = await dbClient.query('SELECT id, description, price, quantity from FoodVariants WHERE id = $1', [item.foodVariantId]);
+          if (findFood.rows[0].quantity > item.quantity) {
+            await dbClient.query('INSERT INTO ORDERS (userId, foodVariantId, quantity, orderDate, orderTime, destinationAddressId) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [id, item.foodVariantId, item.quantity, moment().format('dddd, MMMM Do YYYY'), moment().format('h:mm:ss a'), addOrderAddress.rows[0].id]);
+            const { price, description } = { ...findFood.rows[0] };
+            return Promise.resolve({ price, description, quantity: item.quantity });
+          }
+          return { order: false, ...item };
+        }));
+      }
+      if (orders.length > 0) {
+        res.status(201).json({ orders, msg: 'order placed successfully' }).end();
+      }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
     }
   }
 

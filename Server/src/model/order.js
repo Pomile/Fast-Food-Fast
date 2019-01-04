@@ -5,12 +5,13 @@ const Orders = {
       id serial NOT NULL,
       userId int NOT NULL,
       foodVariantId int NOT NULL,
-      orderDate int NOT NULL,
-      destinationAddressId int NOT NULL,
       quantity int NOT NULL,
-      accept boolean NOT NULL,
-      decline boolean NOT NULL,
-      complete boolean NOT NULL,
+      orderDate character varying(50) NOT NULL,
+      orderTime character varying(15) NOT NULL,
+      destinationAddressId int NOT NULL,
+      accept boolean,
+      decline boolean,
+      complete boolean,
 
       CONSTRAINT "Orders_pkey" PRIMARY KEY (id),
       CONSTRAINT "orders_userId_fkey" FOREIGN KEY (userId)

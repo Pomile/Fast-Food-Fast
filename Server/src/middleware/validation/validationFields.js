@@ -1,2 +1,2 @@
-export const userOrderfields = ['foodItemId', 'quantity'];
-export const userinfofields = ['userId', 'destinationAddress'];
+export const userOrderfields = ['foodVariantId', 'quantity'];
+export const userinfofields = ['destinationAddress', 'state'];

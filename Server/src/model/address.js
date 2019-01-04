@@ -1,8 +1,9 @@
 const Addresses = {
   createTable: async (pgClient) => {
     const createAddressTable = `CREATE TABLE IF NOT EXISTS Addresses(
-            id int NOT NULL,
+            id serial NOT NULL,
             destinationAddress character varying(150) NOT NULL,
+            state character varying(100) NOT NULL,
             CONSTRAINT "Addresses_pkey" PRIMARY KEY (id)
         );
         `;
