@@ -66,68 +66,26 @@ class order {
     }
   }
 
-  static modifyOrder(req, res) {
-    const { orderId } = req.params;
-    if (Number.isInteger(+orderId)) {
-      data.orders.map((orderItem, index) => {
-        const newOrderItem = { ...orderItem };
-        if (req.body.accept && (orderItem.id === +orderId && newOrderItem.completed !== true)) {
-          newOrderItem.accept = true;
-          newOrderItem.decline = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order accepted', data: newOrderItem });
-        } else if (req.body.accept && (orderItem.id === +orderId && newOrderItem.completed === true)) {
-          res.status(409).json({ msg: 'cannot accept an order that is already completed' }).end();
-        } else if (req.body.decline && (orderItem.id === +orderId && newOrderItem.completed !== true)) {
-          newOrderItem.accept = false;
-          newOrderItem.decline = true;
-          newOrderItem.completed = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order declined', data: newOrderItem });
-        } else if (req.body.decline && (orderItem.id === +orderId && newOrderItem.completed === true)) {
-          res.status(409).json({ msg: 'cannot decline an order that is already completed' }).end();
-        } else if (req.body.completed && orderItem.id === +orderId) {
-          newOrderItem.accept = true;
-          newOrderItem.decline = false;
-          newOrderItem.completed = true;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order completed', data: newOrderItem }).end();
-        } else if (req.body.completed === false && orderItem.id === +orderId) {
-          newOrderItem.accept = false;
-          newOrderItem.decline = false;
-          newOrderItem.completed = false;
-          data.orders[index] = newOrderItem;
-          res.status(200).json({ msg: 'order not completed', data: newOrderItem }).end();
-        }
-      });
-    } else {
-      res.status(400).json({ success: false, msg: 'invalid request. request parameter must be an integer' }).end();
-    }
-  }
-
-
-  static getUserOrder(req, res) {
-    const { id } = req.user;
-    const customerOrders = [];
-    data.orders.map((item) => {
-      if (item.userId === +id) {
-        customerOrders.push(item);
+  static async modifyOrder(req, res) {
+    const { id } = req.params;
+    const {
+      accept, decline, complete,
+    } = req.body;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      if (findOrder.rows.length > 0) {
+        const modifyOrder = await dbClient.query('UPDATE ORDERS SET accept = $1, decline = $2, complete = $3 WHERE id = $4 RETURNING accept, decline, complete', [accept, decline, complete, +id]);
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: modifyOrder.rows[0], success: true, msg: 'order accepted' }).end();
       }
-    });
-    res.status(200).json({ customerOrders, success: true }).end();
-  }
-
-  static adminGetUserOrders(req, res) {
-    // const customerOrders = [];
-    // data.orders.map((o) => {
-    // const currentOrder = o;
-    // const u = getUser(o.userId);
-    // const foodItem = getFoodItem(o.foodItemId);
-    // currentOrder.user = u;
-    // currentOrder.foodItem = foodItem;
-    // customerOrders.push(currentOrder);
-    // });
-    // res.status(200).json({ customerOrders, success: true, length: customerOrders.length }).end();
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
   }
 
   static getOrder(req, res) {

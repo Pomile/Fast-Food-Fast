@@ -145,7 +145,7 @@ router.post(
 );
 
 router.get(
-  '/customers/orders',
+  '/user/orders',
   verifyUser,
   permit('admin'),
   order.getAllCustomersOrder,
@@ -153,7 +153,7 @@ router.get(
 );
 
 router.put(
-  '/orders/:orderId',
+  '/user/orders/:id',
   verifyUser,
   permit('admin'),
   order.modifyOrder,
