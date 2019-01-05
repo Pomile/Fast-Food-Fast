@@ -46,13 +46,13 @@ class order {
       const customersOrder = await dbClient.query('SELECT * FROM ORDERS');
       const result = await Promise.all([...customersOrder.rows].map(async (item) => {
         const {
-          quantity, orderDate, orderTime, destinationAddressId, accept, decline, complete,
+          quantity, orderDate, orderTime, destinationAddressId, status,
         } = item;
         const foodVariant = await dbClient.query('SELECT id, price, description from FoodVariants WHERE id = $1', [item.id]);
         if (foodVariant.rows.length > 0) {
           const food = await dbClient.query('SELECT image, name FROM Foods WHERE id = $1', [foodVariant.rows[0].id]);
           return {
-            ...food.rows[0], ...foodVariant.rows[0], quantity, orderDate, orderTime, destinationAddressId, accept, decline, complete,
+            ...food.rows[0], ...foodVariant.rows[0], quantity, orderDate, orderTime, destinationAddressId, status,
           };
         }
       }));
@@ -68,17 +68,15 @@ class order {
 
   static async modifyOrder(req, res) {
     const { id } = req.params;
-    const {
-      accept, decline, complete,
-    } = req.body;
+    const { status } = req.body;
     const dbClient = await pgConnection.connect();
     try {
       await dbClient.query('BEGIN');
       const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
       if (findOrder.rows.length > 0) {
-        const modifyOrder = await dbClient.query('UPDATE ORDERS SET accept = $1, decline = $2, complete = $3 WHERE id = $4 RETURNING accept, decline, complete', [accept, decline, complete, +id]);
+        const modifyOrder = await dbClient.query('UPDATE ORDERS SET status = $1 WHERE id = $2 RETURNING id, status', [status, +id]);
         await dbClient.query('COMMIT');
-        res.status(200).json({ data: modifyOrder.rows[0], success: true, msg: 'order accepted' }).end();
+        res.status(200).json({ msg: `${modifyOrder.rows[0].status} order`, success: true }).end();
       }
     } catch (err) {
       await dbClient.query('ROLLBACK');
@@ -88,13 +86,21 @@ class order {
     }
   }
 
-  static getOrder(req, res) {
-    const { orderId } = req.params;
-    if (Number.isInteger(+orderId)) {
-      const findOrderById = data.orders.find(currentOrder => currentOrder.id === +orderId);
-      res.status(200).json({ success: true, data: findOrderById }).end();
-    } else {
-      res.status(400).json({ success: false, msg: 'invalid request. request parameter must be an integer' }).end();
+  static async getAnOrder(req, res) {
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      if (findOrder.rows.length > 0) {
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: findOrder.rows[0], success: true }).end();
+      }
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
     }
   }
 }

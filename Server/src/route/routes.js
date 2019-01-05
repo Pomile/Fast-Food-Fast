@@ -153,16 +153,20 @@ router.get(
 );
 
 router.put(
+<<<<<<< Updated upstream
   '/user/orders/:id',
+=======
+  '/orders/:id',
+>>>>>>> Stashed changes
   verifyUser,
   permit('admin'),
   order.modifyOrder,
 );
 
 router.get(
-  '/orders/:orderId',
+  '/orders/:id',
   verifyUser,
-  order.getOrder,
+  order.getAnOrder,
 );
 
 
