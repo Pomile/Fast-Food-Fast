@@ -9,14 +9,7 @@ const Orders = {
       orderDate character varying(50) NOT NULL,
       orderTime character varying(15) NOT NULL,
       destinationAddressId int NOT NULL,
-<<<<<<< Updated upstream
-      accept boolean,
-      decline boolean,
-      complete boolean,
-=======
       status character varying(50) DEFAULT 'New'::character varying,
->>>>>>> Stashed changes
-
       CONSTRAINT "Orders_pkey" PRIMARY KEY (id),
       CONSTRAINT "orders_userId_fkey" FOREIGN KEY (userId)
           REFERENCES Users (id)

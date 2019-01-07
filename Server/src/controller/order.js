@@ -103,6 +103,24 @@ class order {
       dbClient.release();
     }
   }
+
+  static async getUserOrders(req, res) {
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      if (findOrder.rows.length > 0) {
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: findOrder.rows[0], success: true }).end();
+      }
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
+  }
 }
 
 export default order;
