@@ -104,15 +104,47 @@ class order {
     }
   }
 
-  static async getUserOrders(req, res) {
+  static async getAUserOrderHistory(req, res) {
     const { id } = req.params;
     const dbClient = await pgConnection.connect();
     try {
       await dbClient.query('BEGIN');
-      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE userid = $1', [+id]);
       if (findOrder.rows.length > 0) {
         await dbClient.query('COMMIT');
-        res.status(200).json({ data: findOrder.rows[0], success: true }).end();
+        res.status(200).json({ data: findOrder.rows, success: true }).end();
+      } else {
+        res.status(404).json({ msg: 'Not Found' }).end();
+      }
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
+  }
+
+  static async getOrderDetails(req, res) {
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrderDetails = await dbClient.query(
+        `SELECT U.firstname, U.lastname, U.phone, F.description, F.price, O.quantity, F.expectedDeliveryTime, A.destinationAddress, F.id
+         FROM  ORDERS as O 
+         JOIN Users as U ON O.userid = U.id 
+         JOIN FoodVariants as F ON O.FoodVariantid = F.id 
+         JOIN Addresses as A ON O.destinationAddressId =  A.id 
+         WHERE O.id = $1 
+      `, [+id],
+      );
+      if (findOrderDetails.rows.length > 0) {
+        const foodVariant = await dbClient.query('SELECT foodId from FoodVariants WHERE id = $1', [findOrderDetails.rows[0].id]);
+        const food = await dbClient.query('SELECT image, name from Foods WHERE id = $1', [foodVariant.rows[0].foodid]);
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: { ...findOrderDetails.rows[0], ...food.rows[0] }, success: true }).end();
+      } else {
+        res.status(404).json({ msg: 'Not Found' }).end();
       }
     } catch (err) {
       await dbClient.query('ROLLBACK');

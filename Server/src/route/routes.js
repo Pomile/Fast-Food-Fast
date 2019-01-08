@@ -153,7 +153,8 @@ router.get(
 );
 
 router.put(
-  '/user/orders/:id',
+  '/orders/:id',
+  validateParamsId,
   verifyUser,
   permit('admin'),
   order.modifyOrder,
@@ -161,8 +162,23 @@ router.put(
 
 router.get(
   '/orders/:id',
+  validateParamsId,
   verifyUser,
   order.getAnOrder,
+);
+
+router.get(
+  '/users/:id/orders',
+  validateParamsId,
+  verifyUser,
+  order.getAUserOrderHistory,
+);
+
+router.get(
+  '/orders/:id/details',
+  validateParamsId,
+  verifyUser,
+  order.getOrderDetails,
 );
 
 
