@@ -57,6 +57,29 @@ class User {
     }
   }
 
+  static async modifyUserRole(req, res) {
+    const { email, role } = req.body;
+
+    const dbClient = await pgConnection.connect();
+    try {
+      const findUser = await dbClient.query('SELECT * from USERS WHERE email = $1', [email]);
+      if (findUser.rows.length > 0) {
+        const updateUserRole = await dbClient.query('UPDATE USERS SET role = $1 WHERE email = $2 RETURNING email, role', [role, email]);
+        if (updateUserRole.rows[0].role === role) {
+          await dbClient.query('COMMIT');
+          res.status(200).json({ data: updateUserRole.rows[0], msg: 'user role updated successfully' });
+        }
+      } else {
+        res.status(404).json({ msg: 'user not found' }).end();
+      }
+    } catch (err) {
+      await dbClient.query('ROLLBACK');
+      res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
+  }
+
   static async authenticate(req, res) {
     const { email, password } = req.body;
     const findUserByEmailQuery = {

@@ -27,6 +27,13 @@ router.post(
   User.addUser,
 );
 
+router.put(
+  '/admin/assignment',
+  verifyUser,
+  permit('admin'),
+  User.modifyUserRole,
+);
+
 router.post(
   '/auth/signin',
   validateUserCrediential,
