@@ -17,7 +17,7 @@ const testData = {
     phone: '+123192928',
     password: 'Password123',
     cpassword: 'Password123',
-    role: 'user',
+    role: 'admin',
   },
   userDataWithoutFirstname: {
     firstname: '',
@@ -110,8 +110,12 @@ const testData = {
     isAuth: false,
   },
 
-  foodItem: {
+  userAuthWithInvalidToken: {
+    token: null,
+    isAuth: false,
+  },
 
+  foodItem: {
     foodCategoryName: 'Fries',
     name: 'Chicken and chips',
     price: 2500,
@@ -127,8 +131,15 @@ const testData = {
     description: '2 Chicken Pie with a bottle of coke',
     quantity: 25,
     expectedDeliveryTime: '25 min',
-
   },
+
+  foodVariantUpdate: {
+    price: 2500,
+    description: '2 Chicken Pie + a bottle of coke',
+    quantity: 20,
+    expectedDeliveryTime: '25 min',
+  },
+
   foodItemWithoutName: {
     foodCategoryName: 'Fries',
     name: '',
@@ -162,13 +173,9 @@ const testData = {
     description: '',
     expectedDeliveryTime: '45 min',
   },
-  foodItemUpdate: {
-    foodId: 3,
+  foodUpdate: {
+    name: 'Fried rice + Chicken + Dodo',
     image: null,
-    price: 2500,
-    description: '2 Chickens and a pack of chips with a bottle of coke',
-    quantity: 25,
-    expectedDeliveryTime: '45 min',
   },
   foodItemThatDoesNotExistUpdate: {
     foodId: 3,
@@ -212,9 +219,17 @@ const testData = {
   },
   orderData: {
     data: {
-      order: [{ foodItemId: 4, quantity: 3 }, { foodItemId: 3, quantity: 2 }],
-      userId: 1,
+      orders: [{ foodVariantId: 4, quantity: 3 }, { foodVariantId: 5, quantity: 2 }],
       destinationAddress: '4, ereko street fadeyi, lagos',
+      state: 'Lagos',
+    },
+  },
+
+  orderDataWithLargerQuantity: {
+    data: {
+      orders: [{ foodVariantId: 4, quantity: 100 }, { foodVariantId: 5, quantity: 2 }],
+      destinationAddress: '4, ereko street fadeyi, lagos',
+      state: 'Lagos',
     },
   },
 
@@ -227,50 +242,144 @@ const testData = {
   },
   orderDataWithoutUserId: {
     data: {
-      order: [{ foodItemId: 4, quantity: 3 }, { foodItemId: 3, quantity: 2 }],
+      order: [{ foodVariantId: 4, quantity: 3 }, { foodVariantId: 3, quantity: 2 }],
       destinationAddress: '4, ereko street fadeyi, lagos',
     },
   },
   orderDataWithoutQuantity: {
     data: {
-      order: [{ foodItemId: 4, quantity: 0 }, { foodItemId: 3, quantity: 2 }],
-      userId: 1,
+      orders: [{ foodVariantId: 4, quantity: 0 }, { foodVariantId: 5, quantity: 2 }],
       destinationAddress: '4, ereko street fadeyi, lagos',
+      state: 'Lagos',
     },
   },
   orderDataWithoutdestinationAddress: {
     data: {
-      order: [{ foodItemId: 4, quantity: 1 }, { foodItemId: 3, quantity: 2 }],
-      userId: 1,
+      orders: [{ foodVariantId: 4, quantity: 1 }, { foodVariantId: 3, quantity: 2 }],
       destinationAddress: '',
+      state: 'Lagos',
+    },
+  },
+
+  orderDataWithoutState: {
+    data: {
+      orders: [{ foodVariantId: 4, quantity: 1 }, { foodVariantId: 3, quantity: 2 }],
+      destinationAddress: '4, ereko street fadeyi, lagos',
+      state: '',
+    },
+  },
+
+  orderDataWithoutStateField: {
+    data: {
+      orders: [{ foodVariantId: 4, quantity: 1 }, { foodVariantId: 3, quantity: 2 }],
+      destinationAddress: '4, ereko street fadeyi, lagos',
     },
   },
   orderDataWithoutFoodItemId: {
     data: {
-      order: [{ quantity: 1 }, { foodItemId: 3, quantity: 2 }],
-      userId: 1,
+      orders: [{ quantity: 1 }, { foodVariantId: 3, quantity: 2 }],
       destinationAddress: '4, ereko street fadeyi, lagos',
+      state: 'Lagos',
     },
   },
 
   orderDataWithEmptyOrder: {
     data: {
-      order: [],
-      userId: 1,
-      destinationAddress: '4, ereko street fadeyi, lagos',
+      orders: [],
+      destinationAddress: '4, ereko street fadeyi',
+      state: 'Lagos',
     },
   },
   orderDataInvalidFoodItemId: {
     data: {
-      order: [{ foodItemId: 'djhdjh', quantity: 1 }, { foodItemId: 3, quantity: 2 }],
-      userId: 1,
-      destinationAddress: '4, ereko street fadeyi, lagos',
+      orders: [{ foodVariantId: 'djhdjh', quantity: 1 }, { foodVariantId: 3, quantity: 2 }],
+      destinationAddress: '4, ereko street fadeyi',
+      state: 'Lagos',
     },
   },
   orderDataAccept: { accept: true },
   orderDataDecline: { decline: true },
   orderDataCompleted: { completed: true },
   orderDataUnCompleted: { completed: false },
+  foods: [
+    {
+      foodCategoryId: 1,
+      userId: 1,
+      name: 'Chicken and chips',
+    },
+    {
+      foodCategoryId: 2,
+      userId: 1,
+      name: 'Shawamma',
+    },
+
+    {
+      foodCategoryId: 2,
+      userId: 1,
+      name: 'Meat pie',
+    },
+
+    {
+      foodCategoryId: 2,
+      userId: 1,
+      name: 'Scorge egg',
+    },
+
+    {
+      foodCategoryId: 6,
+      userId: 1,
+      name: 'Fried rice and chicken',
+    },
+  ],
+  foodVariants: [
+    {
+      foodId: 1,
+      userId: 1,
+      description: '2 Chickens + 2 pack of chips + 2 coke',
+      quantity: 25,
+      price: 4000,
+      expectedDeliveryTime: '45 min',
+    },
+
+    {
+      foodId: 1,
+      userId: 1,
+      description: '1 Chicken and 1 pack of chips + 1 coke',
+      quantity: 25,
+      price: 2700,
+      expectedDeliveryTime: '45 min',
+    },
+
+    {
+      foodId: 3,
+      userId: 1,
+      description: '2 Meat pie + 1 coke',
+      quantity: 25,
+      price: 1300,
+      expectedDeliveryTime: '45 min',
+    },
+
+    {
+      foodId: 5,
+      userId: 1,
+      description: 'Fried rice + 2 chiken + 1 coke',
+      quantity: 25,
+      price: 2500,
+      expectedDeliveryTime: '45 min',
+    },
+  ],
+  foodCategories: [
+    /*
+      id: int not null,
+      title: string,
+    */
+    { id: 1, name: 'Fries' },
+    { id: 2, name: 'sides' },
+    { id: 3, name: 'burger' },
+    { id: 4, name: 'Tacos' },
+    { id: 5, name: 'sweets and drinks' },
+    { id: 6, name: 'meals and combos' },
+  ],
 
 };
 

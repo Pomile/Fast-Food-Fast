@@ -12,18 +12,13 @@ const verifyUser = (req, res, next) => {
   } else if (JSON.parse(req.headers.isauth)) {
     jwt.verify(payload, 'landxxxofxxxopporxxxtunixxxty', async (err, decoded) => {
       if (!err) {
-        pgConnection.connect().then((client) => {
-          const userData = client.query({ name: 'find-user', text: 'SELECT id, firstname, lastname, role FROM users WHERE id = $1', values: [decoded.data] });
-          client.release();
-          return userData;
-        }).then((userData) => {
-          if (userData.rows.length === 1) {
-            [req.user] = userData.rows;
-            next();
-          } else {
-            res.status(404).json({ msg: 'user not found' }).end();
-          }
-        }).catch(e => res.status(409).json({ error: e.message }).end());
+        const dbClient = await pgConnection.connect();
+        const userData = await dbClient.query('SELECT id, firstname, lastname, role FROM users WHERE id = $1', [decoded.data]);
+        await dbClient.release();
+        if (userData.rows.length === 1) {
+          [req.user] = userData.rows;
+          next();
+        }
       } else {
         res.status(401).send({ success: false, err: 'invalid token', errMsg: err.message }).end();
       }

@@ -3,7 +3,7 @@ import {
   userValidator, validationApi,
   validateUserCrediential,
   validateFoodItem,
-  validateFoodVariantUpdate,
+  validateFoodVariant,
   validateFoodUpdate,
   validateUserOrderData,
   validateFoodCategory,
@@ -19,12 +19,19 @@ import order from '../controller/order';
 
 const router = express.Router();
 
+// User API Routes
 router.post(
   '/auth/signup',
   userValidator,
   validationApi,
   passwordEncryption,
   User.addUser,
+);
+
+router.post(
+  '/auth/signin',
+  validateUserCrediential,
+  User.authenticate,
 );
 
 router.put(
@@ -34,68 +41,38 @@ router.put(
   User.modifyUserRole,
 );
 
-router.post(
-  '/auth/signin',
-  validateUserCrediential,
-  User.authenticate,
-);
-
-router.get(
-  '/fastFoods',
-  verifyUser,
-  fastFoods.getFastFoods,
-);
-
-router.get(
-  '/fastFoods/category/:id',
-  validateParamsId,
-  verifyUser,
-  fastFoods.getFastFoodsByCategoryId,
-);
-
-
-router.get(
-  '/fastFood',
-  verifyUser,
-  fastFoods.getFastFood,
-);
-
-router.get(
-  '/fastFoods/:id',
-  validateParamsId,
-  verifyUser,
-  fastFoods.getFastFoodVariants,
-);
-
-router.get(
-  '/foods',
-  verifyUser,
-  fastFoods.getFoods,
-);
-
-router.get(
-  '/fastFoodCategories',
-  verifyUser,
-  fastFoods.getFoodCategories,
-);
+// FastFood Routes
 
 router.post(
-  '/fastFoods',
-  validateFoodItem,
-  validationApi,
+  '/fastFood-categories',
   verifyUser,
   permit('admin'),
-  fastFoods.addFoodItem,
+  fastFoods.addFoodCategories,
 );
 
 router.post(
-  '/fastFoodCategories',
+  '/bulk-fastFoods',
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFastFoods,
+);
+
+router.post(
+  '/bulk-fastFoodVariants',
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFoodVariants,
+);
+
+router.post(
+  '/fastFoodsCategories',
   validateFoodCategory,
   validationApi,
   verifyUser,
   permit('admin'),
   fastFoods.addFoodCategory,
 );
+
 
 router.put(
   '/fastFoodCategory/:id',
@@ -106,19 +83,58 @@ router.put(
   fastFoods.modifyFoodCategory,
 );
 
+router.get(
+  '/fastFoodCategories',
+  verifyUser,
+  fastFoods.getFoodCategories,
+);
+
+
+router.post(
+  '/fastFoods',
+  validateFoodItem,
+  validationApi,
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFoodItem,
+);
+
 router.put(
   '/fastFoods/:id',
   validateFoodUpdate,
   validationApi,
   vaidateImage,
+  validateParamsId,
   verifyUser,
   permit('admin'),
   fastFoods.modifyFood,
 );
 
+router.get(
+  '/fastFoods',
+  verifyUser,
+  fastFoods.getFastFoods,
+);
+
+router.get(
+  '/fastFoods/categories/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodsByCategoryId,
+);
+
+
+router.get(
+  '/fastFoods/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodVariants,
+);
+
+
 router.put(
-  '/fastFoodVariants/:id',
-  validateFoodVariantUpdate,
+  '/fastFoods/variants/:id',
+  validateFoodVariant,
   validationApi,
   validateParamsId,
   verifyUser,
@@ -126,17 +142,16 @@ router.put(
   fastFoods.modifyFoodVariants,
 );
 
-
 router.delete(
   '/fastFoods/:id',
   validateParamsId,
   verifyUser,
-  permit('super-admin'),
+  permit('admin'),
   fastFoods.removeFastFood,
 );
 
 router.delete(
-  '/fastFoodVariants/:id',
+  '/fastFoods/variants/:id',
   validateParamsId,
   verifyUser,
   permit('admin'),
@@ -145,18 +160,17 @@ router.delete(
 
 router.post(
   '/orders',
-  verifyUser,
   validateUserOrderData,
   validationApi,
+  verifyUser,
   order.placeOrder,
 );
 
 router.get(
-  '/user/orders',
+  '/customer/orders',
   verifyUser,
   permit('admin'),
   order.getAllCustomersOrder,
-
 );
 
 router.put(
@@ -175,8 +189,7 @@ router.get(
 );
 
 router.get(
-  '/users/:id/orders',
-  validateParamsId,
+  '/user/orders',
   verifyUser,
   order.getAUserOrderHistory,
 );

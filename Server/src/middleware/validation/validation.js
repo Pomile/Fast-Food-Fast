@@ -92,7 +92,7 @@ export const validateFoodItem = [
     .exists()
     .not()
     .isEmpty()
-    .withMessage(' expectedDeliveryTime id required')
+    .withMessage('expectedDeliveryTime id required')
     .custom(value => value !== ''),
 ];
 
@@ -107,7 +107,7 @@ export const validateFoodUpdate = [
     .custom(value => value !== ''),
 
 ];
-export const validateFoodVariantUpdate = [
+export const validateFoodVariant = [
 
   body('price')
     .exists()
@@ -152,25 +152,6 @@ export const validateUserCrediential = [
     .matches(/\d/)
     .withMessage('must contain a number'),
 ];
-
-
-/* export const validateUserOrderUpdate = [
-
-  body('data.*.userId', 'user id must be an integer').exists().isInt(),
-  body('data.*.orders.*.foodItemId', 'food item id must be an integer').exists().isInt(),
-  body('data.*.orders.*.quantity', 'quantity is required and must be an integer')
-    .exists()
-    .not()
-    .isEmpty()
-    .custom(value => Number.isInteger(value) && value > 0),
-  body('data.*.destinationAddress', ' destinationAddress field must be a string')
-    .trim()
-    .exists()
-    .not()
-    .isEmpty()
-    .withMessage('Food description is required')
-    .custom(value => value !== ''),
-]; */
 
 export const validateUserOrderData = (req, res, next) => {
   const validateOrderFields = checkOrderFields(req, userOrderfields);

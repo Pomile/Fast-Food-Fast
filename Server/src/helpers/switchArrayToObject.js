@@ -1,6 +1,6 @@
 export const switchFoodValuesToObject = (res) => {
   const result = {};
-  console.log('foodValues', res.rows[0]);
+  // console.log('foodValues', res.rows[0]);
   res.rows[0].map((item, index) => {
     switch (index) {
       case 0: result.id = item; break;
@@ -16,7 +16,7 @@ export const switchFoodValuesToObject = (res) => {
 
 export const switchFoodVariantsValuesToObject = (res) => {
   const result = {};
-  console.log('foodVariant', res.rows[0]);
+  // console.log('foodVariant', res.rows[0]);
   res.rows[0].map((item, index) => {
     switch (index) {
       case 0: result.id = item; break;
@@ -36,7 +36,7 @@ export const switchFoodVariantsValuesToObject = (res) => {
 
 export const switchFoodCatValuesToObject = (res) => {
   const result = {};
-  console.log('foodCat', res.rows[0]);
+  // console.log('foodCat', res.rows[0]);
   res.rows[0].map((item, index) => {
     switch (index) {
       case 0: result.id = item; break;
@@ -50,7 +50,7 @@ export const switchFoodCatValuesToObject = (res) => {
 
 export const switchUserValuesToObject = (res) => {
   const result = {};
-  console.log(res.rows[0]);
+  // console.log(res.rows[0]);
   res.rows[0].map((item, index) => {
     switch (index) {
       case 0: result.id = item; break;

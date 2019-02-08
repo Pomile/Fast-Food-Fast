@@ -8,9 +8,6 @@ const validateImage = (req, res, next) => {
       } else {
         next();
       }
-    } else {
-      req.files = { image: null };
-      next();
     }
   } catch (e) {
     res.status(400).json({ error: `${e.message}, image must be either jpg or png` });

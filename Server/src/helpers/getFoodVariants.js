@@ -16,8 +16,8 @@ const getFoodVariants = async (id) => {
     }
     await dbClient.query('COMMIT');
   } catch (e) {
-    await dbClient.query('ROLLBACK');
-    result = { error: e.message };
+    // await dbClient.query('ROLLBACK');
+    // result = { error: e.message };
   } finally {
     dbClient.release();
   }

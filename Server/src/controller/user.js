@@ -24,14 +24,8 @@ class User {
       values: [email],
     };
 
-    pgConnection.on('error', (err, client) => {
-      console.error('Unexpected error on idle client', err);
-      process.exit(-1);
-    });
-
     const dbClient = await pgConnection.connect();
     const findUserByEmail = await dbClient.query(findUserQuery);
-
     if (findUserByEmail.rows.length === 0) {
       pgConnection.connect()
         .then((client) => {
@@ -41,14 +35,7 @@ class User {
               return data;
             }).then((data) => {
               client.release();
-              res.status(201).json({
-                data,
-                success: true,
-              }).end();
-            }).catch((err) => {
-              console.log(err.stack);
-              client.release();
-              res.status(409).json({ error: err.message, success: false }).end();
+              res.status(201).json({ data, success: true, msg: 'user added successfully' }).end();
             });
         });
     } else {
@@ -59,22 +46,19 @@ class User {
 
   static async modifyUserRole(req, res) {
     const { email, role } = req.body;
-
     const dbClient = await pgConnection.connect();
     try {
+      await dbClient.query('BEGIN');
       const findUser = await dbClient.query('SELECT * from USERS WHERE email = $1', [email]);
       if (findUser.rows.length > 0) {
         const updateUserRole = await dbClient.query('UPDATE USERS SET role = $1 WHERE email = $2 RETURNING email, role', [role, email]);
         if (updateUserRole.rows[0].role === role) {
-          await dbClient.query('COMMIT');
           res.status(200).json({ data: updateUserRole.rows[0], msg: 'user role updated successfully' });
         }
-      } else {
-        res.status(404).json({ msg: 'user not found' }).end();
       }
+      await dbClient.query('COMMIT');
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
     } finally {
       dbClient.release();
     }
@@ -83,8 +67,7 @@ class User {
   static async authenticate(req, res) {
     const { email, password } = req.body;
     const findUserByEmailQuery = {
-      name: 'find-user',
-      text: 'SELECT id, password FROM users WHERE email = $1',
+      text: 'SELECT * FROM users WHERE email = $1',
       values: [email],
     };
     // const userData = data.users.find(user => user.email === email);
@@ -95,8 +78,10 @@ class User {
       res.status(404).json({ msg: 'user not found' }).end();
     } else {
       const hash = findUserByEmail.rows[0].password;
+      // console.log(hash);
       bcrypt.compare(password, hash, (err, result) => {
         const token = jwt.sign({ data: findUserByEmail.rows[0].id }, 'landxxxofxxxopporxxxtunixxxty', { expiresIn: '24h' });
+        // console.log(result);
         dbClient.release();
         if (result) {
           res.status(200).json({

@@ -130,6 +130,19 @@ describe('Fast-Food-Fast Test Suite', () => {
         });
     });
 
+    it('The admin user should be able to sign in', (done) => {
+      request(app)
+        .post('/api/v1/auth/signin')
+        .set('Accept', 'application/json')
+        .send(testData.userCredentials)
+        .end((err, res) => {
+          testData.userAuthWithInvalidToken.token = `${res.body.token}yteytyte`;
+          testData.adminUserAuth.isAuth = res.body.isAuth;
+          expect(res.body.msg).to.equal('user logged in sucessfully');
+          done();
+        });
+    });
+
     it('A user should be able to sign in', (done) => {
       request(app)
         .post('/api/v1/auth/signin')
@@ -162,6 +175,20 @@ describe('Fast-Food-Fast Test Suite', () => {
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body.msg).to.equal('user not found');
+          done();
+        });
+    });
+
+    it('A user should be able to modify user role', (done) => {
+      const { isAuth, token } = testData.adminUserAuth;
+      request(app)
+        .put('/api/v1/admin/assignment')
+        .set('Accept', 'application/json')
+        .set({ authorization: `${token}`, isAuth: `${isAuth}` })
+        .send({ email: 'user2@live.com', role: 'user' })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.msg).to.equal('user role updated successfully');
           done();
         });
     });

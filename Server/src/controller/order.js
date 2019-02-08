@@ -1,8 +1,5 @@
 import moment from 'moment';
 import db from '../model';
-import getFoodVariants from '../helpers/getFoodVariants';
-import getUser from '../helpers/getUser';
-import FoodVariants from '../model/foodVariants';
 
 const { pgConnection } = db;
 
@@ -24,7 +21,7 @@ class order {
             const { price, description } = { ...findFood.rows[0] };
             return Promise.resolve({ price, description, quantity: item.quantity });
           }
-          return { order: false, ...item };
+          return Promise.resolve({ order: false, ...item });
         }));
       }
       if (orders.length > 0) {
@@ -32,8 +29,8 @@ class order {
       }
       await dbClient.query('COMMIT');
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
       dbClient.release();
     }
@@ -48,7 +45,7 @@ class order {
         const {
           quantity, orderDate, orderTime, destinationAddressId, status,
         } = item;
-        const foodVariant = await dbClient.query('SELECT id, price, description from FoodVariants WHERE id = $1', [item.id]);
+        const foodVariant = await dbClient.query('SELECT id, price, description from FoodVariants WHERE id = $1', [+item.foodvariantid]);
         if (foodVariant.rows.length > 0) {
           const food = await dbClient.query('SELECT image, name FROM Foods WHERE id = $1', [foodVariant.rows[0].id]);
           return {
@@ -56,11 +53,11 @@ class order {
           };
         }
       }));
-      res.status(200).json({ data: result });
       await dbClient.query('COMMIT');
+      res.status(200).json({ data: result });
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
       dbClient.release();
     }
@@ -73,14 +70,16 @@ class order {
     try {
       await dbClient.query('BEGIN');
       const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
-      if (findOrder.rows.length > 0) {
+      if (findOrder.rows.length > 0 && findOrder.rows[0].status !== 'Completed') {
         const modifyOrder = await dbClient.query('UPDATE ORDERS SET status = $1 WHERE id = $2 RETURNING id, status', [status, +id]);
         await dbClient.query('COMMIT');
         res.status(200).json({ msg: `${modifyOrder.rows[0].status} order`, success: true }).end();
+      } else {
+        res.status(409).json({ msg: 'Order is already completed' }).end();
       }
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
       dbClient.release();
     }
@@ -97,28 +96,27 @@ class order {
         res.status(200).json({ data: findOrder.rows[0], success: true }).end();
       }
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
       dbClient.release();
     }
   }
 
   static async getAUserOrderHistory(req, res) {
-    const { id } = req.params;
     const dbClient = await pgConnection.connect();
     try {
       await dbClient.query('BEGIN');
-      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE userid = $1', [+id]);
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE userid = $1', [+req.user.id]);
       if (findOrder.rows.length > 0) {
-        await dbClient.query('COMMIT');
         res.status(200).json({ data: findOrder.rows, success: true }).end();
       } else {
         res.status(404).json({ msg: 'Not Found' }).end();
       }
+      await dbClient.query('COMMIT');
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
       dbClient.release();
     }
@@ -147,10 +145,10 @@ class order {
         res.status(404).json({ msg: 'Not Found' }).end();
       }
     } catch (err) {
-      await dbClient.query('ROLLBACK');
-      res.status(500).json({ error: err.message }).end();
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
     } finally {
-      dbClient.release();
+      await dbClient.release();
     }
   }
 }

@@ -3,7 +3,6 @@ export const checkOrderFields = (req, fields) => {
   const { data } = req.body;
   let availableFields;
   const missingFields = [];
-
   let allOrderFieldExists = true;
   data.orders.map((orderItem, i) => {
     availableFields = Object.keys(orderItem);
@@ -17,7 +16,7 @@ export const checkOrderFields = (req, fields) => {
       });
     }
   });
-  // console.log({allOrderFieldExists, expectedFields, missingFields,});
+
   return {
     allOrderFieldExists, expectedFields, missingFields,
   };
@@ -35,5 +34,6 @@ export const checkUserInfoFields = (req, fields) => {
       missingFields.push({ field: key });
     }
   });
+
   return { allUserInfoFieldExist, missingFields };
 };
