@@ -13,6 +13,8 @@ const db = {};
 
 let pgConnection;
 
+console.log(config);
+
 if (config.use_env_variable) {
   pgConnection = new Pool({ connectionString: process.env[config.use_env_variable] });
 } else {
@@ -99,7 +101,6 @@ db.models = {
         await Addresses.createTable(pgConnection); // Parent to Orders
         await FoodVariants.createTable(pgConnection);
         await Orders.createTable(pgConnection);
-      
       } catch (err) {
         console.debug(err.message);
       }
@@ -120,7 +121,6 @@ db.models = {
         await Addresses.createTable(pgConnection);
         await FoodVariants.createTable(pgConnection);
         await Orders.createTable(pgConnection);
-        
       } catch (err) {
         console.debug(err.message);
       }

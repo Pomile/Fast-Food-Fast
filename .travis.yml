@@ -13,7 +13,6 @@ services:
 before_script:
   - psql -c 'CREATE DATABASE fast_food_fast;' -U postgres
   - npm run test:db:migrate
-  - npm run create:admin  
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build

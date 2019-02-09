@@ -10,20 +10,19 @@
       "timezone": "+01:00"
     },
     
-  "test": {
-    "username": "postgres",
-    "password": "Skylinq24",
-    "database": "fast_food_fast_test",
-    "host": "127.0.0.1",
-    "port": 2400,
-    "dialect": "postgres",
-    "timezone": "+01:00",
-    "logging": false
-  },
-  
-  "production": {
-    "client": "pg",
-    "use_env_variable": "DATABASE_URL",
-    "dialect": "postgres"
-  }
+    "test": {
+      "username": "postgres",
+      "password": "Skylinq24",
+      "database": "fast_food_fast_test",
+      "host": "127.0.0.1",
+      "port": 2400,
+      "dialect": "postgres",
+      "timezone": "+01:00",
+      "logging": false
+    },
+    "production": {
+      "client": "pg",
+      "use_env_variable": "DATABASE_URL",
+      "dialect": "postgres"
+    }
   }
