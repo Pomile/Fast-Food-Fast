@@ -25,7 +25,7 @@
     "mocha:test": "mocha --compilers js:@babel/register  --require @babel/polyfill ./Server/spec/userTest.js ./Server/spec/fastFoodTest.js ./Server/spec/orderTest.js --exit",
     "start": "babel-node ./Server/server.js",
     "build:ui-template": "webpack",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test:db:migrate": "cross-env NODE_ENV=test npm run db:migrate",
     "db:migrate": "babel-node ./Server/src/migration/migration.js",
     "create:admin": "babel-node ./Server/src/helpers/createAdmin.js"
