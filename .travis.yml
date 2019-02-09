@@ -22,7 +22,6 @@ script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - npm run test:db:migrate
 
 after_success:
   - npm run coveralls
