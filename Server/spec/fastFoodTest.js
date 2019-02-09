@@ -50,7 +50,6 @@ describe('FastFood API', () => {
       .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
         if (!err) {
-          console.log(res.body);
           expect(res.status).to.equal(401);
           done();
         }
@@ -256,7 +255,6 @@ describe('FastFood API', () => {
       .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .send({ foodCategoryName: 'Junks' })
       .end((err, res) => {
-        console.log(res.body);
         expect(res.status).to.equal(201);
         expect(res.body.success).to.equal(true);
         done();
@@ -543,7 +541,6 @@ describe('FastFood API', () => {
       .set('Accept', 'application/json')
       .set({ authorization: `${token}`, isAuth: `${isAuth}` })
       .end((err, res) => {
-        console.log(res.body);
         expect(res.status).to.equal(400);
         done();
       });
