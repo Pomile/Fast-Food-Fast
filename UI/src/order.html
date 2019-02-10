@@ -4,11 +4,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Ordery history</title>   
     </head>
     <body>
         <div id="wrapper" >
-                <div class="backdrop hide-on-medium-and-up" id="backdrop" >
+                <div class="backdrop" id="backdrop" >
 
                 </div>
                     <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
@@ -40,105 +41,129 @@
                 
                 <ul class="navigation navigation-shift-right hide-on-medium-and-down">
                     <li class="navigation__item"><a class="navigation__link navigation__link-full-height" href="user.html">Home</a></li>
-                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="order.html">Order History</a></li>
+                    <li class="navigation__item" ><a class="navigation__link navigation__link-full-height active" href="order.html">Order History</a></li>
                 </ul>
             </div>
-            <div id ="main" class="-whiteBgColor">
-                <div class="headerSeperator"></div>
-                <div class="page-title"><h1 class="-grayTxtColor">Order History</h1></div>
-                <div class="tabular">
-                    <div class="tabular__search"><label class="-fw-bold" for="date">Date</label><input class="tabular__input" type="date" id="date" place="Date"></div>
-                    <div class="tabular__table">
-
-                            <table>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>OrderedDate</th>
-                                            <th>Time</th>
-                                            <th>FoodItem Description</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                            <td>July 2009</td>
-                                            <td>5:30</td>
-                                            <td>Double Burger</td>
-                                            <td>3000</td>
-                                            <td>pending</td>
-                                        </tr>
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-
-                                        <tr>
-                                                <td><img class="tabular__img" src="./assets/images/burger.png"></td>
-                                                <td>July 2009</td>
-                                                <td>5:30</td>
-                                                <td>Double Burger</td>
-                                                <td>3000</td>
-                                                <td>pending</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            <div id ="main-2" class="-whiteBgColor">
+                    <div class="separator"></div>
+                <h2 class="header">Orders</h2>
+                <div class="action-description">
+                    <div><img src="./assets/images/icons8-motorcycle-26.png" class= "action-description__item" /><span>Pending</span></div>
+                    <div><img src="./assets/images/icons8-checkmark-21.png" class= "action-description__item" /><span>completed</span></div>
+                </div>
+                <div class="orderTools">
+                    <div class ="search"><input type="text" placeholder="Search order..." id="searchOrders" class="search__input"></div>
+                    <div class ="date"><input type="date" id="searchOrdersByDate" class="search__inputDate"></div>
+                </div>
+                <div class="table" id="userOrder">
+                    <div class="table__header" id="tableHeader">
+                        <div class="table__sn tb-w-4" id="h-sn"></div>
+                        <div class="table__picture tb-w-9" id="h-picture"></div>
+                        <div class="table__description tb-w-35" id="h-description">Item description</div>
+				        <div class="table__orderDate tb-w-14" id="h-orderDate">Date</div>
+                        <div class="table__orderTime tb-w-9" id="h-orderTime">Time</div>
+                        <div class="table__quantity tb-w-9" id="h-quantity">Qty</div>
+                        <div class="table__amount tb-w-12" id="h-amount">Amount</div>
+                        <div class="table__status tb-w-10" id="h-status">status</div>
+                        <div class="table__scroll-pad"></div>
+                    </div>
+                    <div class="scrollBlock" id="scrollBlock">
+                        <table class="table__body">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="10%" >
+                                <col width="30%">
+                                <col width="15%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="11%">
+                            </colgroup>
+                            <thead style="">
+                                <tr>
+                                    <th id="th-sn"></th>
+                                    <th id="th-picture" ></th>
+                                    <th id="th-description">Item description</th>
+                                    <th id ="th-orderDate">Order Date</th>
+                                    <th id= "th-orderTime">Time</th>
+                                    <th id= "th-quantity">Qty</th>
+                                    <th id= "th-amount">Amount</th>
+                                    <th id="th-status">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2"><img src="./assets/images//friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">22 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">2</td>
+                                    <td class="td-2">6200</td>
+                                    <td class="td-2"><img src="./assets/images//icons8-checkmark-24.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-2">2</td>
+                                    <td class="td-2"><img src="./assets/images/friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">21 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2">3100</td>
+                                    <td class="td-2"><img src="./assets/images//icons8-motorcycle-26.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-2">3</td>
+                                    <td class="td-2"><img src="./assets/images//friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">21 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2">3100</td>
+                                    <td class="td-2"><img src="./assets/images//icons8-motorcycle-26.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-2">4</td>
+                                    <td class="td-2"><img src="./assets/images//friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">21 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2">3100</td>
+                                    <td><img src="./assets/images//icons8-motorcycle-26.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-2">5</td>
+                                    <td class="td-2"><img src="./assets/images//friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">21 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2">3100</td>
+                                    <td class="td-2"><img src="./assets/images//icons8-motorcycle-26.png" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-2">6</td>
+                                    <td class="td-2"><img src="./assets/images//friedanddodowithchiken.png" class="td-img"/></td>
+                                    <td class="td-2">Fried rice with 2 chicken + dodo + 1 coke</td>
+                                    <td class="td-2">21 september 2018</td>
+                                    <td class="td-2">2:00 pm</td>
+                                    <td class="td-2">1</td>
+                                    <td class="td-2">3100</td>
+                                    <td class="td-2"><img src="./assets/images//icons8-motorcycle-26.png" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
-                
-                
+                <div class="separator"></div>
+                <div class="navPane">
+                    <i class=" nav-left nav-right-padding fa fa-caret-left" id="navLeft" ></i><input type="text" value="1" id="navInput" style="width: 30px; text-align: center;">
+                    <i class="nav-right nav-left-padding fa fa-caret-right " id="navRight" ></i>
+                </div>
             </div>
-            <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
-        </div>
+        
+                <div id="footer" class="-orangeredBgColor">soft-sky@live.co.uk</div>
+            </div>
     </body>
 </html>

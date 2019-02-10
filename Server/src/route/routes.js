@@ -3,10 +3,13 @@ import {
   userValidator, validationApi,
   validateUserCrediential,
   validateFoodItem,
-  validateFoodItemUpdate,
+  validateFoodVariant,
   validateFoodUpdate,
-  validateUserOrder,
-} from '../middleware/validation';
+  validateUserOrderData,
+  validateFoodCategory,
+} from '../middleware/validation/validation';
+import vaidateImage from '../middleware/validation/validateImage';
+import validateParamsId from '../middleware/validation/idValidator';
 import verifyUser from '../middleware/verification';
 import passwordEncryption from '../middleware/encryption';
 import permit from '../middleware/permission';
@@ -16,6 +19,7 @@ import order from '../controller/order';
 
 const router = express.Router();
 
+// User API Routes
 router.post(
   '/auth/signup',
   userValidator,
@@ -30,16 +34,62 @@ router.post(
   User.authenticate,
 );
 
-router.get(
-  '/fastFoods',
+router.put(
+  '/admin/assignment',
   verifyUser,
-  fastFoods.getFastFoods,
+  permit('admin'),
+  User.modifyUserRole,
 );
-router.get(
-  '/fastFoods/:id',
+
+// FastFood Routes
+
+router.post(
+  '/fastFood-categories',
   verifyUser,
-  fastFoods.getFastFood,
+  permit('admin'),
+  fastFoods.addFoodCategories,
 );
+
+router.post(
+  '/bulk-fastFoods',
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFastFoods,
+);
+
+router.post(
+  '/bulk-fastFoodVariants',
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFoodVariants,
+);
+
+router.post(
+  '/fastFoodsCategories',
+  validateFoodCategory,
+  validationApi,
+  verifyUser,
+  permit('admin'),
+  fastFoods.addFoodCategory,
+);
+
+
+router.put(
+  '/fastFoodCategory/:id',
+  validateFoodCategory,
+  validationApi,
+  verifyUser,
+  permit('admin'),
+  fastFoods.modifyFoodCategory,
+);
+
+router.get(
+  '/fastFoodCategories',
+  verifyUser,
+  fastFoods.getFoodCategories,
+);
+
+
 router.post(
   '/fastFoods',
   validateFoodItem,
@@ -50,69 +100,105 @@ router.post(
 );
 
 router.put(
-  '/fastFoods/:foodItemId',
-  validateFoodItemUpdate,
-  validationApi,
-  verifyUser,
-  permit('admin'),
-  fastFoods.modifyFastFoodItem,
-);
-
-router.put(
-  '/fastFood/:foodId',
+  '/fastFoods/:id',
   validateFoodUpdate,
   validationApi,
+  vaidateImage,
+  validateParamsId,
   verifyUser,
   permit('admin'),
-  fastFoods.modifyFastFood,
+  fastFoods.modifyFood,
+);
+
+router.get(
+  '/fastFoods',
+  verifyUser,
+  fastFoods.getFastFoods,
+);
+
+router.get(
+  '/fastFoods/categories/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodsByCategoryId,
+);
+
+
+router.get(
+  '/fastFoods/:id',
+  validateParamsId,
+  verifyUser,
+  fastFoods.getFastFoodVariants,
+);
+
+
+router.put(
+  '/fastFoods/variants/:id',
+  validateFoodVariant,
+  validationApi,
+  validateParamsId,
+  verifyUser,
+  permit('admin'),
+  fastFoods.modifyFoodVariants,
 );
 
 router.delete(
-  '/fastFood/:foodId',
+  '/fastFoods/:id',
+  validateParamsId,
   verifyUser,
   permit('admin'),
   fastFoods.removeFastFood,
 );
 
 router.delete(
-  '/fastFoods/:itemId',
+  '/fastFoods/variants/:id',
+  validateParamsId,
   verifyUser,
   permit('admin'),
-  fastFoods.removeFastFoodItem,
+  fastFoods.removeFastFoodVariant,
 );
 
 router.post(
   '/orders',
-  verifyUser,
-  validateUserOrder,
+  validateUserOrderData,
   validationApi,
+  verifyUser,
   order.placeOrder,
 );
 
 router.get(
-  '/orders',
+  '/customer/orders',
   verifyUser,
-  (req, res) => {
-    if (req.query.customerOrders === 'true') {
-      order.getUserOrders(req, res);
-    } else {
-      permit('admin, user');
-      order.getOrders(req, res);
-    }
-  },
+  permit('admin'),
+  order.getAllCustomersOrder,
 );
 
 router.put(
-  '/orders/:orderId',
+  '/orders/:id',
+  validateParamsId,
   verifyUser,
   permit('admin'),
   order.modifyOrder,
 );
 
 router.get(
-  '/orders/:orderId',
+  '/orders/:id',
+  validateParamsId,
   verifyUser,
-  order.getOrder,
+  order.getAnOrder,
+);
+
+router.get(
+  '/user/orders',
+  verifyUser,
+  order.getAUserOrderHistory,
+);
+
+router.get(
+  '/orders/:id/details',
+  validateParamsId,
+  verifyUser,
+  order.getOrderDetails,
 );
 
 

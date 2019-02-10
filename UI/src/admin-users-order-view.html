@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Cardo|Crimson+Text|Oswald|Poppins|Quicksand:500|Work+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Admin food items view</title>  
         <style>
             #wrapper{
@@ -15,12 +16,13 @@
            window.onload = function () {
                document.getElementById("wrapper").style.display = "block";
            };
+           
 
        </script>
     </head>
     <body>
         <div id="wrapper" >
-                <div class="backdrop hide-on-medium-and-up" id="backdrop" >
+                <div class="backdrop" id="backdrop" >
 
                 </div>
                     <nav class="sidenav-wrapper sidenav-wrapper--is-close" id="sidenavWrapper">
@@ -64,124 +66,224 @@
                     <li class="navigation__item" ><a class="navigation__link navigation__link-full-height" href="index.html">Logout</a></li>
                 </ul>
             </div>
-            <div id ="mainDimension" class="-whiteBgColor">
-                <div class="headerSeperator"></div>
-                <div class="page-title -col-sm-11 -col-m-11 -col-l-11 -fixed-pos -whiteBgColor" style="z-index: 119;"><h1 class=" -whiteBgColor -grayTxtColor">Customer Orders</h1></div>
-                <div class="table-form -col-sm-11 -col-m-11 -col-l-11 -fixed-pos -greenBgColor" style="z-index: 119;">
-                    <div class="search-form  -col-sm-10 -col-m-4 -col-l-4 -orangeredBgColor">
-                        <input type="search" class="search-form__input -col-sm-10" placeholder="Search..." name="search" id="search" />
-                        <div class="search-form__btn button -col-sm-2 -grayBgColor" id="searchBtn"><i class="material-icons -whiteTxtColor">search</i></div>
+            <div id ="main-home" class="-whiteBgColor">
+
+                <div class="separator"></div>
+                
+               <div class="-fixed-pos -whiteBgColor -col-sm-12"><h2 class="header">Customer Orders</h2></div> 
+               <div class="separator"></div>
+               <div class="separator"></div>
+
+                <div class="action-description">
+                    <div><img src="./assets/images/icons8-more-details-24.png" class= "action-description__item" /><span>Order details</span></div>
+                    <div><img src="./assets/images/icons8-ok-hand-24.png" class= "action-description__item" /><span>Accept order</span></div>
+                    <div><img src="./assets/images/icons8-cancel-24.png" class= "action-description__item" /><span>Decline order</span></div>
+                    <div><img src="./assets/images/icons8-checkmark-21.png" class= "action-description__item" /><span>Order completed</span></div>
+                </div>
+                
+                <h4 style="padding-left: 5%;">Total Amount: N 3,000,000.00
+                </h4>
+                <div class="orderTools">
+                    <div class ="search"><input type="text" placeholder="Search order..." id="searchOrders" class="search__input"></div>
+        
+                    <div class ="date"><input type="date" id="searchOrdersByDate" class="search__inputDate"></div>
+                </div>
+                <div class="table" id="customerOrders">
+                    <div class="table__header" id="tableHeader">
+                        <div class="table__sn tb-w-4" id="h-sn">sn</div>
+                        <div class="table__customerName tb-w-24" id="h-customerName">Customer Name</div>
+                        <div class="table__description tb-w-24" id="h-description">Item description</div>
+                        <div class="table__orderTime tb-w-4" id="h-orderTime">Time</div>
+                        <div class="table__orderDeliveryTime tb-w-4" id="h-deliveryTime">Qty</div>
+                        <div class="table__price tb-w-6" id="h-price">Amount</div>
+                        <div class="table__actions tb-w-20" id="h-actions">Actions</div>
+                        <div class="table__completed tb-w-6" id="h-complete">complete</div>
+                        <div class="table__scroll-pad"></div>
                     </div>
-                    <div >
-                        <input class="table-form__input" style="" type ="date" />
+                    <div class="scrollBlock" id="scrollBlock">
+                    <table class="table__body">
+                        <colgroup>
+                            <col width="5%">
+                            <col width="25%" >
+                            <col width="23%">
+                            <col width="5%">
+                            <col width="5%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="7%">
+                            <col width="9%">
+                        </colgroup>
+                            <thead style="">
+                                <tr>
+                                    <th id="th-sn">sn</th>
+                                    <th id="th-customerName" >Customer Name</th>
+                                    <th id="th-description">Item description</th>
+                                    <th id ="th-time">Time</th>
+                                    <th id= "th-deliveryTime">Qty</th>
+                                    <th id= "th-price">Amount</th>
+                                    <th colspan="3" id="th-actions">Action</th>
+                                    <th id="th-complete">Complete</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>1</td>
+                                <td>Alex colman</td>
+                                <td>Fried with chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" id="1" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn disabled" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn disabled" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" checked/><img src="./assets/images/icons8-checkmark-21.png" alt="completed.png"/> </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Philip newman</td>
+                                <td>Fried with chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /> </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Philip newman</td>
+                                <td>Fried rice with 1 chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /> </td>
+                            </tr>
+        
+                            <tr>
+                                <td>4</td>
+                                <td>Philip newman</td>
+                                <td>Fried rice with 1 chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" /><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accepted accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png" disabled /><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" disabled/><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /> </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Thomas King</td>
+                                <td>Fried rice with 2 chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>6500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn declined decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Tom inglis</td>
+                                <td>Fried rice with 1 chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /> </td>
+                            </tr>
+            
+                            <tr>
+                                <td>7</td>
+                                <td>Doorman stephen</td>
+                                <td>Fried rice with chicken</td>
+                                <td>5:00</td>
+                                <td>6:00</td>
+                                <td>4500</td>
+                                <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                <td><input type="checkbox" /> </td>
+                            </tr>
+                            <tr>
+                                    <td>9</td>
+                                    <td>Thomas King</td>
+                                    <td>Fried rice with 2 chicken</td>
+                                    <td>5:00</td>
+                                    <td>6:00</td>
+                                    <td>6500</td>
+                                    <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                    <td><input type="checkbox" /></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Tom inglis</td>
+                                    <td>Fried rice with 1 chicken</td>
+                                    <td>5:00</td>
+                                    <td>6:00</td>
+                                    <td>4500</td>
+                                    <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                    <td><input type="checkbox" /> </td>
+                                </tr>
+                
+                                <tr>
+                                    <td>11</td>
+                                    <td>Doorman stephen</td>
+                                    <td>Fried rice with chicken</td>
+                                    <td>5:00</td>
+                                    <td>6:00</td>
+                                    <td>4500</td>
+                                    <td><div class="tooltip"><img class="img-btn more-details-btn" src="./assets/images/icons8-more-details-24.png" alt="more_deatils.png" ><span class="tooltiptext">order details</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn accept-btn" src="./assets/images/icons8-ok-hand-24.png" alt="ok.png"><span class="tooltiptext">Accept</span></div></td>
+                                    <td><div class="tooltip"><img class="img-btn decline-btn" src="./assets/images/icons8-cancel-24.png"  alt="decline.png" /><span class="tooltiptext">Decline</span></div></td>
+                                    <td><input type="checkbox" /> </td>
+                                </tr>
+                    </table>
+                </div>
+                </div>
+                <div class="separator"></div>
+                <div class="navPane">
+                    <i class=" nav-left nav-right-padding fa fa-caret-left" id="navLeft" ></i><input type="text" value="1" id="navInput" style="width: 30px; text-align: center;">
+                    <i class="nav-right nav-left-padding fa fa-caret-right " id="navRight" ></i>
+                </div>
+            </div>
+            <div class = "modal" id="modal" >
+                    <div class="modal__content -col-sm-10 -offset-sm-1 -col-m-6 -offset-m-3 -col-l-4 -offset-l-4" id="orderDetail">
+                        <div class="modal-header">
+                            <span class="modal__close" id="closeOrderDetails">&times;</span>
+                            <img src="./assets/images/icons8-more-details-24.png" style ="vertical-align: middle; padding-right: 15px"/><span>Order details</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="orderDetails">
+                                <div class="orderDetails__item orderDetails-card">
+                                    <img class="orderDetails-img" src="./assets/images/friedanddodowithchiken.png" alt="fried_rice.png" />
+                                </div>
+                                <div class=" orderDetails__item orderDetails__list">
+                                    <p class="ff"><span class="bold">Food Item : </span> Fried rice with 1 chicken</p>
+                                    <p  class="ff"><span class="bold">Order Date: </span>Today</p>
+                                    <p  class="ff"><span class="bold">Location : </span>4, Ereko street fadeyo</p>
+                                    <p  class="ff"><span class="bold">Phone: </span>8078282176</p>
+                                    <p  class="ff"><span class="bold">Expected DeliveryTime :</span>5:30</p>
+                                    <p class="ff"><span class="bold">Price:</span>3,500</p>
+                                    <p class="ff"><span class="bold">Quantity: </span>4</p>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
-                <div class="table-con -col-sm-11 -col-m-11 -col-l-11 -absolute-pos ">
-                <table class="res-table" style=" height: 500px; table-layout: fixed; overflow-y: scroll;">
-                        <col class="col-width-1">
-                        <col class="col-width-2">
-                        <col class="col-width-3" >
-                        <col class="col-width-4">
-                        <col class="col-width-5" >
-                        <col class="col-width-6">
-                        <col class="col-width-7" >
-                        <col class="col-width-8">
-                        <col class="col-width-9">
-                        <thead class="res-thead">
-                        <tr class="res-tr -fixed-pos -col-l-11">
-                                <th class="res-th th-width-1" >sn</th>
-                                <th class="res-th th-width-2">Customer name</th>
-                                <th class="res-th th-width-3" >Item Description</th>
-                                <th class="res-th th-width-4" >Time</th>
-                                <th class="res-th th-width-5" >Expected Delivery Time</th>
-                                <th class="res-th th-width-6" >Price</th>
-                                <th class="res-th  th-width-7">Action</th>
-                                <th class="res-th th-width-8">Completed</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                                <tr class="res-tr">
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"></td>
-                                        <td class="res-td-2"><a href="#">accept</a></td>
-                                        <td class="res-td-2"><a href="#" >decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr>
-                                <tr class="res-tr">
-                                        <td class="res-td-2">1</td>
-                                        <td class="res-td-2">Judge Carrighton</td>
-                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N1450</td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -orangeBgColor" href="#">Accept</a></td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr>
-                                <tr class="res-tr">
-                                        <td class="res-td-2">2</td>
-                                        <td class="res-td-2">Judge Washington</td>
-                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N1450</td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -orangeBgColor" href="#">Accept</a></td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr>
         
-                                <tr class="res-tr">
-                                        <td class="res-td-2">3</td>
-                                        <td class="res-td-2">Judge Washington</td>
-                                        <td class="res-td-2">Fried rice and 2 chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N2000</td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr>
-                                <tr class="res-tr">
-                                        <td class="res-td-2">5</td>
-                                        <td class="res-td-2">Judge Washington</td>
-                                        <td class="res-td-2">Fried rice and chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N1450</td>
-                                        <td class="res-td-2"><button class="button -xsmall -whiteTxtColor -ff-roboto -grayBgColor" disabled>Accept</a></td>
-                                        <td class="res-td-2"><button class="button -xsmall -whiteTxtColor -ff-roboto -grayBgColor" disabled>decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" style="background-color: green" checked/></td>
-                                </tr>
-                                <tr class="res-tr">
-                                        <td class="res-td-2">3</td>
-                                        <td class="res-td-2">Judge Washington</td>
-                                        <td class="res-td-2">Fried rice and 1 chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N1450</td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr><tr class="res-tr">
-                                        <td class="res-td-2">3</td>
-                                        <td class="res-td-2">Judge Washington</td>
-                                        <td class="res-td-2">Fried rice and 2 chicken with 1 coke</td>
-                                        <td class="res-td-2">4:50pm</td>
-                                        <td class="res-td-2">5:30pm</td>
-                                        <td class="res-td-2"> N2000</td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -greenBgColor" href="#">Accept</a></td>
-                                        <td class="res-td-2"><a class="button -xsmall -whiteTxtColor -ff-roboto -redBgColor" href="#">decline</a></td>
-                                        <td class="res-td-2"><input type="checkbox" /></td>
-                                </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                      
-            </div>
            
         
                 

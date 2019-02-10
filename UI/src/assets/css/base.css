@@ -3,11 +3,18 @@ body{
     padding: 0px;
     box-sizing: border-box;
     background-color: rgb(214, 62, 7);
+    height: 100%;
 }
 
-table, td, th {    
+html{
+    height: 100%;
+}
+
+
+table, td, th {
     border: 1px solid #ddd;
-    text-align: left;
+    color: black;
+    padding-left: 10px;
 }
 
 table {
@@ -15,14 +22,20 @@ table {
     width: 100%;
 }
 
-th, td {
-    padding: 15px;
+th {
+    height: 50px;
 }
 
-
-i {
-    margin-right: 10px;
+col {
+    display: table-column;
 }
+
+th{
+    overflow: hidden;
+    text-overflow: ellipsis; 
+
+}
+
 
 input[type=text],
 input[type=password],

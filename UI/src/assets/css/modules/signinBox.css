@@ -1,13 +1,14 @@
 .signinBox{
     display: flex;
     box-sizing: border-box;
-    height: 644px;
+    height: 500px;
+    margin-top: 5vh;
 }
 
 .signinBox__section{
     height: 400px;
     margin-top: 30px;
-    margin-left: 6%;
+    margin-left: 10%;
 }
 
 .-flip-right{
@@ -19,12 +20,13 @@
 }
 
 .signinBox__img{
-    margin-left: 30%;
+    margin-left: 35%;
 }
 
 .signinBox__form{
     width: 90%;
     margin-top: 5px;
+    
 }
 
 .signinBox__button{

@@ -1,0 +1,365 @@
+.td-2{ 
+    border: 1px solid #ddd;
+    color: black;
+    padding-left: 10px;
+}
+
+.table{
+    height: 300px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.table .scrollBlock{
+    width: 100%;
+    height: 300px;
+    color:white;
+    overflow: scroll;
+    text-align:justify;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.header{
+    color: gray;
+    padding-left: 5%;
+}
+
+.nav-left, .nav-right{ font-size:28px!important; vertical-align: middle;}
+.nav-left-padding{ padding-left: 7px!important}
+.nav-right-padding{ padding-right: 7px}
+
+.nav-left:hover, 
+.nav-right:hover{
+    color: rgb(141, 139, 139)
+}
+
+.navPane{
+    height: 50px; padding-top: 15px; padding-left: 45%;
+}
+
+.orderTools{
+    display: flex;
+    flex-flow: wrap;
+    height: auto;
+    padding-left: 5%;
+    padding-right: 7%;
+    justify-content: space-between;
+}
+
+
+.action-description{
+    display: flex;
+    padding-left: 5%;
+
+}
+
+.action-description__item{
+    padding-right: 10px;
+    vertical-align: middle;
+    margin-left: 8px;
+    font-size: 13px;
+}
+
+.table__header{
+    display: none;
+    width: 100%;
+}
+.table__sn,
+.table__customerName,
+.table__orderTime,
+.table__orderDeliveryTime,
+.table__orderDetails,
+.table__price,
+.table__actions,
+.table__completed,
+.table__description,
+.table__status,
+.table__picture,
+.table__orderDate,
+.table__amount,
+.table__quantity
+{
+    height: 20px;
+    background-color: gray;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    text-align: justify;
+    color: white;
+    border-left: 1px solid white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tb-sn{ width: 1%;}
+.tb-w-50{ width: 50%;}
+.tb-w-25{ width: 25%;}
+.tb-w-24{ width: 24%;}
+.tb-w-40{ width: 40%;}
+.tb-w-60{ width: 60%;}
+.tb-w-70{ width: 70%;}
+.tb-w-80{ width: 80%;}
+.tb-w-20{ width: 20%;}
+.tb-w-24{ width: 24%;}
+.tb-w-30{ width: 30%;}
+.tb-w-29{ width: 29%;}
+.tb-w-12{ width: 12%;}
+.tb-w-15{ width: 15%;}
+.tb-w-16{ width: 16%;}
+.tb-w-5{ width: 5%;}
+.tb-w-10{ width: 15%;}
+.tb-w-8{ width: 8%;}
+.tb-w-4{ width: 4%;}
+.tb-w-7{ width: 7%;}
+.tb-w-6{ width: 6%;}
+.tb-w-21{ width: 21%;}
+.tb-w-19{ width: 19%;}
+.tb-w-35{ width: 35%;}
+
+.table__scroll-pad{
+    width: 16px;
+    background-color: black;
+}
+
+td, .td-2{
+    padding: 4px 10px;
+    font-size: 14px;
+}
+.td-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+
+.action__button{
+    height: 100%;
+    width: 70%;
+    background-color: orangered;
+    overflow: hidden;
+    font-size: 1.2vw;
+    text-overflow: ellipsis;
+    margin-left: 3%;
+    cursor: pointer;
+}
+
+.img-btn{
+    transition: 0.4s;
+}
+
+.orderDetails{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.orderDetails__item{
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+
+.bold{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.orderDetails-card{
+    width: 180px;
+    box-shadow: 1px 2px 4px gray; 
+    height: auto;
+}
+
+.orderDetails-img{
+    width:  100%;
+    height: auto;
+}
+
+.orderDetails__list{
+    overflow: auto;
+}
+
+.ff{
+    font-size: 13px;  
+}
+
+thead{
+    background: #ccc;
+    
+}
+.separator{
+    height: 40px;
+}
+
+@media (min-width: 200px) {
+
+    table {
+        padding-left: 0px;
+    }
+
+    .table{
+        height: 400px!important;
+        width: 90%!important;
+        margin-left: 5%;
+    }
+
+    .table .scrollBlock{
+        height: 400px!important;
+    }
+    
+    .search, .date{
+        width: 96%;
+        margin-top: 10px;
+
+    }
+
+
+    .modal-content {
+        width: 94%;
+        margin-left: 3%;
+    }
+
+    .action-description{
+        display: none;
+        
+    }
+}
+
+
+
+@media (min-width: 600px) {
+    .table{
+        height: 300px!important;
+        width: 90%!important;
+        margin-left: 5%;
+    }
+    .search, .date{
+        width: 25%;
+
+    }
+    .action-description{
+        display: flex;
+        
+    }
+    .modal-content {
+        width: 60%;
+        margin-left: 20%;
+    }
+
+    .table .scrollBlock{
+        height: 300px!important;
+    }
+    
+
+}
+
+@media (min-width: 992px) {
+    .search, .date{
+        width: 20%;
+    }
+    .modal-content {
+        width: 50%;
+        margin-left: 25%;
+    }
+    .table .scrollBlock{
+        height: 300px!important;
+    }
+    
+}
+
+@media
+only screen and (max-width: 600px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, .td-2, tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr { border: 1px solid #ccc; }
+    tr:nth-child(even) {background-color: #f2f2f2}
+    td, .td-2 {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 52%;
+        }
+    td:before, .td-2::before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 0px;
+        left: 1px;
+        width: 45%;
+        white-space: nowrap;
+    
+        height: 100%;
+        background-color: gray;
+        color: white;
+        
+    }
+
+    td:nth-of-type(1):before { content: "sn"; }
+    td:nth-of-type(2):before { content: "Customer Name"; }
+    td:nth-of-type(3):before { content: "Item description"; }
+    td:nth-of-type(4):before { content: "order Time"; }
+    td:nth-of-type(5):before { content: "QTY"; }
+    td:nth-of-type(6):before { content: "Amount"; }
+    td:nth-of-type(7):before { content: "Actions"; }
+    td:nth-of-type(8):before { content: ""; }
+    td:nth-of-type(9):before { content: ""; }
+    td:nth-of-type(10):before { content: ""; }
+
+
+    .td-2:nth-of-type(1):before { content: "sn"; }
+    .td-2:nth-of-type(2):before { content: "image"; }
+    .td-2:nth-of-type(3):before { content: "Item description"; }
+    .td-2:nth-of-type(4):before { content: "order Date"; }
+    .td-2:nth-of-type(5):before { content: "Order Time"; }
+    .td-2:nth-of-type(6):before { content: "Qty"; }
+    .td-2:nth-of-type(7):before { content: "Amount"; }
+    .td-2:nth-of-type(8):before { content: "Status"; }
+}
+
+.more-details-btn:hover{
+        content: url('../../images/icons8-more-details-24-hover.png');
+}
+
+.accept-btn:hover{
+    content: url('../../images/icons8-ok-hand-24\ -hover.png');
+}
+
+.decline-btn:hover{
+    content: url('../../images/icons8-cancel-24-hover.png');
+}
+
+.accept-btn.accepted{
+    content: url('../../images/icons8-ok-hand-24\ -hover.png');
+}
+
+.decline-btn.declined{
+    content: url('../../images/icons8-cancel-24-hover.png');
+}
+
+.accept-btn.disabled{
+  cursor: not-allowed;
+  /* for "disabled" effect */
+  opacity: 0.5;
+  content: url('../../images/icons8-ok-hand-24-disabled.png');
+}
+
+.decline-btn.disabled{
+    cursor: not-allowed;
+  /* for "disabled" effect */
+    opacity: 0.5;
+    content: url('../../images/icons8-cancel-24-disabled.png');
+}

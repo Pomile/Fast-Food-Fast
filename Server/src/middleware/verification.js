@@ -1,16 +1,29 @@
-import data from '../db/data';
+import jwt from 'jsonwebtoken';
+import db from '../model';
+
+const { pgConnection } = db;
+
 
 const verifyUser = (req, res, next) => {
-  const authorized = req.headers.authorization;
-  const userId = req.headers.user;
-  if (authorized === undefined || userId === undefined) {
-    res.status(401).json({ msg: 'not authenticated', success: false });
-  } else if (authorized === 'false') {
-    res.status(401).json({ msg: 'user is not authenticated', success: false });
+  const payload = req.headers.authorization || req.headers['x-access-token'];
+  if (req.headers.isauth === undefined) {
+    res.status(401).json({ msg: 'Not authorized', success: false }).end();
+  } else if (JSON.parse(req.headers.isauth)) {
+    jwt.verify(payload, 'landxxxofxxxopporxxxtunixxxty', async (err, decoded) => {
+      if (!err) {
+        const dbClient = await pgConnection.connect();
+        const userData = await dbClient.query('SELECT id, firstname, lastname, role FROM users WHERE id = $1', [decoded.data]);
+        await dbClient.release();
+        if (userData.rows.length === 1) {
+          [req.user] = userData.rows;
+          next();
+        }
+      } else {
+        res.status(401).send({ success: false, err: 'invalid token', errMsg: err.message }).end();
+      }
+    });
   } else {
-    const userData = data.users.find(user => user.id === Number(userId));
-    req.user = userData;
-    next();
+    res.status(401).json({ msg: 'user is not authenticated', success: false }).end();
   }
 };
 

@@ -3,7 +3,7 @@
 }
 
 #header{
-    height: 56px;
+    height: 9vh;
     display: flex;
     justify-content: space-between;
     top: 0;
@@ -11,9 +11,29 @@
     position: fixed;
     z-index: 105;
 }
+#wrapper{
+    height: 100%;
+}
+#main-home{
+    height: 100vh;
+}
 
 #main{
-    height: 700px;
+    height: 92%;
+}
+#main-2{
+    height: 93.5vh;
+}
+
+#automain{
+    height: auto;
+    position: relative;
+    margin-top: 8vh;
+    padding-bottom: 0vh;
+}
+
+.automain-top{ 
+    padding-top: 20vh;
 }
 
 #mainDimension{
@@ -23,12 +43,21 @@
 
 
 #footer{
-    height: 40px;
+    height: 5vh;
     position: relative;
     bottom: 0;
     left: 0;
     text-align: center;
     color: white;
     padding-top: 10px;
-    z-index: 121;
+}
+#footer-2{
+    height: 5vh;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    top: 5vh;
 }

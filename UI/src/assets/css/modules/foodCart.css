@@ -1,13 +1,27 @@
 .foodCart{
-    height: 600px;
+    height: 530px;
     background-color: white;
     position: absolute;
-    width: 21%;
-    overflow-y: auto;
+    width: 19.5%;
     margin-left: 5%;
     box-shadow: 0 0 16px rgba(0, 0 ,0, 0.2);
     z-index: 111;
 }
+
+.-foodCart-height{
+    height: auto!important;
+}
+
+.-foodCart-width{
+    width: 90%!important;
+}
+
+.foodCart__items{
+    overflow-y: scroll;
+    height: 150px!important;
+}
+
+
 .foodCartHeader{
     border-bottom: 1px solid gray;
     color: rgb(95, 93, 93);
@@ -38,12 +52,14 @@
 }
 .footCart-align{
     right: 10px;
-    top:300px;
+    top:110px;
 }
 
 .foodCart__button{
     width: 90%;
     margin-left: 5%;
+    margin-bottom: 15px;
+    margin-top: 15px;
     padding: 18px 0px;
 }
 
@@ -64,7 +80,7 @@
 
 .-Btngroup{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .footCart__item-result-display{

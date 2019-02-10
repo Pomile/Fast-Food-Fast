@@ -1,101 +1,155 @@
 import moment from 'moment';
-import data from '../db/data';
-import getFoodItem from '../helpers/getFoodItem';
-import getUser from '../helpers/getUser';
+import db from '../model';
+
+const { pgConnection } = db;
 
 class order {
-  static placeOrder(req, res) {
-    const foodItems = req.body.data;
-    const InitialNoOforders = data.orders.length;
-    const today = moment().format('dddd, MMMM Do YYYY');
-    const currentTime = moment().format('h:mm:ss a');
-    const expectedDeliveryTime = moment().add(45, 'minutes').format('h:mm:ss a');
-    const orderInfo = foodItems.map((item) => {
-      const foodItem = item;
-      foodItem.orderDate = today;
-      foodItem.orderTime = currentTime;
-      foodItem.expectedDeliveryTime = expectedDeliveryTime;
-      foodItem.accept = false;
-      foodItem.decline = false;
-      foodItem.completed = false;
-      return foodItem;
-    });
-    orderInfo.map((item) => {
-      const orderItem = item;
-      const len = data.orders.length;
-      orderItem.id = len + 1;
-      data.orders.push(orderItem);
-    });
-    const currentNoOfOrders = data.orders.length;
-    if (InitialNoOforders < currentNoOfOrders) {
-      res.status(201).json({ msg: 'order placed successfully', success: true }).end();
+  static async placeOrder(req, res) {
+    const { data } = req.body;
+    const { id } = req.user;
+    const dbClient = await pgConnection.connect();
+
+    try {
+      await dbClient.query('BEGIN');
+      const addOrderAddress = await dbClient.query('INSERT INTO Addresses (destinationAddress, state) VALUES($1, $2) RETURNING *', [data.destinationAddress, data.state]);
+      let orders;
+      if (addOrderAddress.rows.length > 0) {
+        orders = await Promise.all([...data.orders].map(async (item) => {
+          const findFood = await dbClient.query('SELECT id, description, price, quantity from FoodVariants WHERE id = $1', [item.foodVariantId]);
+          if (findFood.rows[0].quantity > item.quantity) {
+            await dbClient.query('INSERT INTO ORDERS (userId, foodVariantId, quantity, orderDate, orderTime, destinationAddressId) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [id, item.foodVariantId, item.quantity, moment().format('dddd, MMMM Do YYYY'), moment().format('h:mm:ss a'), addOrderAddress.rows[0].id]);
+            const { price, description } = { ...findFood.rows[0] };
+            return Promise.resolve({ price, description, quantity: item.quantity });
+          }
+          return Promise.resolve({ order: false, ...item });
+        }));
+      }
+      if (orders.length > 0) {
+        res.status(201).json({ orders, msg: 'order placed successfully' }).end();
+      }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
     }
   }
 
-  static getOrders(req, res) {
-    const customerOrders = [];
-    data.orders.map((o) => {
-      const currentOrder = o;
-      const user = getUser(o.userId);
-      const foodItem = getFoodItem(o.foodItemId);
-      currentOrder.user = user;
-      currentOrder.foodItem = foodItem;
-      customerOrders.push(currentOrder);
-    });
-    res.status(200).json(customerOrders).end();
+  static async getAllCustomersOrder(req, res) {
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const customersOrder = await dbClient.query('SELECT * FROM ORDERS');
+      const result = await Promise.all([...customersOrder.rows].map(async (item) => {
+        const {
+          quantity, orderDate, orderTime, destinationAddressId, status,
+        } = item;
+        const foodVariant = await dbClient.query('SELECT id, price, description from FoodVariants WHERE id = $1', [+item.foodvariantid]);
+        if (foodVariant.rows.length > 0) {
+          const food = await dbClient.query('SELECT image, name FROM Foods WHERE id = $1', [foodVariant.rows[0].id]);
+          return {
+            ...food.rows[0], ...foodVariant.rows[0], quantity, orderDate, orderTime, destinationAddressId, status,
+          };
+        }
+      }));
+      await dbClient.query('COMMIT');
+      res.status(200).json({ data: result });
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
   }
 
-  static modifyOrder(req, res) {
-    const id = req.params.orderId;
-    data.orders.map((orderItem, index) => {
-      const newOrderItem = { ...orderItem };
-      if (req.body.accept && (orderItem.id === +id && newOrderItem.completed !== true)) {
-        newOrderItem.accept = true;
-        newOrderItem.decline = false;
-        data.orders[index] = newOrderItem;
-        res.status(200).json({ msg: 'order accepted', data: newOrderItem });
-      } else if (req.body.accept && (orderItem.id === +id && newOrderItem.completed === true)) {
-        res.status(409).json({ msg: 'cannot accept an order that is already completed' }).end();
-      } else if (req.body.decline && (orderItem.id === +id && newOrderItem.completed !== true)) {
-        newOrderItem.accept = false;
-        newOrderItem.decline = true;
-        newOrderItem.completed = false;
-        data.orders[index] = newOrderItem;
-        res.status(200).json({ msg: 'order declined', data: newOrderItem });
-      } else if (req.body.decline && (orderItem.id === +id && newOrderItem.completed === true)) {
-        res.status(409).json({ msg: 'cannot decline an order that is already completed' }).end();
-      } else if (req.body.completed && orderItem.id === +id) {
-        newOrderItem.accept = true;
-        newOrderItem.decline = false;
-        newOrderItem.completed = true;
-        data.orders[index] = newOrderItem;
-        res.status(200).json({ msg: 'order completed', data: newOrderItem }).end();
-      } else if (req.body.completed === false && orderItem.id === +id) {
-        newOrderItem.accept = false;
-        newOrderItem.decline = false;
-        newOrderItem.completed = false;
-        data.orders[index] = newOrderItem;
-        res.status(200).json({ msg: 'order not completed', data: newOrderItem }).end();
+  static async modifyOrder(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      if (findOrder.rows.length > 0 && findOrder.rows[0].status !== 'Completed') {
+        const modifyOrder = await dbClient.query('UPDATE ORDERS SET status = $1 WHERE id = $2 RETURNING id, status', [status, +id]);
+        await dbClient.query('COMMIT');
+        res.status(200).json({ msg: `${modifyOrder.rows[0].status} order`, success: true }).end();
+      } else {
+        res.status(409).json({ msg: 'Order is already completed' }).end();
       }
-    });
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
   }
 
-
-  static getUserOrders(req, res) {
-    const userId = req.user.id;
-    const customerOrders = [];
-    data.orders.map((item) => {
-      if (item.userId === userId) {
-        customerOrders.push(item);
+  static async getAnOrder(req, res) {
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE id = $1', [+id]);
+      if (findOrder.rows.length > 0) {
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: findOrder.rows[0], success: true }).end();
       }
-    });
-    res.status(200).json({ customerOrders, success: true }).end();
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
   }
 
-  static getOrder(req, res) {
-    const id = req.params.orderId;
-    const findOrderById = data.orders.find(currentOrder => currentOrder.id === +id);
-    res.status(200).json({ success: true, data: findOrderById }).end();
+  static async getAUserOrderHistory(req, res) {
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrder = await dbClient.query('SELECT * FROM ORDERS WHERE userid = $1', [+req.user.id]);
+      if (findOrder.rows.length > 0) {
+        res.status(200).json({ data: findOrder.rows, success: true }).end();
+      } else {
+        res.status(404).json({ msg: 'Not Found' }).end();
+      }
+      await dbClient.query('COMMIT');
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      dbClient.release();
+    }
+  }
+
+  static async getOrderDetails(req, res) {
+    const { id } = req.params;
+    const dbClient = await pgConnection.connect();
+    try {
+      await dbClient.query('BEGIN');
+      const findOrderDetails = await dbClient.query(
+        `SELECT U.firstname, U.lastname, U.phone, F.description, F.price, O.quantity, F.expectedDeliveryTime, A.destinationAddress, F.id
+         FROM  ORDERS as O 
+         JOIN Users as U ON O.userid = U.id 
+         JOIN FoodVariants as F ON O.FoodVariantid = F.id 
+         JOIN Addresses as A ON O.destinationAddressId =  A.id 
+         WHERE O.id = $1 
+      `, [+id],
+      );
+      if (findOrderDetails.rows.length > 0) {
+        const foodVariant = await dbClient.query('SELECT foodId from FoodVariants WHERE id = $1', [findOrderDetails.rows[0].id]);
+        const food = await dbClient.query('SELECT image, name from Foods WHERE id = $1', [foodVariant.rows[0].foodid]);
+        await dbClient.query('COMMIT');
+        res.status(200).json({ data: { ...findOrderDetails.rows[0], ...food.rows[0] }, success: true }).end();
+      } else {
+        res.status(404).json({ msg: 'Not Found' }).end();
+      }
+    } catch (err) {
+      // await dbClient.query('ROLLBACK');
+      // res.status(500).json({ error: err.message }).end();
+    } finally {
+      await dbClient.release();
+    }
   }
 }
 

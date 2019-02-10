@@ -60,4 +60,10 @@ background-color: #007acc ;
 color: white;
 }
 
+.modal-header {
+    padding: 2px 16px;
+    background-color: #007acc ;
+    color: white;
+}
+
 .modal-body {width: 90%; height: 280px; padding: 12px 0px; margin-left: 5%; overflow: visible;}

@@ -18,13 +18,12 @@ const data = {
        state: string not null,
     */
   ],
-  foodCaterory: [
+  foodCategory: [
     /*
       id: int not null,
       title: string,
 
     */
-    { id: 1, name: 'Fries' },
     { id: 2, name: 'sides' },
     { id: 3, name: 'burger' },
     { id: 4, name: 'Tacos' },
@@ -71,7 +70,6 @@ const data = {
       price: 1000,
       quantity: 40,
       expectedDeliveryTime: '30 min',
-
     },
     {
       id: 2,
@@ -103,17 +101,25 @@ const data = {
   ],
   orders: [
     /*
+
     id: int not null,
     userId: int not null,
     foodItemId: int not null,
     qauntity: int not null,
     Orderdate: date not null,
-    destinationAddress: string not null,
     OrderTime: time not null,
     deliveryTime: time null,
     accepted: boolean null,
     declined: boolean null,
     completed: boolean null,
+    */
+  ],
+  destinationAddress: [
+    /*
+    id: int NOT Null,
+    address: string NOT NULL,
+    orderId: int Not null,
+
     */
   ],
 };

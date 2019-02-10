@@ -16,20 +16,36 @@ import {
     closeUpdateFoodItem,
     closeDeleteFoodItem,
     orderBtn,
+    orderBtn2,
     closeLocationForm,
+    closeLocationForm2,
+    cartClip,
+    category,
+    categoryList,
+    closeOrderDetails,
+    myCart,
+    foodItemContainer,
+    burger1,
   } from './assets/js/globals';
   import { opennav, closenav } from './assets/js/sidenav';
   import {
     showModal,
     closeModal,
   } from './assets/js/modal';
+  import './assets/js/table';
   
   if (sidedrawer) {
     sidedrawer.onclick = () => opennav();
   }
   
   if (backdrop) {
-    backdrop.onclick = () => closenav();
+    backdrop.onclick = () => {
+      closenav();
+      if(categoryList){
+        categoryList.classList.add("-sidenav-food-navigation--isHidden");
+      }
+      
+    }
   }
 
   if (createAccountBtn) {
@@ -44,21 +60,31 @@ import {
     
     window.addEventListener('scroll', () =>{
       let foodClientRectY = food.getClientRects()[0].y
-      if ( window.scrollY >= 450){
-        food.classList.add('food--onWindowScroll');
-      
-      
+      if ( window.scrollY >= 370){
+
+        food.classList.add('foodNavWrapper-onWindowScroll');
+        foodItemContainer.classList.add("-offset-l-2x");
+       
       }else{
-        food.classList.remove('food--onWindowScroll');
+
+        food.classList.remove('foodNavWrapper-onWindowScroll');
+        foodItemContainer.classList.remove("-offset-l-2x");
+  
       }
 
-      if ( window.scrollY >= 240){
-  
+      if ( window.scrollY >= 40){
+
         foodCart.classList.add('foodCart-onWindowScroll');
-      
+      }else{
+
+        foodCart.classList.remove('foodCart-onWindowScroll');
+      }
+
+      if ( window.scrollY >= 375){
+        cartClip.classList.add('cartClip-onWindowScroll');
       }else{
       
-        foodCart.classList.remove('foodCart-onWindowScroll');
+        cartClip.classList.remove('cartClip-onWindowScroll');
       }
       
     })  
@@ -66,6 +92,7 @@ import {
 
   if(imageFile){
     imageFile.onchange = (event) =>{
+
       imageOutput.src = URL.createObjectURL(event.target.files[0]);
     }
   }
@@ -96,7 +123,12 @@ if(closeDeleteFoodItem){
 }
 
 if(orderBtn){
+  
   orderBtn.onclick = () => showModal('modal', 'locationForm');
+}
+
+if(orderBtn2){
+  orderBtn2.onclick = () => showModal('modal', 'locationForm');
 }
 
 if (closeLocationForm) {
@@ -104,6 +136,78 @@ if (closeLocationForm) {
   closeLocationForm.onclick = function () {
     closeModal('modal');
   };
-
-
 }
+
+if (closeLocationForm2) {
+
+  closeLocationForm2.onclick = function () {
+    closeModal('modal');
+  };
+}
+
+if(cartClip){
+  cartClip.onclick = function () {
+    showModal('modal', 'cart');
+  }
+}
+
+if(category){
+  category.onclick= function () {
+    categoryList.classList.remove("-sidenav-food-navigation--isHidden");
+  }
+
+  category.onmouseover = function () {
+    categoryList.classList.add("-sidenav-food-navigation--isHidden");
+  }
+
+  categoryList.onclick = function () {
+    categoryList.classList.add("-sidenav-food-navigation--isHidden");
+  }
+}
+
+if(closeOrderDetails){
+  closeOrderDetails.onclick = function () {
+    closeModal('modal')
+  }
+}
+let viewCart = true;
+if(myCart && window.innerWidth > 900){
+  
+  
+  myCart.addEventListener('click', function(event){
+    console.log('mycart')
+    event.preventDefault();
+    if(viewCart){
+      foodCart.classList.remove('foodCart-isHidden');
+      foodCart.classList.add('foodCart-isVisible');
+      foodItemContainer.classList.remove('-col-l-9');
+      foodItemContainer.classList.add('-col-l-8');
+      viewCart = false;
+    }else{
+      
+      foodCart.classList.add('foodCart-isHidden');
+      foodCart.classList.remove('foodCart-isVisible');
+      foodItemContainer.classList.add('-col-l-9');
+      foodItemContainer.classList.remove('-col-l-8');
+      viewCart = true;
+    }
+  })
+  window.addEventListener('resize', ()=>{
+    foodCart.classList.add('hide-on-medium-and-down');
+    foodCart.classList.add('foodCart-isHidden');
+    foodCart.classList.remove('foodCart-isVisible');
+    foodItemContainer.classList.remove('-col-l-8');
+    foodItemContainer.classList.add('-col-l-9');
+  });
+}
+
+if(burger1 && window.innerWidth > 900){
+  burger1.onclick = () => {
+    foodCart.classList.remove('foodCart-isHidden');
+      foodCart.classList.add('foodCart-isVisible');
+      foodItemContainer.classList.remove('-col-l-9');
+      foodItemContainer.classList.add('-col-l-8');
+      viewCart = false;
+  }
+}
+

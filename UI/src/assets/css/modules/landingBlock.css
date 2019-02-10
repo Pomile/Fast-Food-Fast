@@ -3,10 +3,9 @@
     height: 100%;
     width: 100%;
     background-image: url("../../images/burger_by_master.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
     background-size: cover;
-    position: relative;
 }
 
 
@@ -15,8 +14,9 @@
     height: 100%;
     position: absolute;
     z-index: 100;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
 }
 
 .landingBlock__caption, .landingBlock__caption-2{
@@ -39,14 +39,16 @@
     position: absolute;
     display: grid;
     grid-column-gap: 1em;
+    align-content: start;
 }
 
 .landingBlock__how-it-works-step{
     background-color: transparent;
 }
 .landingBlock__how-it-works-icon{
-    width: 200px;
-    height: 100px;   
+    min-width: 80px;
+    width: 30%;
+    height: 10%;   
     margin: auto;
     font-size: 50px;
     color: white;
@@ -56,22 +58,24 @@
 
 .landingBlock__how-it-works-description{
     width: 100%;
-    height: 80px;
+    margin-top: 5px;
     color:white;
     font-size: 16px;
     text-align: center;
 }
 
-@media (min-width: 240px) {
+@media (min-width: 220px) {
+    .-fs-cs-xxlarge{ font-size: 40px; }
+    .-lbf-cs-xxlarge{ font-size: 60px; }
     .landingBlock__caption{ 
-        top: 10%;
+        top: 15%;
     }
     .landingBlock__caption-2{ 
-        top: 25%;
+        top: 35%;
     }
 
     .landingBlock__caption-font-size{
-        color:white; font-size: 40px;
+        color:white; font-size: 30px;
     }
 
     .landingBlock__caption-2-font-size{
@@ -79,22 +83,19 @@
     }
     
     .landingBlock__how-it-works{
-        top: 33%;
+        top: 50%;
         grid-template-columns: repeat(1, 1fr)!important;
-    }
-    
-    .landingBlock{
-        height: 1000px!important;
     }
 
 }
 
 @media (min-width: 601px) {
+    .-fs-cs-xxlarge{ font-size: 65px; }
     .landingBlock__caption{ 
         top: 13%;
     }
     .landingBlock__caption-2{ 
-        top: 25%;
+        top: 40%;
     }
 
     .landingBlock__caption-font-size{
@@ -105,16 +106,17 @@
         color:white; font-size: 30px!important;
     }
     .landingBlock{
-        height: 1000px!important;
+        height: 100%!important;
     }
     .landingBlock__how-it-works{
-        top: 34%;
-        grid-template-columns: repeat(1, 1fr)!important;
+        top: 50%;
+        grid-template-columns: repeat(3, 1fr)!important;
     }
     
 }
 
 @media (min-width: 992px) {
+    .-fs-cs-xxlarge{ font-size: 100px; }
     .landingBlock__caption{ 
         top: 20%;
     }
@@ -133,8 +135,5 @@
     .landingBlock__how-it-works{
         top: 58%;
         grid-template-columns: repeat(3, 1fr)!important;
-    }
-    .landingBlock{
-        height: 100%!important;
     }
 }

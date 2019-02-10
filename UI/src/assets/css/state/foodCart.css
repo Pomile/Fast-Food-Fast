@@ -1,0 +1,7 @@
+.foodCart-isVisible{
+    display: block!important;
+}
+
+.foodCart-isHidden{
+    display: none!important;
+}
