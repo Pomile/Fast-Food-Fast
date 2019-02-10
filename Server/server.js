@@ -29,9 +29,9 @@ app.get('/', (req, res) => {
     .end();
 });
 app.use('/api/v1', routes);
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
   app.listen(port, async () => {
-    await models.sync({ force: false });
+    // await models.sync({ force: false });
     console.log(`Server is listening on http://localhost:${port}/`);
   });
 }
