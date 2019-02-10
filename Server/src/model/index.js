@@ -13,8 +13,6 @@ const db = {};
 
 let pgConnection;
 
-console.log(config);
-
 if (config.use_env_variable) {
   pgConnection = new Pool({ connectionString: process.env[config.use_env_variable] });
 } else {

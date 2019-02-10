@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import db from '../model';
-import { switchUserValuesToObject } from '../helpers/switchArrayToObject';
-// import data from '../db/data';
+
 const { pgConnection } = db;
 
 
