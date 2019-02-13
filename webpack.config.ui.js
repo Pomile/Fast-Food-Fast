@@ -9,13 +9,13 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  context: path.resolve(__dirname, 'Client'),
+  context: path.resolve(__dirname, 'UI/src'),
   entry: {
     main: './index.js',
   },
   devtool: devMode ? 'inline-source-map' : '',
   devServer: {
-    contentBase: '../public',
+    contentBase: './dist',
   },
   optimization: devMode ? {} : {
     minimizer: [
@@ -91,7 +91,54 @@ module.exports = {
       filename: 'index.html',
       template: 'index.html',
     }),
-    new CleanWebpackPlugin(['public']),
+    new HtmlWebpackPlugin({
+      title: 'Signup',
+      filename: 'signup.html',
+      template: 'signup.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Signin',
+      filename: 'signin.html',
+      template: 'signin.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'user',
+      filename: 'user.html',
+      template: 'user.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'order',
+      filename: 'order.html',
+      template: 'order.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin',
+      filename: 'admin.html',
+      template: 'admin.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-manage-foodItems',
+      filename: 'admin-manage-foodItems.html',
+      template: 'admin-manage-foodItems.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-items-view',
+      filename: 'admin-items-view.html',
+      template: 'admin-items-view.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'admin-users-order-view',
+      filename: 'admin-users-order-view.html',
+      template: 'admin-users-order-view.html',
+    }),
+    new CleanWebpackPlugin(['dist']) ,
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
   ],

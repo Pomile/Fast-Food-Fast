@@ -8,11 +8,10 @@
       "Server/src/",
       "Server/src/controller/*"
     ],
-    "exclude":[ 
+    "exclude": [
       "Server/src/model/*",
       "Server/src/helpers/switchArrayToObject.js",
       "Server/src/helpers/getUser.js"
-    
     ],
     "sourceMap": false,
     "instrument": false
@@ -23,6 +22,7 @@
     "local:test": "nodemon --watch . --exec cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm run mocha:test",
     "mocha:test": "mocha --compilers js:@babel/register  --require @babel/polyfill ./Server/spec/userTest.js ./Server/spec/fastFoodTest.js ./Server/spec/orderTest.js --exit",
+    "start:client": "babel-node ./Client/main.js",
     "start": "babel-node ./Server/server.js",
     "build:ui-template": "webpack",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
@@ -66,7 +66,6 @@
     "nyc": "^13.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    
     "uglifyjs-webpack-plugin": "^1.3.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
@@ -88,8 +87,8 @@
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
+    "node-fetch": "^2.3.0",
     "pg": "^7.5.0",
     "supertest": "^3.1.0"
-
   }
 }
