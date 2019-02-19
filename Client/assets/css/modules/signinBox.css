@@ -1,0 +1,47 @@
+.signinBox{
+    display: flex;
+    box-sizing: border-box;
+    height: 500px;
+    margin-top: 5vh;
+}
+
+.signinBox__section{
+    height: 400px;
+    margin-top: 30px;
+    margin-left: 10%;
+}
+
+.-flip-right{
+    float: right;
+}
+
+.signinBox__header{
+    text-align: center;
+}
+
+.signinBox__img{
+    margin-left: 35%;
+}
+
+.signinBox__form{
+    width: 90%;
+    margin-top: 5px;
+    
+}
+
+.signinBox__button{
+    margin-top: 10px;
+}
+
+.signinBox__button-with-border{
+    margin-top: 15px;
+    border: 1px solid orange!important;
+    padding: 15px 2px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.signinBox__button-with-border:hover{
+    background-color: rgb(241, 125, 83);
+    color: white;
+}

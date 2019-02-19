@@ -8,7 +8,10 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'developme
   app.use(morgan('short'));
 }
 
-app.use(express.static('../public'));
+app.use('*', express.static('public'));
+/* app.get('/', (req, res) {
+  res.status(200).sendFile('../public/index.html').end();
+} ) */
 app.listen(port, async () => {
   console.log(`Application server is listening on http://localhost:${port}/`);
 });

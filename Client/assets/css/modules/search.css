@@ -1,0 +1,31 @@
+.search-form{
+    height: 5vh;
+    display: flex;
+}
+
+.search-form__input{
+    height: 100%;
+    margin-top: 0px!important;
+    font-size: 13px!important;
+}
+
+.search-form__btn{
+    width: 20%;
+    border: 1px solid gray;
+    padding: 8px 0px;
+}
+
+.locationForm{
+    display: flex; flex-flow: wrap; align-content:flex-start; height: 200px
+}
+
+.search .search__input{
+    padding: 8px 10px!important;
+    width: 100%;
+}
+
+.search__inputDate{
+    padding: 7px 9px!important;
+    margin-bottom: 8px!important;
+    width: 100%!important;
+}

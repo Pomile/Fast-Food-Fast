@@ -1,0 +1,44 @@
+
+.button{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.-small{
+    padding: 8px 30px 8px;
+    font-size: 16px;   
+}
+
+.-xsmall{
+    padding: 3px 10px 3px;
+    font-size: 12px;   
+}
+
+.-medium{
+    padding: 12px 45px 12px;
+    font-size: 18px;
+}
+
+.-large{
+    padding: 25px 50px 0px;
+    font-size: 22px;
+}
+
+.-full{
+    width: 100%;
+    padding: 10px 0px 10px;
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: tomato; /* Green */
+    color: white;
+}
+
+.-roundBtn-1{
+    border-radius: 40px;
+}

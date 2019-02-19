@@ -1,0 +1,9 @@
+.panel{
+    display:flex;
+    align-content: stretch;
+    margin-top: 6vh;
+    background: white;
+    overflow: hidden;
+    position: relative;
+    height:100vh;
+}

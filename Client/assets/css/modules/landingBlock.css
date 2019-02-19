@@ -1,0 +1,139 @@
+
+.landingBlock{
+    height: 100%;
+    width: 100%;
+    background-image: url("../../images/burger_by_master.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.landingBlock__backdrop{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+}
+
+.landingBlock__caption, .landingBlock__caption-2{
+    width: 100%;
+    z-index: 102;
+    position: absolute;
+    text-align: center;
+}
+
+
+.landingBlock__caption-2-txtShadow{
+    text-shadow: 2px 2px 3px #0a0a0a;
+}
+
+.landingBlock__how-it-works{
+    height: auto;
+    width: 100%;
+    z-index: 102;
+    top: 55%;
+    position: absolute;
+    display: grid;
+    grid-column-gap: 1em;
+    align-content: start;
+}
+
+.landingBlock__how-it-works-step{
+    background-color: transparent;
+}
+.landingBlock__how-it-works-icon{
+    min-width: 80px;
+    width: 30%;
+    height: 10%;   
+    margin: auto;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    
+}
+
+.landingBlock__how-it-works-description{
+    width: 100%;
+    margin-top: 5px;
+    color:white;
+    font-size: 16px;
+    text-align: center;
+}
+
+@media (min-width: 220px) {
+    .-fs-cs-xxlarge{ font-size: 40px; }
+    .-lbf-cs-xxlarge{ font-size: 60px; }
+    .landingBlock__caption{ 
+        top: 15%;
+    }
+    .landingBlock__caption-2{ 
+        top: 35%;
+    }
+
+    .landingBlock__caption-font-size{
+        color:white; font-size: 30px;
+    }
+
+    .landingBlock__caption-2-font-size{
+        color:white; font-size: 26px!important;
+    }
+    
+    .landingBlock__how-it-works{
+        top: 50%;
+        grid-template-columns: repeat(1, 1fr)!important;
+    }
+
+}
+
+@media (min-width: 601px) {
+    .-fs-cs-xxlarge{ font-size: 65px; }
+    .landingBlock__caption{ 
+        top: 13%;
+    }
+    .landingBlock__caption-2{ 
+        top: 40%;
+    }
+
+    .landingBlock__caption-font-size{
+        color:white; font-size: 50px;
+    }
+
+    .landingBlock__caption-2-font-size{
+        color:white; font-size: 30px!important;
+    }
+    .landingBlock{
+        height: 100%!important;
+    }
+    .landingBlock__how-it-works{
+        top: 50%;
+        grid-template-columns: repeat(3, 1fr)!important;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    .-fs-cs-xxlarge{ font-size: 100px; }
+    .landingBlock__caption{ 
+        top: 20%;
+    }
+
+    .landingBlock__caption-2{ 
+        top: 45%;
+    }
+
+    .landingBlock__caption-font-size{
+        color:white; font-size: 72px;
+    }
+
+    .landingBlock__caption-2-font-size{
+        font-size: 40px!important;
+    }
+    .landingBlock__how-it-works{
+        top: 58%;
+        grid-template-columns: repeat(3, 1fr)!important;
+    }
+}

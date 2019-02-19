@@ -15,7 +15,7 @@ module.exports = {
   },
   devtool: devMode ? 'inline-source-map' : '',
   devServer: {
-    contentBase: '../public',
+    contentBase: __dirname,
   },
   optimization: devMode ? {} : {
     minimizer: [
@@ -27,6 +27,8 @@ module.exports = {
   output: {
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'var',
+    library: 'ui',
   },
   module: {
     rules: [
@@ -53,7 +55,6 @@ module.exports = {
             options: {
               name: devMode ? '[name].bundle.[ext]' : '[hash].[ext]',
               outputPath: 'images',
-              publicPath: 'images/',
             },
           },
         ],
@@ -84,14 +85,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-      publicPath: '../images/',
     }),
     new HtmlWebpackPlugin({
       title: 'Home',
       filename: 'index.html',
       template: 'index.html',
     }),
-    new CleanWebpackPlugin(['public']),
+
+    new CleanWebpackPlugin(['dist']),
     devMode ? new webpack.NamedModulesPlugin() : '',
     devMode ? new webpack.HotModuleReplacementPlugin() : '',
   ],

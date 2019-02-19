@@ -1,0 +1,26 @@
+.signupBox{
+    display: flex;
+    box-sizing: border-box;
+    height: 500px;
+}
+
+.signupBox__section-1{
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 6%;
+}
+
+.-flip-right{
+    float: right;
+}
+
+
+.signupBox__form{
+    width: 70%;
+    margin-left: 14%;
+    margin-top: 100px;
+}
+
+.signupBox__button{
+    margin-top: 10px;
+}
