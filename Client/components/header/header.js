@@ -4,13 +4,13 @@ import navigation from '../navigation/navigation';
 import sideDrawerToggler from '../navigation/sidedrawerToggler';
 
 const header = {
-  render: () => {
+  render: (linksProps, linksClasses, headerBg) => {
     const headerDiv = createElement('div');
     headerDiv.id = 'header';
-    headerDiv.className = '-transparentBg';
+    headerDiv.className = headerBg;
     const headerLogo = logo();
     const headerSideDrawerToggler = sideDrawerToggler.render();
-    const headerNav = navigation([{ name: 'Create account', path: '/signup' }, { name: 'Sign in', path: '/signin' }], ['navigation__link', 'navigation__link-with-border']);
+    const headerNav = navigation(linksProps, linksClasses);
 
     headerDiv.appendChild(headerSideDrawerToggler);
     headerDiv.appendChild(headerLogo);
